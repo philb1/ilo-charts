@@ -1,7 +1,9 @@
-<html>
-<head>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
- <style type="text/css">
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>GDPG</title>
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <style type="text/css">
     * {
     font-family: sans-serif;
 }
@@ -36,17 +38,19 @@
     margin: 1em 0 0 0;
 }
 </style>
+  </head>
+  <body>
 
 <script type='text/javascript'>//<![CDATA[
 
 $(function () {
 
-/*
-$.get( "gdpg.csv", function( data ) {
-  $( ".result" ).html( data );
-  alert( "Load was performed." );
+//https://drive.google.com/uc?export=download&id=0By02-02YHaKUcUtaQUNNUllTUms
+$.get( "gdpg.csv", function(data) {
+  $(".result").html(data);
+  alert("Load was performed.");
 });
-*/
+
     $.get('gdpg.csv', function (csv) {
         // Parse the CSV Data
         /*Highcharts.data({
@@ -301,16 +305,9 @@ $.get( "gdpg.csv", function( data ) {
                     verticalAlign: 'bottom'
                 }
             },
-			legend: {
-                symbolWidth: 400
-            },
+
             colorAxis: {
-                labels: {
-					formatter: function() { 
-									return Math.round((this.value-1000)*100)/100 + '%';
-									}
-					},
-                type: 'logarithmic',
+                type: 'logarithmic',  // toto 'linear'
                 //min: 50000
                 endOnTick: false,
                 startOnTick: false
@@ -333,9 +330,9 @@ $.get( "gdpg.csv", function( data ) {
                 cursor: 'pointer',
                 states: {
                     select: {
+                        //color: '#a4edba',
                         color: '#fec44f',
-                        //color: '#BADA55',
-                        //borderColor: 'black'
+                        borderColor: 'black'
                        // dashStyle: 'ShortDash'
                     }
                 }
@@ -356,8 +353,8 @@ $.get( "gdpg.csv", function( data ) {
 
 <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
 <link rel="stylesheet" type="text/css" href="https://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
-</head>
-<body>
+
+
 <div id="wrapper">
     <div id="container"></div>
     <div id="info">
@@ -367,5 +364,5 @@ $.get( "gdpg.csv", function( data ) {
         <div id="country-chart"></div>
     </div>
 </div>
-</body>
+  </body>
 </html>
