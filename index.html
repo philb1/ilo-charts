@@ -46,6 +46,10 @@
 $(function () {
 
 //https://drive.google.com/uc?export=download&id=0By02-02YHaKUcUtaQUNNUllTUms
+$.get( "gdpg.csv", function( data ) {
+  $( ".result" ).html( data );
+  alert( "Load was performed." );
+});
 
     $.get('gdpg.csv', function (csv) {
         // Parse the CSV Data
