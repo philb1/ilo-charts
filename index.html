@@ -45,12 +45,12 @@
 
 $(function () {
 
-//https://drive.google.com/uc?export=download&id=0By02-02YHaKUcUtaQUNNUllTUms
-$.get( "gdpg.csv", function(data) {
-  $(".result").html(data);
-  alert("Load was performed.");
+/*
+$.get( "gdpg.csv", function( data ) {
+  $( ".result" ).html( data );
+  alert( "Load was performed." );
 });
-
+*/
     $.get('gdpg.csv', function (csv) {
         // Parse the CSV Data
         /*Highcharts.data({
@@ -305,9 +305,16 @@ $.get( "gdpg.csv", function(data) {
                     verticalAlign: 'bottom'
                 }
             },
-
+			legend: {
+                symbolWidth: 400
+            },
             colorAxis: {
-                type: 'logarithmic',  // toto 'linear'
+                labels: {
+					formatter: function() { 
+									return Math.round((this.value-1000)*100)/100 + '%';
+									}
+					},
+                type: 'logarithmic',
                 //min: 50000
                 endOnTick: false,
                 startOnTick: false
@@ -330,9 +337,9 @@ $.get( "gdpg.csv", function(data) {
                 cursor: 'pointer',
                 states: {
                     select: {
-                        //color: '#a4edba',
                         color: '#fec44f',
-                        borderColor: 'black'
+                        //color: '#BADA55',
+                        //borderColor: 'black'
                        // dashStyle: 'ShortDash'
                     }
                 }
