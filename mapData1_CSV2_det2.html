@@ -55,13 +55,13 @@
 
 <script type='text/javascript'>//<![CDATA[
 
-$.get( "det.csv", function( data ) {
+$.get( "gdpg.csv", function( data ) {
   $( ".result" ).html( data );
   alert( "Load was performed." );
 });
 
 $(function () {
-    $.get('det.csv', function (csv) {
+    $.get('gdpg.csv', function (csv) {
         // Very simple and case-specific CSV string splitting
         function CSVtoArray(text) {
             return text.replace(/^"/, '')
