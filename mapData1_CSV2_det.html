@@ -5,10 +5,6 @@
 </style>
 
 <script type='text/javascript'>//<![CDATA[
-$.get( "gdpg.csv", function( data ) {
-  $( ".result" ).html( data );
-  alert( "Load was performed." );
-});
 $(function () {
     $.get('det.csv', function (csv) {
         // Very simple and case-specific CSV string splitting
