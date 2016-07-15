@@ -1,0 +1,290 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<link rel='stylesheet' href='mapData1_CSV2.css' type='text/css' />
+
+<script type='text/javascript'>//<![CDATA[
+
+$(function () {
+    $.get('gdpg.csv', function (csv) {
+        // Very simple and case-specific CSV string splitting
+        function CSVtoArray(text) {
+            return text.replace(/^"/, '')
+                .replace(/",$/, '')
+                .split('","');
+        }
+        csv = csv.split(/\n/);
+        var countries = {},
+            mapChart,
+            countryChart,
+            numRegex = /^[0-9\.]+$/,
+            quoteRegex = /\"/g,
+            categories = CSVtoArray(csv[0]).slice(4);
+
+        // Parse the CSV into arrays, one array each country
+        $.each(csv.slice(2), function (j, line) {
+            var row = CSVtoArray(line),
+                data = row.slice(4);
+
+            $.each(data, function (i, val) {
+
+                val = val.replace(quoteRegex, '');
+				val = (parseFloat(val)+1000);
+
+                if (numRegex.test(val)) {
+                    val = val;
+                } else if (!val) {
+                    val = null;
+                }
+                data[i] = val;
+            });
+            countries[row[1]] = {
+                name: row[0],
+                code3: row[1],
+                data: data
+            };
+        });
+
+        // For each country, use the latest value for current XXX
+        var data = [];
+        for (var code3 in countries) {
+            if (countries.hasOwnProperty(code3)) {
+                var value = null,
+                    year,
+                    itemData = countries[code3].data,
+                    i = itemData.length;
+
+                while (i--) {
+                    if (typeof itemData[i] === 'number') {
+                        value = itemData[i];
+                        year = categories[i];
+                        break;
+                    }
+                }
+                data.push({
+                    name: countries[code3].name,
+                    code3: code3,
+                    value: value,
+                    year: year
+                });
+            }
+        }
+
+        // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
+        var mapData = Highcharts.geojson(Highcharts.maps['custom/world']);
+        $.each(mapData, function () {
+            this.id = this.properties['hc-key']; // for Chart.get()
+            this.flag = this.id.replace('UK', 'GB').toLowerCase();
+        });
+
+        // Wrap point.select to get to the total selected points
+        Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
+
+            proceed.apply(this, Array.prototype.slice.call(arguments, 1));
+
+            var points = mapChart.getSelectedPoints();
+
+            if (points.length) {
+                if (points.length === 1) {
+                    $('#info #flag').attr('class', 'flag ' + points[0].flag);
+                    $('#info h2').html(points[0].name);
+                } else {
+                    $('#info #flag').attr('class', 'flag');
+                    $('#info h2').html('Comparing countries');
+
+                }
+                $('#info .subheader').html('<h4>Real GDP Growth</h4><small><em>Shift + Click on map to compare countries</em></small>');
+
+                if (!countryChart) {
+                    countryChart = $('#country-chart').highcharts({
+                        chart: {
+                            height: 250,
+                            spacingLeft: 0
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: null
+                        },
+                        subtitle: {
+                            text: null
+                        },
+                        xAxis: {
+                            tickPixelInterval: 50,
+                            crosshair: true
+                        },
+                        yAxis: {
+                            title: null,
+                            opposite: true,
+							labels: {                
+										formatter: function () {
+											return this.value-1000;
+										}
+									}
+                        },
+                        tooltip: {
+							formatter: function() {
+								var s = '<span style="font-size: 10px">' + this.x + '</span><br/>';
+								for ( var i = 0; i < this.points.length; i++ ) {
+									var myPoint = this.points[i];
+									s += '<br/><span style="color:' 
+										 + myPoint.series.color
+										 + '">\u25CF</span>\u00A0'
+										 + myPoint.series.name + ': ';
+									if (myPoint.point.low && myPoint.point.high) {
+										s += myPoint.point.low + ' - ' + myPoint.point.high;
+									} else {
+										s += '<b>' + Math.round((myPoint.y-1000)*100)/100;
+									}
+									s += '%</b>';
+								}
+								return s;
+							},
+							shared: true
+                        },
+                        plotOptions: {
+                            series: {
+                                animation: {
+                                    duration: 500
+                                },
+                                marker: {
+                                    enabled: false
+                                },
+                                threshold: 1000,
+                                pointStart: parseInt(categories[0], 10)
+                            }
+                        }
+                    }).highcharts();
+                }
+                $.each(points, function (i) {
+                    // Update
+                    if (countryChart.series[i]) {
+                        countryChart.series[i].update({
+                            name: this.name,
+							data: function() { 
+								$.each(countries[this.code3].data, function () {
+									return Number(((parseFloat(countries[this.code3].data)-1000)).toFixed(2))
+									})
+								},
+                            data: countries[this.code3].data,
+                            type: points.length > 1 ? 'line' : 'area'
+                        }, false);
+                    } else {
+                        countryChart.addSeries({
+                            name: this.name,
+							data: function() { 
+								$.each(countries[this.code3].data, function () {
+									return Number(((parseFloat(countries[this.code3].data)-1000)).toFixed(2))
+									})
+								},
+                            data: countries[this.code3].data,
+                            type: points.length > 1 ? 'line' : 'area'
+                        }, false);
+                    }
+                });
+                while (countryChart.series.length > points.length) {
+                    countryChart.series[countryChart.series.length - 1].remove(false);
+                }
+                
+                countryChart.redraw();
+
+            } else {
+                $('#info #flag').attr('class', '');
+                $('#info h2').html('');
+                $('#info .subheader').html('');
+                if (countryChart) {
+                    countryChart = countryChart.destroy();
+                }
+            }
+
+        });
+
+        // Initiate the map chart
+        mapChart = $('#container').highcharts('Map', {
+
+            title : {
+                text : 'Real GDP Growth'
+            },
+            subtitle: {
+                text: '(Latest Year)'
+            },
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+			legend: {
+                symbolWidth: 400
+            },
+            colorAxis: {
+                labels: {
+					formatter: function() { 
+									return Math.round((this.value-1000)*100)/100 + '%';
+									}
+					},
+                type: 'logarithmic',
+                endOnTick: false,
+                startOnTick: false
+            },
+
+            tooltip: {
+                     formatter: function() { 
+						return '<b>' + this.point.name + '</b><br>' + this.series.name + ': <b>' + Math.round((this.point.value-1000)*100)/100 + '%</bb>'
+					}
+            },
+			credits: false,
+            series : [{
+                data : data,
+                mapData: mapData,
+                compare: 'percent',
+                joinBy: ['iso-a3', 'code3'],
+                name: 'Real GDP Growth',
+                allowPointSelect: true,
+                cursor: 'pointer',
+                states: {
+                    select: {
+                        color: '#fec44f',
+                    }
+                }
+            }]
+        }).highcharts();
+
+        // Pre-select a country
+        //mapChart.get('us').select();
+    });
+$('#switchMap').on('change', function() {
+  $(location).attr('href', this.value);
+});
+    
+});
+//]]> 
+
+</script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/maps/modules/map.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+<!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+<link rel="stylesheet" type="text/css" href="https://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+</head>
+<body>
+<div id="wrapper">
+    <div id="container"></div>
+    <div id="menu"><select id="switchMap">
+		<option value="0" selected disabled>Switch to:</option>
+		<option value="mapData1_CSV2_dwr.html">Real Wage Growth</option>
+		<option value="mapData1_CSV2_gdp.html" default>Real GDP Growth</option>
+		<option value="mapData1_CSV2_det.html">Employment Growth</option>
+    </select></div>
+    <div id="info">
+        <span class="f32"><span id="flag"></span></span>
+        <h2></h2>
+        <div class="subheader">Click countries to view history</div>
+        <div id="country-chart"></div>
+    </div>
+</div>
+</body>
+</html>
