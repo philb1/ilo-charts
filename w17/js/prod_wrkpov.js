@@ -315,7 +315,7 @@ var weso_Countries = [
 {name:"South-Eastern Asia and the Pacific",data:[45.7,44.0,39.8,34.7,33.0,31.1,29.5,27.7,26.2,24.8,23.4,22.0]},
 {name:"Southern Asia",data:[66.1,65.4,64.0,62.3,57.7,52.9,52.0,51.0,50.0,49.0,48.1,47.1]},
 {name:"Eastern Europe",data:[3.6,3.4,3.1,3.3,3.3,3.4,3.3,3.3,3.2,3.2,3.1,3.1]},
-{name:"Central and Western Asia",data:[15.2,12.5,11.5,10.7,9.8,8.9,7.9,7.4,7.0,6.6,6.3,5.9]
+{name:"Central and Western Asia",data:[15.2,12.5,11.5,10.7,9.8,8.9,7.9,7.4,7.0,6.6,6.3,5.9]}
 ];
 
 
