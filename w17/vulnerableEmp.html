@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width">
+	<title>Global Unemployment Rates</title>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" media="all" href="http://www.ilo.org/wcmsp5/ilo/global/css/screen.css">
+	<link rel="stylesheet" href="css/main-prod.css?__inline=true">
+</head>
+<body>
+	<div class="outer-chart-container">
+		<div id="container" height="550"></div>
+		<div class="explainerText">Click on an item in the legend to remove it from the chart.</div>
+		<div class="form-row">
+			<form id="countrySelector">
+				<select name="Country" style="width:300px" id="countrySelectorField" autofocus="autofocus" autocorrect="off" autocomplete="off" placeholder="Enter country or region">
+					<option value="" selected="selected">Select Country</option>
+					<option value="World" data-alternative-spellings="Global">World</option>
+					<option value="Developing economies" data-alternative-spellings="Developing economies">Developing economies</option>
+					<option value="Emerging economies" data-alternative-spellings="Emerging economies">Emerging economies</option>
+					<option value="Developed economies" data-alternative-spellings="Developed economies">Developed economies</option>
+					<option value="European Union" data-alternative-spellings="EU">European Union</option>
+					<option value="Northern Africa" data-alternative-spellings="North Africa">Northern Africa</option>
+					<option value="Sub-Saharan Africa" data-alternative-spellings="Sub Saharan Africa">Sub-Saharan Africa</option>
+					<option value="Latin America and the Caribbean" data-alternative-spellings="LatAm">Latin America and the Caribbean</option>
+					<option value="Northern America" data-alternative-spellings="North America">Northern America</option>
+					<option value="Arab States" data-alternative-spellings="Arab States">Arab States</option>
+					<option value="Eastern Asia" data-alternative-spellings="Eastern Asia">Eastern Asia</option>
+					<option value="South-Eastern Asia and the Pacific" data-alternative-spellings="South-Eastern Asia and the Pacific">South-Eastern Asia and the Pacific</option>
+					<option value="Southern Asia" data-alternative-spellings="South Asia">Southern Asia</option>
+					<option value="Northern, Southern and Western Europe" data-alternative-spellings="Western Europe Southern Europe Northern Europe">Northern, Southern and Western Europe</option>
+					<option value="Eastern Europe" data-alternative-spellings="Eastern Europe">Eastern Europe</option>
+					<option value="Central and Western Asia" data-alternative-spellings="Central Asia">Central and Western Asia</option>
+				</select>
+				<input type="submit" id="formValueID" value="Add">
+			</form>
+		</div>
+		<div class="button-row">
+			<button id="clear-data" class="mv-btn red-unselected">Clear chart</button>
+		</div>
+
+	</div>
+	<script src="js/prod_vulnemp.js?__inline=true"></script>
+</body>
+</html>
