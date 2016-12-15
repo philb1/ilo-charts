@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width">
+	<title>Global Unemployment Rates</title>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" media="all" href="http://www.ilo.org/wcmsp5/ilo/global/css/screen.css">
+	<link rel="stylesheet" href="css/main-prod.css?__inline=true">
+</head>
+<body>
+	<div class="outer-chart-container">
+		<div id="container" height="550"></div>
+		<div class="explainerText">Click on an item in the legend to remove it from the chart.</div>
+		<div class="form-row">
+			<form id="countrySelector">
+				<select name="Country" style="width:300px" id="countrySelectorField" autofocus="autofocus" autocorrect="off" autocomplete="off" placeholder="Enter country or region">
+					<option value="" selected="selected">Select Country</option>
+					<option value="Australia" data-alternative-spellings="AU" data-relevancy-booster="1.5">Australia</option>
+					<option value="Austria" data-alternative-spellings="AT Österreich Osterreich Oesterreich ">Austria</option>
+					<option value="Belgium" data-alternative-spellings="BE België Belgie Belgien Belgique" data-relevancy-booster="1.5">Belgium</option>
+					<option value="Brazil" data-alternative-spellings="BR Brasil" data-relevancy-booster="2">Brazil</option>
+					<option value="Bulgaria" data-alternative-spellings="BG България">Bulgaria</option>
+					<option value="Canada" data-alternative-spellings="CA" data-relevancy-booster="2">Canada</option>
+					<option value="Chile" data-alternative-spellings="CL">Chile</option>
+					<option value="Croatia" data-alternative-spellings="HR Hrvatska">Croatia</option>
+					<option value="Czech Republic" data-alternative-spellings="CZ Česká Ceska">Czech Republic</option>
+					<option value="Denmark" data-alternative-spellings="DK Danmark" data-relevancy-booster="1.5">Denmark</option>
+					<option value="Finland" data-alternative-spellings="FI Suomi">Finland</option>
+					<option value="France" data-alternative-spellings="FR République française" data-relevancy-booster="2.5">France</option>
+					<option value="Germany" data-alternative-spellings="DE Bundesrepublik Deutschland" data-relevancy-booster="3">Germany</option>
+					<option value="Hong Kong, China" data-alternative-spellings="HK 香港">Hong Kong, China</option>
+					<option value="Hungary" data-alternative-spellings="HU Magyarország">Hungary</option>
+					<option value="Ireland" data-alternative-spellings="IE Éire" data-relevancy-booster="1.2">Ireland</option>
+					<option value="Italy" data-alternative-spellings="IT Italia" data-relevancy-booster="2">Italy</option>
+					<option value="Jamaica" data-alternative-spellings="JM">Jamaica</option>
+					<option value="Japan" data-alternative-spellings="JP Nippon Nihon 日本" data-relevancy-booster="2.5">Japan</option>
+					<option value="Korea, Republic of" data-alternative-spellings="KR South Korea" data-relevancy-booster="1.5">Korea, Republic of</option>
+					<option value="Malaysia" data-alternative-spellings="MY">Malaysia</option>
+					<option value="Mexico" data-alternative-spellings="MX Mexicanos" data-relevancy-booster="1.5">Mexico</option>
+					<option value="Netherlands" data-alternative-spellings="NL Holland Nederland" data-relevancy-booster="1.5">Netherlands</option>
+					<option value="New Zealand" data-alternative-spellings="NZ Aotearoa">New Zealand</option>
+					<option value="Norway" data-alternative-spellings="NO Norge Noreg" data-relevancy-booster="1.5">Norway</option>
+					<option value="Philippines" data-alternative-spellings="PH Pilipinas" data-relevancy-booster="1.5">Philippines</option>
+					<option value="Poland" data-alternative-spellings="PL Polska" data-relevancy-booster="1.25">Poland</option>
+					<option value="Portugal" data-alternative-spellings="PT Portuguesa" data-relevancy-booster="1.5">Portugal</option>
+					<option value="Romania" data-alternative-spellings="RO Rumania Roumania România">Romania</option>
+					<option value="Russian Federation" data-alternative-spellings="RU Rossiya Российская Россия" data-relevancy-booster="2.5">Russian Federation</option>
+					<option value="Singapore" data-alternative-spellings="SG Singapura  சிங்கப்பூர் குடியரசு 新加坡共和国">Singapore</option>
+					<option value="Slovakia" data-alternative-spellings="SK Slovenská Slovensko">Slovakia</option>
+					<option value="South Africa" data-alternative-spellings="ZA RSA Suid-Afrika">South Africa</option>
+					<option value="Spain" data-alternative-spellings="ES España" data-relevancy-booster="2">Spain<option>
+					<option value="Sweden" data-alternative-spellings="SE Sverige" data-relevancy-booster="1.5">Sweden</option>
+					<option value="Taiwan, China" data-alternative-spellings="TW 台灣 臺灣">Taiwan, China</option>
+					<option value="Thailand" data-alternative-spellings="TH ประเทศไทย Prathet Thai">Thailand</option>
+					<option value="Turkey" data-alternative-spellings="TR Türkiye Turkiye">Turkey</option>irates</option>
+					<option value="United Kingdom" data-alternative-spellings="GB Great Britain England UK Wales Scotland" data-relevancy-booster="2.5">United Kingdom</option>
+					<option value="United States" data-relevancy-booster="3.5" data-alternative-spellings="US USA United States of America">United States</option>
+					<option value="European Union" data-alternative-spellings="EU">European Union</option>
+					<option value="World" data-alternative-spellings="Global">World</option>
+					<option value="Northern Africa" data-alternative-spellings="North Africa">Northern Africa</option>
+					<option value="Sub-Saharan Africa" data-alternative-spellings="Sub Saharan Africa">Sub-Saharan Africa</option>
+					<option value="Latin America and the Caribbean" data-alternative-spellings="LatAm">Latin America and the Caribbean</option>
+					<option value="Northern America" data-alternative-spellings="North America">Northern America</option>
+					<option value="Arab States" data-alternative-spellings="Arab States">Arab States</option>
+					<option value="Eastern Asia" data-alternative-spellings="Eastern Asia">Eastern Asia</option>
+					<option value="Southern Asia" data-alternative-spellings="South Asia">Southern Asia</option>
+					<option value="Northern, Southern and Western Europe" data-alternative-spellings="Western Europe Southern Europe Northern Europe">Northern, Southern and Western Europe</option>
+					<option value="Eastern Europe" data-alternative-spellings="Eastern Europe">Eastern Europe</option>
+					<option value="Central and Western Asia" data-alternative-spellings="Central Asia">Central and Western Asia</option>
+					<option value="Developed Economies" data-alternative-spellings="Developed Economies">Developed Economies</option>
+					<option value="Developing Economies" data-alternative-spellings="Developing Economies">Developing Economies</option>
+					<option value="Emerging Economies" data-alternative-spellings="Emerging Economies">Emerging Economies</option>
+				</select>
+				<input type="submit" id="formValueID" value="Add">
+				<!--<button id="clear-data" class="mv-btn red-unselected" style="width:90px" >Clear chart</button>-->
+			</form>
+		</div>
+		<div class="button-row">
+			<button id="regions" class="mv-btn blue-unselected">By region</button>
+			<button id="clear-data" class="mv-btn red-unselected">Clear chart</button>
+		</div>
+
+	</div>
+	<script src="js/production.js?__inline=true"></script>
+</body>
+</html>
