@@ -304,22 +304,18 @@ THE SOFTWARE.
 var defaultSeries = ["World", "Developing economies", "Developed economies", "Emerging economies", "European Union"];
 
 var weso_Countries = [
-{name:"World",data:[5.54,5.68,6.22,6.08,6.02,5.95,5.93,5.76,5.70,5.73,5.76,5.77]},
-{name:"Developing economies",data:[5.79,5.60,5.56,5.58,5.61,5.45,5.38,5.41,5.46,5.56,5.55,5.54]},
-{name:"Emerging economies",data:[5.47,5.61,5.82,5.58,5.58,5.50,5.50,5.42,5.49,5.61,5.69,5.71]},
-{name:"Developed economies",data:[5.71,5.96,8.04,8.27,7.95,8.01,7.92,7.32,6.71,6.29,6.16,6.15]},
-{name:"European Union",data:[7.16,7.00,8.91,9.57,9.64,10.45,10.85,10.19,9.37,8.60,8.34,8.19]},
-{name:"Northern Africa",data:[11.19,10.79,10.56,10.34,11.80,12.28,12.26,12.47,12.37,12.11,11.99,11.87]},
-{name:"Sub-Saharan Africa",data:[7.75,7.52,7.68,7.60,7.62,7.46,7.33,7.00,6.96,7.16,7.21,7.23]},
-{name:"Latin America and the Caribbean",data:[8.22,7.72,8.23,7.65,7.15,6.79,6.68,6.50,6.98,8.06,8.44,8.47]},
-{name:"Northern America",data:[4.75,5.83,9.19,9.44,8.75,8.01,7.37,6.28,5.47,5.14,5.14,5.26]},
-{name:"Arab States",data:[10.10,9.95,9.41,9.83,10.65,10.58,10.56,10.60,10.79,10.73,10.60,10.52]},
-{name:"Eastern Asia",data:[3.77,4.30,4.36,4.27,4.33,4.42,4.45,4.48,4.46,4.46,4.48,4.53]},
-{name:"South-Eastern Asia and the Pacific",data:[5.27,4.98,4.98,4.62,4.54,4.01,4.11,3.96,3.97,3.78,3.84,3.87]},
-{name:"Southern Asia",data:[4.19,4.37,4.49,4.26,4.25,4.29,4.22,4.13,4.14,4.13,4.10,4.08]},
-{name:"Northern, Southern and Western Europe",data:[7.40,7.36,9.32,9.89,10.02,10.89,11.27,10.70,9.97,9.31,9.05,8.92]},
-{name:"Eastern Europ",data:[6.46,6.14,8.03,7.80,7.32,6.79,6.80,6.60,6.47,6.18,6.12,5.98]},
-{name:"Central and Western Asia",data:[9.00,9.20,10.45,9.57,8.65,8.33,8.47,8.82,8.86,8.91,9.17,9.29]}
+{name:"Total Emerging and Developing Countries",data:[42.1,40.8,39.2,37.3,34.6,32.3,31.4,30.6,30.0,29.4,28.7,28.1]},
+{name:"Developing economies",data:[78.9,77.9,77.2,75.7,74.2,72.8,71.8,70.7,70.0,69.0,67.9,66.7]},
+{name:"Emerging economies",data:[38.6,37.2,35.5,33.5,30.6,28.2,27.2,26.3,25.6,25.0,24.3,23.7]},
+{name:"Northern Africa",data:[29.7,28.3,27.8,27.2,25.8,24.5,24.2,24.2,24.1,24.0,23.6,23.2]},
+{name:"Sub-Saharan Africa",data:[71.0,70.4,70.2,69.4,68.2,66.8,66.0,65.1,64.4,63.7,62.8,61.9]},
+{name:"Latin America and the Caribbean",data:[12.1,10.8,10.3,9.6,9.0,8.4,8.2,8.0,8.1,8.0,7.9,7.8]},
+{name:"Arab States",data:[21.4,20.4,19.8,19.3,19.9,19.1,18.7,19.0,22.1,21.4,20.9,20.4]},
+{name:"Eastern Asia",data:[27.8,25.8,23.7,21.3,17.6,15.6,14.1,12.7,11.7,10.7,9.9,9.1]},
+{name:"South-Eastern Asia and the Pacific",data:[45.7,44.0,39.8,34.7,33.0,31.1,29.5,27.7,26.2,24.8,23.4,22.0]},
+{name:"Southern Asia",data:[66.1,65.4,64.0,62.3,57.7,52.9,52.0,51.0,50.0,49.0,48.1,47.1]},
+{name:"Eastern Europe",data:[3.6,3.4,3.1,3.3,3.3,3.4,3.3,3.3,3.2,3.2,3.1,3.1]},
+{name:"Central and Western Asia",data:[15.2,12.5,11.5,10.7,9.8,8.9,7.9,7.4,7.0,6.6,6.3,5.9]
 ];
 
 
@@ -346,7 +342,7 @@ function chartCallBack() {
 				}
 			},
 			title: {
-				text: 'Where will unemployment rise next year?',
+				text: 'title ?',
 				style: {
 					'color' : '#CE5C3C',
 					'font-family' : '"FS Me Web Regular",Helvetica,Arial,Verdana,sans-serif',
@@ -398,7 +394,7 @@ function chartCallBack() {
 			},
 			yAxis: {
 				title: {
-					text: 'Unemployment Rate'
+					text: 'Working Poverty % (Extreme and Moderate)'
 				},
 				plotLines: [{
 					value: 0,
