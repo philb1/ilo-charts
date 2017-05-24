@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highmaps Example</title>
+
+		<style type="text/css">
+#container {
+    height: 500px; 
+    min-width: 310px; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+		</style>
+	</head>
+	<body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+
+<div id="container">
+    <div class="loading">
+        <i class="icon-spinner icon-spin icon-large"></i>
+        Loading data...
+    </div>
+</div>
+<script type="text/javascript">
+
+// Load the data from a Google Spreadsheet
+Highcharts.data({
+    googleSpreadsheetKey: '1piwxcQ9Pv6gOfonswUXICV7PPNVX7uwj_40B88xiKPI',
+    // custom handler when the spreadsheet is parsed
+    parsed: function (columns) {
+        // Read the columns into the data array
+        var data = [];
+        $.each(columns[0], function (i, code) {
+            data.push({
+                code: code.toUpperCase(),
+                value: parseFloat(columns[2][i]),
+                gdpc: parseFloat(columns[3][i]),
+                name: columns[1][i]
+            });
+        });
+        // Initiate the chart
+        Highcharts.mapChart('container', {
+            chart: {
+                borderWidth: 1
+            },
+            title: {
+                text: 'This is the title'
+            },
+
+            mapNavigation: {
+                enabled: true
+            },
+
+            legend: {
+                title: {
+                    text: 'Difference in GDP (%)',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                    }
+                },
+                align: 'center',
+                verticalAlign: 'bottom',
+                floating: true,
+                layout: 'horizontal',
+                valueDecimals: 0
+            },
+			colorAxis: {min: 0, minColor: '#fdd0a2',maxColor: '#ff0000' },
+			credits: {enabled: false},
+			tooltip: {
+						 useHTML: true,
+						 formatter: function() { 
+							 return '<b>' + this.point.name + '</b><br><u>Difference in GDP:</u>&nbsp;<b>' +
+							Math.round(this.point.value,2) + '%</b><br>' + 
+							'<u>Difference in GDP per capita, PPP(2011 constant international):</u>&nbsp;<b>' +
+							Math.round(this.point.gdpc,0) + '$</b><br>';
+						 }
+					 },
+            series: [{
+                data: data,
+                mapData: Highcharts.maps['custom/world'],
+                joinBy: ['iso-a3', 'code'],
+                animation: true,
+                name: 'Difference in GDP (%)',
+                states: {
+                    hover: {
+                        color: '#a4edba'
+                    }
+                }
+            }]
+        });
+    },
+    error: function () {
+        $('#container').html('<div class="loading">' +
+            '<i class="icon-frown icon-large"></i> ' +
+            'Error loading data from Google Spreadsheets' +
+            '</div>');
+    }
+});
+		</script>
+	</body>
+</html>
