@@ -24,18 +24,18 @@
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
 
-
 <div id="container">
     <div class="loading">
         <i class="icon-spinner icon-spin icon-large"></i>
         Loading data...
     </div>
 </div>
+
 <script type="text/javascript">
 
 // Load the data from a Google Spreadsheet
 Highcharts.data({
-    googleSpreadsheetKey: '1piwxcQ9Pv6gOfonswUXICV7PPNVX7uwj_40B88xiKPI',
+    googleSpreadsheetKey: '1EG1rlZ_Hfd-ZO0T4ROdYANOy6TF0uHRaA2o5d8OHggI',
     // custom handler when the spreadsheet is parsed
     parsed: function (columns) {
         // Read the columns into the data array
@@ -44,7 +44,8 @@ Highcharts.data({
             data.push({
                 code: code.toUpperCase(),
                 value: parseFloat(columns[2][i]),
-                gdpc: parseFloat(columns[3][i]),
+                gdp_c: parseFloat(columns[3][i]),
+                gdp_ppp: columns[4][i],
                 name: columns[1][i]
             });
         });
@@ -81,8 +82,11 @@ Highcharts.data({
 						 formatter: function() { 
 							 return '<b>' + this.point.name + '</b><br><u>Difference in GDP:</u>&nbsp;<b>' +
 							Math.round(this.point.value,2) + '%</b><br>' + 
-							'<u>Difference in GDP per capita, PPP(2011 constant international):</u>&nbsp;<b>' +
-							Math.round(this.point.gdpc,0) + '$</b><br>';
+							'<u>Difference in GDP per capita, PPP*:</u>&nbsp;<b>' +
+							Math.round(this.point.gdp_c,0) + '$</b><br>' + 
+							'<u>Difference in GDP, PPP*:</u>&nbsp;<b>' +
+							this.point.gdp_ppp + '</b><br><br>' + 
+							'<font size=-2>* 2011 constant international $</font>'
 						 }
 					 },
             series: [{
