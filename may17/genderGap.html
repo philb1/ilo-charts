@@ -65,8 +65,8 @@ var cSerie = null;
 				useHTML: true,
 				formatter: function() { 
 					return '<b>' + this.point.name + '</b><br>' +
-					'<br>Men:<b>' + this.point.value_m.toFixed(1) + '%</b>' +
-					'<br>Women:<b>' + this.point.value_f.toFixed(1) + '%</b>' + 
+					'<br>Men: <b>' + this.point.value_m.toFixed(1) + '%</b>' +
+					'<br>Women: <b>' + this.point.value_f.toFixed(1) + '%</b>' + 
 					'<br>Gender gap: <b>' + Math.abs(this.point.value.toFixed(1)) + ' pts</b>';
 				}
 			},
