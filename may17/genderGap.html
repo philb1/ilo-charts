@@ -21,19 +21,26 @@
     margin: 0;
 }
 .serie {
-  color: #aaa;
-  font-size: 15px;
+  color: #3C4270;
   background: #fff;
+  border: solid 2px #3C4270;
+  font-size: 15px;
   padding: 10px 20px 10px 20px;
-  border: solid #aaa 2px;
-  text-decoration: none;
 }
 .serie:hover {
+  color: #fff;
   background: #3C4270;
-  text-decoration: none;
+  cursor: pointer;
 }
-
-  </style>
+.serie:focus {
+  color: #fff;
+  background: #3C4270;
+}
+.mtip {
+	color: #35488C;
+	font-size: 14px;
+	}
+</style>
 <script type='text/javascript'>//<![CDATA[
 
 var data =[];
@@ -45,9 +52,9 @@ data = [[{"iso-a3":"AFG","country":"Afghanistan","value_m":83.6,"value_f":19.3,"
 		[{"iso-a3":"AFG","country":"Afghanistan","value_m":19,"value_f":53.6,"value":34.6},{"iso-a3":"ALB","country":"Albania","value_m":22.1,"value_f":39.6,"value":17.5},{"iso-a3":"DZA","country":"Algeria","value_m":1.6,"value_f":2,"value":0.4},{"iso-a3":"AGO","country":"Angola","value_m":5.1,"value_f":12.1,"value":7},{"iso-a3":"ARG","country":"Argentina","value_m":0.3,"value_f":0.9,"value":0.6},{"iso-a3":"ARM","country":"Armenia","value_m":6.7,"value_f":18.8,"value":12.1},{"iso-a3":"AUS","country":"Australia","value_m":0.2,"value_f":0.3,"value":0.1},{"iso-a3":"AUT","country":"Austria","value_m":1.4,"value_f":1.6,"value":0.2},{"iso-a3":"AZE","country":"Azerbaijan","value_m":25.9,"value_f":32.9,"value":7},{"iso-a3":"BHS","country":"Bahamas","value_m":0.2,"value_f":0.5,"value":0.3},{"iso-a3":"BHR","country":"Bahrain","value_m":0.4,"value_f":0.7,"value":0.3},{"iso-a3":"BGD","country":"Bangladesh","value_m":6.7,"value_f":52.8,"value":46.1},{"iso-a3":"BRB","country":"Barbados","value_m":0.1,"value_f":0.2,"value":0.1},{"iso-a3":"BLR","country":"Belarus","value_m":0.1,"value_f":0.1,"value":0},{"iso-a3":"BEL","country":"Belgium","value_m":0.5,"value_f":1.3,"value":0.8},{"iso-a3":"BLZ","country":"Belize","value_m":3.9,"value_f":4.7,"value":0.8},{"iso-a3":"BEN","country":"Benin","value_m":7.9,"value_f":19.6,"value":11.7},{"iso-a3":"BTN","country":"Bhutan","value_m":22.6,"value_f":45.7,"value":23.1},{"iso-a3":"BOL","country":"Bolivia, Plurinational State of","value_m":7.5,"value_f":28.1,"value":20.6},{"iso-a3":"BIH","country":"Bosnia and Herzegovina","value_m":1.7,"value_f":7.6,"value":5.9},{"iso-a3":"BWA","country":"Botswana","value_m":4,"value_f":4.6,"value":0.6},{"iso-a3":"BRA","country":"Brazil","value_m":2.4,"value_f":4.8,"value":2.4},{"iso-a3":"BRN","country":"Brunei Darussalam","value_m":0.4,"value_f":0.6,"value":0.2},{"iso-a3":"BGR","country":"Bulgaria","value_m":0.4,"value_f":0.9,"value":0.5},{"iso-a3":"BFA","country":"Burkina Faso","value_m":26.9,"value_f":74.7,"value":47.8},{"iso-a3":"BDI","country":"Burundi","value_m":5.6,"value_f":8.4,"value":2.8},{"iso-a3":"KHM","country":"Cambodia","value_m":4,"value_f":4.6,"value":0.6},{"iso-a3":"CMR","country":"Cameroon","value_m":18.6,"value_f":34.7,"value":16.1},{"iso-a3":"CAN","country":"Canada","value_m":0.1,"value_f":0.2,"value":0.1},{"iso-a3":"CPV","country":"Cape Verde","value_m":5.1,"value_f":13.2,"value":8.1},{"iso-a3":"CAF","country":"Central African Republic","value_m":0.6,"value_f":0.3,"value":-0.3},{"iso-a3":"TCD","country":"Chad","value_m":13,"value_f":56.2,"value":43.2},{"iso-a3":"CHL","country":"Chile","value_m":0.7,"value_f":2.1,"value":1.4},{"iso-a3":"CHN","country":"China","value_m":2.2,"value_f":7.7,"value":5.5},{"iso-a3":"COL","country":"Colombia","value_m":2.2,"value_f":6.1,"value":3.9},{"iso-a3":"COM","country":"Comoros","value_m":1.7,"value_f":2.1,"value":0.4},{"iso-a3":"COG","country":"Congo","value_m":2.2,"value_f":2.9,"value":0.7},{"iso-a3":"COD","country":"Congo, Democratic Republic of the","value_m":7.7,"value_f":17.7,"value":10},{"iso-a3":"CRI","country":"Costa Rica","value_m":1.5,"value_f":3.8,"value":2.3},{"iso-a3":"HRV","country":"Croatia","value_m":1.1,"value_f":2.8,"value":1.7},{"iso-a3":"CUB","country":"Cuba","value_m":0.1,"value_f":0,"value":-0.1},{"iso-a3":"CYP","country":"Cyprus","value_m":1.1,"value_f":1.3,"value":0.2},{"iso-a3":"CZE","country":"Czech Republic","value_m":0.3,"value_f":1.1,"value":0.8},{"iso-a3":"CIV","country":"C“te d'Ivoire","value_m":12.5,"value_f":27,"value":14.5},{"iso-a3":"DNK","country":"Denmark","value_m":0.3,"value_f":0.3,"value":0},{"iso-a3":"DJI","country":"Djibouti","value_m":0.4,"value_f":2.2,"value":1.8},{"iso-a3":"DOM","country":"Dominican Republic","value_m":0.8,"value_f":2.5,"value":1.7},{"iso-a3":"ECU","country":"Ecuador","value_m":5.6,"value_f":15.9,"value":10.3},{"iso-a3":"EGY","country":"Egypt","value_m":5.5,"value_f":39.4,"value":33.9},{"iso-a3":"SLV","country":"El Salvador","value_m":6.2,"value_f":8.6,"value":2.4},{"iso-a3":"GNQ","country":"Equatorial Guinea","value_m":3.3,"value_f":11.9,"value":8.6},{"iso-a3":"ERI","country":"Eritrea","value_m":5.1,"value_f":12,"value":6.9},{"iso-a3":"EST","country":"Estonia","value_m":0.1,"value_f":0.2,"value":0.1},{"iso-a3":"ETH","country":"Ethiopia","value_m":39.2,"value_f":70.5,"value":31.3},{"iso-a3":"FJI","country":"Fiji","value_m":9.7,"value_f":25.6,"value":15.9},{"iso-a3":"FIN","country":"Finland","value_m":0.6,"value_f":0.4,"value":-0.2},{"iso-a3":"FRA","country":"France","value_m":0.1,"value_f":0.6,"value":0.5},{"iso-a3":"PYF","country":"French Polynesia","value_m":0.3,"value_f":0.3,"value":0},{"iso-a3":"GAB","country":"Gabon","value_m":0.5,"value_f":1.1,"value":0.6},{"iso-a3":"GMB","country":"Gambia","value_m":0.6,"value_f":0.3,"value":-0.3},{"iso-a3":"GEO","country":"Georgia","value_m":13.2,"value_f":33.4,"value":20.2},{"iso-a3":"DEU","country":"Germany","value_m":0.2,"value_f":0.5,"value":0.3},{"iso-a3":"GHA","country":"Ghana","value_m":15.8,"value_f":27.7,"value":11.9},{"iso-a3":"GRC","country":"Greece","value_m":2.8,"value_f":6.1,"value":3.3},{"iso-a3":"GUM","country":"Guam","value_m":5.8,"value_f":19.5,"value":13.7},{"iso-a3":"GTM","country":"Guatemala","value_m":12.2,"value_f":16.2,"value":4},{"iso-a3":"GIN","country":"Guinea","value_m":6.6,"value_f":17.1,"value":10.5},{"iso-a3":"GNB","country":"Guinea-Bissau","value_m":1,"value_f":1,"value":0},{"iso-a3":"GUY","country":"Guyana","value_m":3.3,"value_f":3.3,"value":0},{"iso-a3":"HTI","country":"Haiti","value_m":2.6,"value_f":4.3,"value":1.7},{"iso-a3":"HND","country":"Honduras","value_m":11.9,"value_f":13.9,"value":2},{"iso-a3":"HKG","country":"Hong Kong, China","value_m":0.1,"value_f":0.6,"value":0.5},{"iso-a3":"HUN","country":"Hungary","value_m":0.3,"value_f":0.3,"value":0},{"iso-a3":"ISL","country":"Iceland","value_m":0,"value_f":0,"value":0},{"iso-a3":"IND","country":"India","value_m":7.9,"value_f":25.9,"value":18},{"iso-a3":"IDN","country":"Indonesia","value_m":5.3,"value_f":27.1,"value":21.8},{"iso-a3":"IRN","country":"Iran, Islamic Republic of","value_m":2.3,"value_f":19.5,"value":17.2},{"iso-a3":"IRQ","country":"Iraq","value_m":8.6,"value_f":33.5,"value":24.9},{"iso-a3":"IRL","country":"Ireland","value_m":0.5,"value_f":0.4,"value":-0.1},{"iso-a3":"ISR","country":"Israel","value_m":0.1,"value_f":0.1,"value":0},{"iso-a3":"ITA","country":"Italy","value_m":1,"value_f":1.8,"value":0.8},{"iso-a3":"JAM","country":"Jamaica","value_m":0.6,"value_f":1.5,"value":0.9},{"iso-a3":"JPN","country":"Japan","value_m":0.8,"value_f":4.6,"value":3.8},{"iso-a3":"JOR","country":"Jordan","value_m":0.3,"value_f":0.2,"value":-0.1},{"iso-a3":"KAZ","country":"Kazakhstan","value_m":0.1,"value_f":0.1,"value":0},{"iso-a3":"KEN","country":"Kenya","value_m":20,"value_f":47.8,"value":27.8},{"iso-a3":"PRK","country":"Korea, Democratic People's Republic of","value_m":13,"value_f":45.5,"value":32.5},{"iso-a3":"KOR","country":"Korea, Republic of","value_m":0.9,"value_f":8.6,"value":7.7},{"iso-a3":"KWT","country":"Kuwait","value_m":0,"value_f":0,"value":0},{"iso-a3":"KGZ","country":"Kyrgyzstan","value_m":5,"value_f":19,"value":14},{"iso-a3":"LAO","country":"Lao People's Democratic Republic","value_m":18.2,"value_f":36.3,"value":18.1},{"iso-a3":"LVA","country":"Latvia","value_m":1,"value_f":0.6,"value":-0.4},{"iso-a3":"LBN","country":"Lebanon","value_m":2.9,"value_f":7.2,"value":4.3},{"iso-a3":"LSO","country":"Lesotho","value_m":3.2,"value_f":2.9,"value":-0.3},{"iso-a3":"LBR","country":"Liberia","value_m":11,"value_f":17.4,"value":6.4},{"iso-a3":"LBY","country":"Libya","value_m":5.4,"value_f":21.3,"value":15.9},{"iso-a3":"LTU","country":"Lithuania","value_m":0.9,"value_f":1.4,"value":0.5},{"iso-a3":"LUX","country":"Luxembourg","value_m":0.6,"value_f":0.9,"value":0.3},{"iso-a3":"MAC","country":"Macau, China","value_m":0.2,"value_f":1.1,"value":0.9},{"iso-a3":"MKD","country":"Macedonia, the former Yugoslav Republic of","value_m":5.2,"value_f":12.4,"value":7.2},{"iso-a3":"MDG","country":"Madagascar","value_m":23,"value_f":59.2,"value":36.2},{"iso-a3":"MWI","country":"Malawi","value_m":2.2,"value_f":2.6,"value":0.4},{"iso-a3":"MYS","country":"Malaysia","value_m":2,"value_f":7.4,"value":5.4},{"iso-a3":"MDV","country":"Maldives","value_m":1,"value_f":1.2,"value":0.2},{"iso-a3":"MLI","country":"Mali","value_m":22.7,"value_f":34.6,"value":11.9},{"iso-a3":"MLT","country":"Malta","value_m":0,"value_f":0,"value":0},{"iso-a3":"MRT","country":"Mauritania","value_m":3.1,"value_f":8.2,"value":5.1},{"iso-a3":"MUS","country":"Mauritius","value_m":1,"value_f":4.6,"value":3.6},{"iso-a3":"MEX","country":"Mexico","value_m":3.8,"value_f":7.9,"value":4.1},{"iso-a3":"MDA","country":"Moldova, Republic of","value_m":2.1,"value_f":5.1,"value":3},{"iso-a3":"MNG","country":"Mongolia","value_m":1.1,"value_f":4.2,"value":3.1},{"iso-a3":"MNE","country":"Montenegro","value_m":1.8,"value_f":3.3,"value":1.5},{"iso-a3":"MAR","country":"Morocco","value_m":12.8,"value_f":48.4,"value":35.6},{"iso-a3":"MOZ","country":"Mozambique","value_m":9.7,"value_f":57.6,"value":47.9},{"iso-a3":"MMR","country":"Myanmar","value_m":18.3,"value_f":51.6,"value":33.3},{"iso-a3":"NAM","country":"Namibia","value_m":5,"value_f":8.1,"value":3.1},{"iso-a3":"NPL","country":"Nepal","value_m":2.8,"value_f":7.6,"value":4.8},{"iso-a3":"NLD","country":"Netherlands","value_m":0.3,"value_f":0.8,"value":0.5},{"iso-a3":"NCL","country":"New Caledonia","value_m":0.2,"value_f":0.3,"value":0.1},{"iso-a3":"NZL","country":"New Zealand","value_m":0.6,"value_f":1,"value":0.4},{"iso-a3":"NIC","country":"Nicaragua","value_m":8.9,"value_f":6.7,"value":-2.2},{"iso-a3":"NER","country":"Niger","value_m":1.4,"value_f":0.8,"value":-0.6},{"iso-a3":"NGA","country":"Nigeria","value_m":1,"value_f":1.9,"value":0.9},{"iso-a3":"NOR","country":"Norway","value_m":0.2,"value_f":0.2,"value":0},{"iso-a3":"OMN","country":"Oman","value_m":0.5,"value_f":0.9,"value":0.4},{"iso-a3":"PAK","country":"Pakistan","value_m":13.9,"value_f":54.9,"value":41},{"iso-a3":"PAN","country":"Panama","value_m":2.5,"value_f":5.7,"value":3.2},{"iso-a3":"PNG","country":"Papua New Guinea","value_m":8.5,"value_f":28.9,"value":20.4},{"iso-a3":"PRY","country":"Paraguay","value_m":6.1,"value_f":11.7,"value":5.6},{"iso-a3":"PER","country":"Peru","value_m":5.5,"value_f":18.4,"value":12.9},{"iso-a3":"PHL","country":"Philippines","value_m":6.4,"value_f":12.6,"value":6.2},{"iso-a3":"POL","country":"Poland","value_m":1.9,"value_f":4.3,"value":2.4},{"iso-a3":"PRT","country":"Portugal","value_m":0.4,"value_f":0.5,"value":0.1},{"iso-a3":"PRI","country":"Puerto Rico","value_m":0.1,"value_f":0.9,"value":0.8},{"iso-a3":"QAT","country":"Qatar","value_m":0,"value_f":0,"value":0},{"iso-a3":"ROU","country":"Romania","value_m":5.6,"value_f":15.2,"value":9.6},{"iso-a3":"RUS","country":"Russian Federation","value_m":0.4,"value_f":0.4,"value":0},{"iso-a3":"RWA","country":"Rwanda","value_m":5.4,"value_f":11.8,"value":6.4},{"iso-a3":"LCA","country":"Saint Lucia","value_m":0.5,"value_f":1.5,"value":1},{"iso-a3":"VCT","country":"Saint Vincent and the Grenadines","value_m":1.8,"value_f":3.3,"value":1.5},{"iso-a3":"WSM","country":"Samoa","value_m":0.8,"value_f":3.1,"value":2.3},{"iso-a3":"STP","country":"Sao Tome and Principe","value_m":1.8,"value_f":3.5,"value":1.7},{"iso-a3":"SAU","country":"Saudi Arabia","value_m":0,"value_f":0,"value":0},{"iso-a3":"SEN","country":"Senegal","value_m":19.3,"value_f":31.8,"value":12.5},{"iso-a3":"SRB","country":"Serbia","value_m":3.9,"value_f":12.6,"value":8.7},{"iso-a3":"SLE","country":"Sierra Leone","value_m":10.3,"value_f":15.8,"value":5.5},{"iso-a3":"SGP","country":"Singapore","value_m":0.3,"value_f":0.5,"value":0.2},{"iso-a3":"SVK","country":"Slovakia","value_m":0.1,"value_f":0.3,"value":0.2},{"iso-a3":"SVN","country":"Slovenia","value_m":3,"value_f":5.5,"value":2.5},{"iso-a3":"SLB","country":"Solomon Islands","value_m":20.7,"value_f":49.9,"value":29.2},{"iso-a3":"SOM","country":"Somalia","value_m":0.5,"value_f":0.2,"value":-0.3},{"iso-a3":"ZAF","country":"South Africa","value_m":0.4,"value_f":0.8,"value":0.4},{"iso-a3":"ESP","country":"Spain","value_m":0.4,"value_f":0.6,"value":0.2},{"iso-a3":"LKA","country":"Sri Lanka","value_m":2.6,"value_f":18.3,"value":15.7},{"iso-a3":"SDN","country":"Sudan","value_m":1.9,"value_f":3.8,"value":1.9},{"iso-a3":"SUR","country":"Suriname","value_m":0.4,"value_f":0.9,"value":0.5},{"iso-a3":"SWZ","country":"Swaziland","value_m":0.6,"value_f":1.2,"value":0.6},{"iso-a3":"SWE","country":"Sweden","value_m":0.2,"value_f":0.2,"value":0},{"iso-a3":"CHE","country":"Switzerland","value_m":1.4,"value_f":2.4,"value":1},{"iso-a3":"SYR","country":"Syrian Arab Republic","value_m":2.4,"value_f":9.5,"value":7.1},{"iso-a3":"TWN","country":"Taiwan, China","value_m":1.9,"value_f":6.5,"value":4.6},{"iso-a3":"TJK","country":"Tajikistan","value_m":0.9,"value_f":0.4,"value":-0.5},{"iso-a3":"TZA","country":"Tanzania, United Republic of","value_m":21.5,"value_f":52.3,"value":30.8},{"iso-a3":"THA","country":"Thailand","value_m":12,"value_f":25.9,"value":13.9},{"iso-a3":"TLS","country":"Timor-Leste","value_m":19.1,"value_f":24.5,"value":5.4},{"iso-a3":"TGO","country":"Togo","value_m":12.1,"value_f":12.2,"value":0.1},{"iso-a3":"TON","country":"Tonga","value_m":17.8,"value_f":20.3,"value":2.5},{"iso-a3":"TTO","country":"Trinidad and Tobago","value_m":0.1,"value_f":0.6,"value":0.5},{"iso-a3":"TUN","country":"Tunisia","value_m":3,"value_f":5.8,"value":2.8},{"iso-a3":"TUR","country":"Turkey","value_m":4.1,"value_f":25.4,"value":21.3},{"iso-a3":"TKM","country":"Turkmenistan","value_m":3.8,"value_f":8.4,"value":4.6},{"iso-a3":"UGA","country":"Uganda","value_m":21.2,"value_f":28.4,"value":7.2},{"iso-a3":"UKR","country":"Ukraine","value_m":0.2,"value_f":0.2,"value":0},{"iso-a3":"ARE","country":"United Arab Emirates","value_m":0,"value_f":0.1,"value":0.1},{"iso-a3":"GBR","country":"United Kingdom","value_m":0.3,"value_f":0.4,"value":0.1},{"iso-a3":"USA","country":"United States","value_m":0,"value_f":0.1,"value":0.1},{"iso-a3":"VIR","country":"United States Virgin Islands","value_m":0.7,"value_f":2.2,"value":1.5},{"iso-a3":"URY","country":"Uruguay","value_m":0.6,"value_f":1.4,"value":0.8},{"iso-a3":"UZB","country":"Uzbekistan","value_m":1.7,"value_f":3.2,"value":1.5},{"iso-a3":"VUT","country":"Vanuatu","value_m":10.6,"value_f":9.7,"value":-0.9},{"iso-a3":"VEN","country":"Venezuela, Bolivarian Republic of","value_m":0.8,"value_f":1.2,"value":0.4},{"iso-a3":"VNM","country":"Viet Nam","value_m":9.9,"value_f":20.4,"value":10.5},{"iso-a3":"PSE","country":"West Bank and Gaza Strip","value_m":4.1,"value_f":18.1,"value":14},{"iso-a3":"ESH","country":"Western Sahara","value_m":7.5,"value_f":23.8,"value":16.3},{"iso-a3":"YEM","country":"Yemen","value_m":0.2,"value_f":0.2,"value":0},{"iso-a3":"ZMB","country":"Zambia","value_m":15.9,"value_f":51.7,"value":35.8},{"iso-a3":"ZWE","country":"Zimbabwe","value_m":1,"value_f":1.4,"value":0.4}]]
 
 var subt = [];
-subt[0]='The difference between the share of women and men who are either employed or looking for work as a percentage of their respective population.';
-subt[1]='The difference between the share of women and men who would like to work but are unable to find jobs as a share of their respective population.';
-subt[2]='The difference between the share of women and men who work for a parent or relative.';
+subt[0]='The difference between the share of women and men <br>who are either employed or looking for work as a percentage of their respective population.';
+subt[1]='The difference between the share of women and men <br>who would like to work but are unable to find jobs as a share of their respective population.';
+subt[2]='The difference between the share of women and men <br>who work for a parent or relative.';
 var mTitle = 'Labour Force Participation Gap';
 var cSerie = null;
 
@@ -60,14 +67,19 @@ var cSerie = null;
             buttonOptions: {verticalAlign: 'bottom'}
         },
 		credits: {enabled: false},
-        colorAxis: {minColor: '#ffffcc',maxColor: '#006837'},
+//        colorAxis: {minColor: '#ffffcc',maxColor: '#006837', gridLineWidth: 0},
+//		colorAxis: {minColor: '#7cb5ec',maxColor: '#91e8e1', gridLineWidth: 0},
+//		colorAxis: {minColor: '#F5DFD8',maxColor: '#672F1E', gridLineWidth: 0},
+		colorAxis: {minColor: '#FEEBE2',maxColor: '#C04F11', gridLineWidth: 0},
+//J's colors
+//colorAxis: ['#F5DFD8','#EBBEB1','#D87D63','#CE5D3C','#9B462D','#672F1E'],
 		tooltip: {
 				useHTML: true,
 				formatter: function() { 
-					return '<b>' + this.point.name + '</b><br>' +
-					'<br>Men: <b>' + this.point.value_m.toFixed(1) + '%</b>' +
+					return '<div class="mtip"><b>' + this.point.name + '</b><br>' +
+					'<br>Gender gap: <b>' + Math.abs(this.point.value.toFixed(1)) + ' pts</b>' +
 					'<br>Women: <b>' + this.point.value_f.toFixed(1) + '%</b>' + 
-					'<br>Gender gap: <b>' + Math.abs(this.point.value.toFixed(1)) + ' pts</b>';
+					'<br>Men: <b>' + this.point.value_m.toFixed(1) + '%</b></div>';
 				}
 			},
         series : [{
@@ -96,11 +108,9 @@ var cSerie = null;
 	$('#container').highcharts().series[1].setVisible(false, false);
 	$('#container').highcharts().series[2].setVisible(false, false);
 	$('#container').highcharts().series[0].setVisible(true, true);
+	$('#b0').focus();
 
 $('#btns').on('click', '.serie', function() {
-
-console.log(data[0][0]);
-
 	cSerie = this.value;
 	mTitle = $('#container').highcharts().series[cSerie].name;
 
@@ -125,9 +135,9 @@ console.log(data[0][0]);
 <div id="wrapper">
 <h1>Which countries have the highest gender gap in the workplace?</h1>
 <div id="btns" style="text-align: center; margin-top: 10px; margin-bottom: 10px">
-<button class="serie" id="0" value='0'>Labour Force Participation Gap</button>
-<button class="serie" id="1" value='1'>Unemployment Gap</button>
-<button class="serie" id="2" value='2'>Contributing Family Workers Gap</button>
+<button class="serie" id="b0" value='0'>Labour Force Participation Gap</button>
+<button class="serie" id="b1" value='1'>Unemployment Gap</button>
+<button class="serie" id="b2" value='2'>Contributing Family Workers Gap</button>
 </div>
 
 <div id="container"></div>
