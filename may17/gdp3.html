@@ -82,18 +82,18 @@ Highcharts.data({
 			tooltip: {
 						 useHTML: true,
 						 formatter: function() { 
-							/* 
-							 return '<div class=\'mtip\'><b>' + this.point.name + '</b><br>Difference in GDP:&nbsp;<b>' +
-							Math.round(this.point.value,2) + '%</b><br>' + 
-							'Difference in GDP per capita, PPP*:&nbsp;<b>$' + Math.round(this.point.gdp_c,0) + '</b><br>' + 
-							'Difference in GDP, PPP*:&nbsp;<b>$' + this.point.gdp_ppp + '</b><br><br>' + 
-							'<font size=-2>* 2011 constant international $, PPP: Purchasing Power Parity</font></div>'
-							*/
-							
+/*
 							return '<div class=\'mtip\'>The GDP for <b>' +  this.point.name + '</b> would grow by <b>' + Math.round(this.point.value,2) + '</b>% per capita,<br>' +
 							'the GDP would grow by <b>$' + Math.round(this.point.gdp_c,0)  + '</b> (PPP)*<br>This means a total GDP increase of <b>$' + this.point.gdp_ppp + 
 							'</b> (PPP)*<br><br>' + 
 							'<font size=-2>* 2011 constant international $, PPP: Purchasing Power Parity</font></div>'
+*/
+return '<div class=\'mtip\'>The GDP for <b>' +  this.point.name + '</b> would grow by $<b>' + Math.round(this.point.gdp_c,2) + '</b> ' +
+'or <b>' + Math.round(this.point.value,0)  + '%</b>. (PPP*)<br>This means a total GDP increase of <b>$' + this.point.gdp_ppp + 
+'</b>. (PPP*)<br><br>' + 
+'<font size=-2>* 2011 constant international $, PPP: Purchasing Power Parity</font></div>'
+
+
 						 }
 					 },
             series: [{
