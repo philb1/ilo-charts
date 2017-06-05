@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+#container {
+    height: 500px; 
+    min-width: 310px; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+.mtip {
+	color: #35488C;
+	font-size: 14px;
+	}
+</style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+<center><h1>How much would the economy grow by closing the gender gap?</h1></center>
+<div id="container">
+    <div class="loading">
+        <i class="icon-spinner icon-spin icon-large"></i>
+        Loading data...
+    </div>
+</div>
+
+<script type="text/javascript">
+
+// Load the data from a Google Spreadsheet
+Highcharts.data({
+    googleSpreadsheetKey: '1EG1rlZ_Hfd-ZO0T4ROdYANOy6TF0uHRaA2o5d8OHggI',
+    // custom handler when the spreadsheet is parsed
+    parsed: function (columns) {
+        // Read the columns into the data array
+        var data = [];
+        $.each(columns[0], function (i, code) {
+            data.push({
+                code: code.toUpperCase(),
+                value: parseFloat(columns[2][i]),
+                gdp_c: parseFloat(columns[3][i]),
+                gdp_ppp: columns[4][i],
+                name: columns[1][i]
+            });
+        });
+        // Initiate the chart
+        Highcharts.mapChart('container', {
+            chart: {
+                borderWidth: 0
+            },
+            title: {
+                text: 'Explore the map to see how much each country\'s GDP would grow if the gap in participation rates was closed by a mere 25%'
+            },
+			mapNavigation: {
+				enabled: true,
+				buttonOptions: {verticalAlign: 'bottom'}
+			},
+            legend: {
+                title: {
+                    text: 'Difference in GDP (%)',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                    }
+                },
+                align: 'center',
+                verticalAlign: 'bottom',
+                floating: true,
+                layout: 'horizontal',
+                valueDecimals: 0
+            },
+			colorAxis: {min: 0, minColor: '#FEEBE2',maxColor: '#C04F11', gridLineWidth: 0},
+			credits: {enabled: false},
+			tooltip: {
+						 useHTML: true,
+						 formatter: function() { 
+							/* 
+							 return '<div class=\'mtip\'><b>' + this.point.name + '</b><br>Difference in GDP:&nbsp;<b>' +
+							Math.round(this.point.value,2) + '%</b><br>' + 
+							'Difference in GDP per capita, PPP*:&nbsp;<b>$' + Math.round(this.point.gdp_c,0) + '</b><br>' + 
+							'Difference in GDP, PPP*:&nbsp;<b>$' + this.point.gdp_ppp + '</b><br><br>' + 
+							'<font size=-2>* 2011 constant international $, PPP: Purchasing Power Parity</font></div>'
+							*/
+							
+							return '<div class=\'mtip\'>The GDP for <b>' +  this.point.name + '</b> would grow by <b>' + Math.round(this.point.value,2) + '</b>% per capita,<br>' +
+							'the GDP would grow by <b>$' + Math.round(this.point.gdp_c,0)  + '</b> (PPP)*<br>This means a total GDP increase of <b>$' + this.point.gdp_ppp + 
+							'</b> (PPP)*<br><br>' + 
+							'<font size=-2>* 2011 constant international $, PPP: Purchasing Power Parity</font></div>'
+						 }
+					 },
+            series: [{
+                data: data,
+                mapData: Highcharts.maps['custom/world'],
+                joinBy: ['iso-a3', 'code'],
+                animation: true,
+                name: 'Difference in GDP (%)',
+                states: {
+                    hover: {
+                        borderWidth: 2,
+                        borderColor: '#3C4270',
+						color: null,brightness: 0
+                    }
+                }
+            }]
+        });
+    },
+    error: function () {
+        $('#container').html('<div class="loading">' +
+            '<i class="icon-frown icon-large"></i> ' +
+            'Error loading data from Google Spreadsheets' +
+            '</div>');
+    }
+});
+		</script>
+	</body>
+</html>
