@@ -5,7 +5,9 @@
 <!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.js"></script>-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
-<link href="http://www.ilo.org/webcommon/charts/weso-map-2017/build/bundle.css" rel="stylesheet" type="text/css">
+<!--<link href="http://www.ilo.org/webcommon/charts/weso-map-2017/build/bundle.css" rel="stylesheet" type="text/css">-->
+</head>
+<body>
 
 <style type="text/css">
 #wrapper {
@@ -67,19 +69,14 @@ var cSerie = null;
             buttonOptions: {verticalAlign: 'bottom'}
         },
 		credits: {enabled: false},
-//        colorAxis: {minColor: '#ffffcc',maxColor: '#006837', gridLineWidth: 0},
-//		colorAxis: {minColor: '#7cb5ec',maxColor: '#91e8e1', gridLineWidth: 0},
-//		colorAxis: {minColor: '#F5DFD8',maxColor: '#672F1E', gridLineWidth: 0},
 		colorAxis: {minColor: '#FEEBE2',maxColor: '#C04F11', gridLineWidth: 0},
-//J's colors
-//colorAxis: ['#F5DFD8','#EBBEB1','#D87D63','#CE5D3C','#9B462D','#672F1E'],
 		tooltip: {
 				useHTML: true,
 				formatter: function() { 
-					return '<div class="mtip"><b>' + this.point.name + '</b><br>' +
-					'<br>Gender gap: <b>' + Math.abs(this.point.value.toFixed(1)) + ' pts</b>' +
-					'<br>Women: <b>' + this.point.value_f.toFixed(1) + '%</b>' + 
-					'<br>Men: <b>' + this.point.value_m.toFixed(1) + '%</b></div>';
+					return '<div class="mtip"><strong>' + this.point.name + '</strong><br>' +
+					'<br>Gender gap: <strong>' + Math.abs(this.point.value.toFixed(1)) + ' pts</strong>' +
+					'<br>Women: <strong>' + this.point.value_f.toFixed(1) + '%</strong>' + 
+					'<br>Men: <strong>' + this.point.value_m.toFixed(1) + '%</strong></div>';
 				}
 			},
         series : [{
@@ -87,21 +84,18 @@ var cSerie = null;
             data : data[0],
             mapData: Highcharts.maps['custom/world'],
             joinBy: 'iso-a3',
-			animation: true,
             states: {hover: {color: '#3C4270'}}
         },{
 			name : 'Unemployment Gap',
             data : data[1],
             mapData: Highcharts.maps['custom/world'],
             joinBy: 'iso-a3',
-			animation: true,
             states: {hover: {color: '#3C4270'}}
         },{
 			name : 'Contributing Family Workers Gap',
             data : data[2],
             mapData: Highcharts.maps['custom/world'],
             joinBy: 'iso-a3',
-			animation: true,
             states: {hover: {color: '#3C4270'}}
         }]
     });
@@ -126,9 +120,7 @@ $('#btns').on('click', '.serie', function() {
 //]]> 
 </script>
   
-</head>
 
-<body>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
