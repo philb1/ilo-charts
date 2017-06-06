@@ -73,8 +73,8 @@ var cSerie = null;
 		tooltip: {
 				useHTML: true,
 				formatter: function() { 
-					return '<div class="mtip"><strong>' + this.point.name + '</strong><br>' +
-					'<br>Gender gap: <strong>' + Math.abs(this.point.value.toFixed(1)) + ' pts</strong>' +
+					return '<div class="mtip"><strong>' + this.point.name + '</strong>' +
+					'<br>Gender gap: <strong><strong>' + Math.abs(this.point.value.toFixed(1)) + ' points</strong></strong>' +
 					'<br>Women: <strong>' + this.point.value_f.toFixed(1) + '%</strong>' + 
 					'<br>Men: <strong>' + this.point.value_m.toFixed(1) + '%</strong></div>';
 				}
@@ -84,19 +84,19 @@ var cSerie = null;
             data : data[0],
             mapData: Highcharts.maps['custom/world'],
             joinBy: 'iso-a3',
-            states: {hover: {color: '#3C4270'}}
+            states: {hover: {borderWidth: 2,borderColor: '#3C4270',color: null,brightness: 0}}
         },{
 			name : 'Unemployment Gap',
             data : data[1],
             mapData: Highcharts.maps['custom/world'],
             joinBy: 'iso-a3',
-            states: {hover: {color: '#3C4270'}}
+            states: {hover: {borderWidth: 2,borderColor: '#3C4270',color: null,brightness: 0}}
         },{
 			name : 'Contributing Family Workers Gap',
             data : data[2],
             mapData: Highcharts.maps['custom/world'],
             joinBy: 'iso-a3',
-            states: {hover: {color: '#3C4270'}}
+            states: {hover: {borderWidth: 2,borderColor: '#3C4270',color: null,brightness: 0}}
         }]
     });
 	$('#container').highcharts().series[1].setVisible(false, false);
