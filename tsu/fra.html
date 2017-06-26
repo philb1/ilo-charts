@@ -26,12 +26,9 @@
     <script type="text/javascript">
         var data = null;
         var graph = null;
-
         google.load("visualization", "1");
-
         // Set callback to run when API is loaded
         google.setOnLoadCallback(drawVisualization);
-
         // Called when the Visualization API is loaded.
         function drawVisualization() {
             // Create and populate a data table.
@@ -1068,6 +1065,8 @@ data.addRow([1, 2014, 0]);
             var options = {
                 width:  "100%",
                 height: "100%",
+                xCenter: "55%",
+                yCenter: "30%",
                 style: "surface",
                 showPerspective: true,
                 showGrid: true,
