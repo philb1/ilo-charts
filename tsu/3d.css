@@ -1,0 +1,38 @@
+html, body {
+	font: 10pt arial;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+#mygraph {
+	width: 80%;
+	height: 80%;
+}
+#wrapper {
+	border: solid 2px green;
+    height: 500px;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#menu {
+    float: right;
+    width: 270px;
+    margin: 20px 0 0 0;
+    border: none;
+}
+
+#switchMap {
+   width: 240px;
+   height: 34px;
+   overflow: hidden;
+   border: 1px solid #ccc;
+   }
+h1 {
+    float: left;
+    width: 270px;
+    margin: 20px 0 0 50px;
+    border: none;
+}
