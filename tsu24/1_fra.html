@@ -29,9 +29,9 @@
         function drawVisualization() {
             // Create and populate a data table.
             data = new google.visualization.DataTable();
-            data.addColumn('number', 'Unemployment duration (in months)');
+            data.addColumn('number', 'Monthly duration');
             data.addColumn('number', '');
-            data.addColumn('number', 'Unemployment outflow rate');
+            data.addColumn('number', 'Outflow rate');
 data.addRow([0, 1983, 0]);
 data.addRow([0.774193525314331, 1983, 2.21250200271606]);
 data.addRow([1.54838705062866, 1983, 3.07453632354736]);
@@ -1087,7 +1087,7 @@ data.addRow([24, 2014, 0]);
 </head>
 
 <body onresize="graph.redraw();">
-<h1>France</h1>
+<h1>France</h1><h1>&nbsp;</h1><h1>&nbsp;</h1><h1>&nbsp;</h1><h1><i>Unemployment flows</i></h1>
     <div id="menu"><select id="switchMap">
 		<option value="0" selected disabled>Country:</option>
 		<option value="1_jpn.html">Japan</option>
