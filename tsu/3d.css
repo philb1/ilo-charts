@@ -1,5 +1,5 @@
 html, body {
-	font: 10pt arial;
+	font: 10pt Arial;
 	padding: 0;
 	margin: 0;
 	width: 100%;
@@ -11,19 +11,14 @@ html, body {
 }
 #wrapper {
 	border: solid 2px green;
-    height: 500px;
-    width: 1000px;
     margin: 0 auto;
     padding: 0;
 }
-
 #menu {
     float: right;
-    width: 270px;
-    margin: 20px 0 0 0;
+    margin: 20px 50px 0 0;
     border: none;
 }
-
 #switchMap {
    width: 240px;
    height: 34px;
@@ -32,7 +27,6 @@ html, body {
    }
 h1 {
     float: left;
-    width: 270px;
     margin: 20px 0 0 50px;
     border: none;
 }
