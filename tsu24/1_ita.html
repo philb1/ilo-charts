@@ -2,7 +2,6 @@
 <html>
 <head>
 <link rel='stylesheet' href='3d.css' type='text/css' />
-
     <!-- for mobile devices like android and iphone -->
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width" />
 
@@ -28,9 +27,9 @@
         function drawVisualization() {
             // Create and populate a data table.
             data = new google.visualization.DataTable();
-            data.addColumn('number', 'Unemployment duration (in months)');
+            data.addColumn('number', 'Monthly duration');
             data.addColumn('number', '');
-            data.addColumn('number', 'Unemployment outflow rate');
+            data.addColumn('number', 'Outflow rate');
 data.addRow([0, 1983, 0]);
 data.addRow([0.774193525314331, 1983, 3.92177796363831]);
 data.addRow([1.54838705062866, 1983, 3.08782076835632]);
@@ -1082,7 +1081,7 @@ data.addRow([24, 2014, 0]);
 </head>
 
 <body onresize="graph.redraw();">
-<h1>Italy</h1>
+<h1>Italy</h1><h1>&nbsp;</h1><h1>&nbsp;</h1><h1>&nbsp;</h1><h1><i>Unemployment flows</i></h1>
     <div id="menu"><select id="switchMap">
 		<option value="0" selected disabled>Country:</option>
 		<option value="1_fra.html">France</option>
