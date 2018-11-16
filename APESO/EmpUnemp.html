@@ -1,0 +1,96 @@
+<html>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script>
+
+Highcharts.chart('container', {
+    chart: {
+        zoomType: 'xy',
+    },
+    title: {
+        text: 'Unemployed and unemployment rate'
+    },
+    subtitle: {
+        text: 'The unemployment rate in the Asia-Pacific remains the world’s lowest at 4.1 per cent. The regional rate is expected to hold steady at 4.1 percent between 2017 and 2018, while the global rate is expected to decrease by 0.1 percentage point.'
+    },
+		credits: {enabled: false},    
+    xAxis: [{
+        categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        crosshair: true,
+				plotBands: [{
+    			color: 'lightgrey', // Color value
+    			from: 8.5, // Start of the plot band
+    			to: 11 // End of the plot band
+  		}],
+}],
+    yAxis: [{ // Primary yAxis
+        min: 65,
+		labels: {
+            /*format: '{value}°C',*/
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+
+
+
+        title: {
+            text: 'Persons unemployed (million)',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }, { // Secondary yAxis
+        min: 0,
+        minRange: 1,
+        title: {
+            text: 'Unemployment rate(%)'
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'center',
+        verticalAlign: 'bottom',
+        floating: false,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: 'Unemployed (million) - Asia-Pacific',
+        type: 'column',
+        color: '#F27E2B',
+        yAxis: 0,
+        data: [74.1,74.2,75.7,76.7,76.3,79.1,80.3,80.9,81.6,82.5,83.4]
+/*        tooltip: {
+            valueSuffix: ' %'
+        }*/
+
+    }, {
+        name: 'Unemployment rate(%)',
+        type: 'spline',
+        color: '#84A967',
+        yAxis: 1,
+				data: [5.7,5.6,5.6,5.6,5.4,5.5,5.5,5.5,5.4,5.4,5.4],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }, {
+        name: 'Unemployment rate - Asia-Pacific',
+        type: 'spline',
+        color: '#F9BD29',
+        yAxis: 1,
+        data: [4.0,3.9,4.0,3.9,4.0,4.1,4.1,4.1,4.1,4.1,4.1],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }]
+});
+</script>
+</body>
+</html>
