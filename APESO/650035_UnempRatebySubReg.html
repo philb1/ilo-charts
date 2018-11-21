@@ -1,0 +1,83 @@
+<html>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<div id="container" style="width:540px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script>
+
+Highcharts.chart('container', {
+    chart: {
+        zoomType: 'xy',
+    },
+    title: {
+        text: 'Unemployment rate by subregion'
+    },
+    subtitle: {
+        text: 'Unemployment rates are higher in Southern Asia and Eastern Asia, but only in Eastern Asia is the rate projected to increase slightly by 2020.'
+    },
+		credits: {enabled: false},    
+    xAxis: [{
+        categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        crosshair: true,
+				plotBands: [{
+    			color: 'lightgrey', // Color value
+    			from: 8.5, // Start of the plot band
+    			to: 10.5 // End of the plot band
+  		}],
+}],
+    yAxis: [{ // Primary yAxis
+/*        min: 65,*/
+		labels: {
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+/*            text: 'Youth unemployment rate by subregion',*/
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'center',
+        verticalAlign: 'bottom',
+        floating: false,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: 'Eastern Asia',
+        type: 'spline',
+        color: '#F27E2B',
+        data: [4.3,4.3,4.4,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.6]
+/*        tooltip: {
+            valueSuffix: ' %'
+        }*/
+
+    }, {
+        name: 'South-Eastern Asia and the Pacific',
+        type: 'spline',
+        color: '#84A967',
+        data: [3.6,3.3,3.0,3.0,2.9,3.0,2.9,2.9,2.9,2.9,2.9],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }, {
+        name: 'Southern Asia',
+        type: 'spline',
+        color: '#F9BD29',
+		data: [3.7,3.7,3.9,3.8,3.7,4.0,4.0,4.1,4.1,4.1,4.1],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }]
+});
+
+</script>
+</body>
+</html>
