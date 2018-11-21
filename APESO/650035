@@ -1,0 +1,322 @@
+<html>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<div id="container1" style="width:540px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+<br>
+<div id="container2" style="width:540px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+<br>
+<div id="container3" style="width:540px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+<br>
+<div id="container4" style="width:540px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script>
+Highcharts.chart('container1', {
+    chart: {
+        zoomType: 'xy',
+    },
+    title: {
+        text: 'Unemployed and unemployment rate'
+    },
+    subtitle: {
+        text: 'The youth unemployment rate continues to fall below the global rate, but while the global rate is expected to hold steady through 2020, the regional youth unemployment rate is expected to increase slightly.'
+    },
+		credits: {enabled: false},    
+    xAxis: [{
+        categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        crosshair: true,
+				plotBands: [{
+    			color: 'lightgrey', // Color value
+    			from: 8.5, // Start of the plot band
+    			to: 11 // End of the plot band
+  		}],
+}],
+    yAxis: [{ // Primary yAxis
+        min: 65,
+		labels: {
+            /*format: '{value}°C',*/
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: 'Persons unemployed (million)',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }, { // Secondary yAxis
+        min: 0,
+        minRange: 1,
+        title: {
+            text: 'Unemployment rate(%)'
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'center',
+        verticalAlign: 'bottom',
+        floating: false,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: 'Unemployed (million) - Asia-Pacific',
+        type: 'column',
+        color: '#F27E2B',
+        yAxis: 0,
+        data: [74.1,74.2,75.7,76.7,76.3,79.1,80.3,80.9,81.6,82.5,83.4]
+/*        tooltip: {
+            valueSuffix: ' %'
+        }*/
+
+    }, {
+        name: 'Unemployment rate(%)',
+        type: 'spline',
+        color: '#84A967',
+        yAxis: 1,
+				data: [5.7,5.6,5.6,5.6,5.4,5.5,5.5,5.5,5.4,5.4,5.4],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }, {
+        name: 'Unemployment rate - Asia-Pacific',
+        type: 'spline',
+        color: '#F9BD29',
+        yAxis: 1,
+        data: [4.0,3.9,4.0,3.9,4.0,4.1,4.1,4.1,4.1,4.1,4.1],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }]
+});
+Highcharts.chart('container2', {
+    chart: {
+        zoomType: 'xy',
+    },
+    title: {
+        text: 'Unemployment rate by subregion'
+    },
+    subtitle: {
+        text: 'Unemployment rates are higher in Southern Asia and Eastern Asia, but only in Eastern Asia is the rate projected to increase slightly by 2020.'
+    },
+		credits: {enabled: false},    
+    xAxis: [{
+        categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        crosshair: true,
+				plotBands: [{
+    			color: 'lightgrey', // Color value
+    			from: 8.5, // Start of the plot band
+    			to: 10.5 // End of the plot band
+  		}],
+}],
+    yAxis: [{ // Primary yAxis
+		labels: {
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: 'Unemployment (%)',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'center',
+        verticalAlign: 'bottom',
+        floating: false,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: 'Eastern Asia',
+        type: 'spline',
+        color: '#F27E2B',
+        data: [4.3,4.3,4.4,4.5,4.5,4.5,4.5,4.5,4.5,4.5,4.6]
+/*        tooltip: {
+            valueSuffix: ' %'
+        }*/
+
+    }, {
+        name: 'South-Eastern Asia and the Pacific',
+        type: 'spline',
+        color: '#84A967',
+        data: [3.6,3.3,3.0,3.0,2.9,3.0,2.9,2.9,2.9,2.9,2.9],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }, {
+        name: 'Southern Asia',
+        type: 'spline',
+        color: '#F9BD29',
+		data: [3.7,3.7,3.9,3.8,3.7,4.0,4.0,4.1,4.1,4.1,4.1],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }]
+});
+
+Highcharts.chart('container3', {
+    chart: {
+        zoomType: 'xy',
+    },
+    title: {
+        text: 'Employment and employment-to-population ratio'
+    },
+    subtitle: {
+        text: 'While the employment-to-population ratio of Asia and the Pacific continues to rank highest among the world’s regions, the decline over time is sharper than the global average.'
+    },
+		credits: {enabled: false},    
+    xAxis: [{
+        categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        crosshair: true,
+				plotBands: [{
+    			color: 'lightgrey', // Color value
+    			from: 8.5, // Start of the plot band
+    			to: 11 // End of the plot band
+  		}],
+}],
+    yAxis: [{ // Primary yAxis
+        min: 1700,
+		labels: {
+            /*format: '{value}°C',*/
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: 'Persons employed (million)',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }, { // Secondary yAxis
+        min: 56.5, max: 61.5,
+        minRange: 1,
+        title: {
+            text: 'EPR (%)'
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'center',
+        verticalAlign: 'bottom',
+        floating: false,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: 'Employement - Asia-Pacific',
+        type: 'column',
+        color: '#F27E2B',
+        yAxis: 0,
+        data: [1799.2,1815.1,1828.1,1847.5,1867.3,1881.7,1901.0,1914.8,1927.3,1938.7,1949.7]
+/*        tooltip: {
+            valueSuffix: ' %'
+        }*/
+
+    }, {
+        name: 'Unemployment rate(%)',
+        type: 'spline',
+        color: '#84A967',
+        yAxis: 1,
+		data: [59.2,59.1,58.9,58.9,58.9,58.8,58.7,58.6,58.5,58.3,58.1],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }, {
+        name: 'Unemployment rate - Asia-Pacific',
+        type: 'spline',
+        color: '#F9BD29',
+        yAxis: 1,
+        data: [61.2,60.9,60.5,60.4,60.3,60.0,59.9,59.7,59.4,59.1,58.8],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }]
+});
+
+Highcharts.chart('container4', {
+    chart: {
+        zoomType: 'xy',
+    },
+    title: {
+        text: 'Employment-to-population ratio by subregion'
+    },
+    subtitle: {
+        text: 'Shares in employment are declining in all subregions, with the largest drops seen in Eastern Asia linked primarily to demographic changes.'
+    },
+		credits: {enabled: false},    
+    xAxis: [{
+        categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        crosshair: true,
+				plotBands: [{
+    			color: 'lightgrey', // Color value
+    			from: 8.5, // Start of the plot band
+    			to: 10.5 // End of the plot band
+  		}],
+}],
+    yAxis: [{ // Primary yAxis
+		labels: {
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: 'Unemployment (%)',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'center',
+        verticalAlign: 'bottom',
+        floating: false,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: 'Eastern Asia',
+        type: 'spline',
+        color: '#F27E2B',
+        data: [66.6,66.4,66.1,66.0,65.8,65.6,65.3,64.9,64.5,64.0,63.5]
+/*        tooltip: {
+            valueSuffix: ' %'
+        }*/
+
+    }, {
+        name: 'South-Eastern Asia and the Pacific',
+        type: 'spline',
+        color: '#84A967',
+		data: [52.9,52.4,51.8,51.9,51.9,51.9,52.0,51.9,51.8,51.7,51.6],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }, {
+        name: 'Southern Asia',
+        type: 'spline',
+        color: '#F9BD29',
+        data: [66.5,66.9,67.0,66.8,66.8,65.9,66.1,66.1,66.0,65.9,65.7],
+        tooltip: {
+            valueSuffix: '%'
+        }
+    }]
+});
+</script>
+</body>
+</html>
