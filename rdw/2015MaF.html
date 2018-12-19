@@ -1,0 +1,354 @@
+ <html>
+  <head>
+	<script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+
+var colorRange=[];
+colorRange[0]='#3366CC';
+colorRange[1]='#DC3912';
+colorRange[2]='#FFCC7F';
+colorRange[3]='#109618';
+colorRange[4]='#990099';
+colorRange[5]='#0099C6';
+
+function cttip(title,val,rate) {
+		if (title.search("female")!=-1){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>female</b> workers on <b>' + title.substring(0,title.search("female")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid work</div>';
+			}
+		else if (title.search("male")!=-1){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>male</b> workers on <b>' + title.substring(0,title.search("male")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid work</div>';
+			}
+	}
+function cttip_pu(title,val,rate) {
+		if (title.search("female")!=-1){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>female</b> workers on <b>' + title.substring(0,title.search("female")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid and unpaid work</div>';
+			}
+		else if (title.search("male")!=-1){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>male</b> workers on <b>' + title.substring(0,title.search("male")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid and unpaid work</div>';
+			}
+	}
+function drawChart() {
+    var rowData1 = [
+/* Paid 2015 MaF */
+['x_axis','AMT USA male', {'type':'string','role':'tooltip','p':{'html':true}},'AMT USA female', {'type':'string','role':'tooltip','p':{'html':true}},'AMT India male', {'type':'string','role':'tooltip','p':{'html':true}},'AMT India female', {'type':'string','role':'tooltip','p':{'html':true}},'CrowdFlower male', {'type':'string','role':'tooltip','p':{'html':true}},'CrowdFlower female', {'type':'string','role':'tooltip','p':{'html':true}}],
+['0',0.00862, cttip('AMT USA male',0, 0),0.01257, cttip('AMT USA female',0, 0),0.10749, cttip('AMT India male',0, 0),0.14059, cttip('AMT India female',0, 0),0.1803, cttip('CrowdFlower male',0, 0),0.21018, cttip('CrowdFlower female',0, 0)],
+['0.2',0.01102, cttip('AMT USA male',0.2, 0),0.01647, cttip('AMT USA female',0.2, 0),0.12581, cttip('AMT India male',0.2, 4.2),0.16095, cttip('AMT India female',0.2, 7.7),0.21439, cttip('CrowdFlower male',0.2, 2.7),0.28981, cttip('CrowdFlower female',0.2, 4.9)],
+['0.4',0.01332, cttip('AMT USA male',0.4, 0),0.02014, cttip('AMT USA female',0.4, 0),0.14393, cttip('AMT India male',0.4, 5.6),0.17942, cttip('AMT India female',0.4, 7.7),0.24248, cttip('CrowdFlower male',0.4, 11.6),0.34799, cttip('CrowdFlower female',0.4, 13.4)],
+['0.6',0.0167, cttip('AMT USA male',0.6, 0),0.02644, cttip('AMT USA female',0.6, 0),0.16093, cttip('AMT India male',0.6, 6.9),0.19569, cttip('AMT India female',0.6, 7.7),0.26115, cttip('CrowdFlower male',0.6, 20.5),0.38289, cttip('CrowdFlower female',0.6, 20.7)],
+['0.8',0.02045, cttip('AMT USA male',0.8, 0),0.03225, cttip('AMT USA female',0.8, 0),0.17764, cttip('AMT India male',0.8, 11.1),0.20804, cttip('AMT India female',0.8, 19.2),0.27601, cttip('CrowdFlower male',0.8, 29),0.39575, cttip('CrowdFlower female',0.8, 35.4)],
+['1',0.02459, cttip('AMT USA male',1, 0.9),0.03893, cttip('AMT USA female',1, 1.3),0.19077, cttip('AMT India male',1, 19.4),0.2201, cttip('AMT India female',1, 26.9),0.27997, cttip('CrowdFlower male',1, 39.7),0.37555, cttip('CrowdFlower female',1, 48.8)],
+['1.2',0.02878, cttip('AMT USA male',1.2, 0.9),0.04622, cttip('AMT USA female',1.2, 1.9),0.19971, cttip('AMT India male',1.2, 26.4),0.22787, cttip('AMT India female',1.2, 34.6),0.27379, cttip('CrowdFlower male',1.2, 41.5),0.3384, cttip('CrowdFlower female',1.2, 48.8)],
+['1.4',0.03309, cttip('AMT USA male',1.4, 1.5),0.05414, cttip('AMT USA female',1.4, 3.2),0.20733, cttip('AMT India male',1.4, 27.8),0.23154, cttip('AMT India female',1.4, 42.3),0.25759, cttip('CrowdFlower male',1.4, 46),0.29572, cttip('CrowdFlower female',1.4, 53.7)],
+['1.6',0.03755, cttip('AMT USA male',1.6, 2.1),0.06223, cttip('AMT USA female',1.6, 4.1),0.21217, cttip('AMT India male',1.6, 37.5),0.23103, cttip('AMT India female',1.6, 46.2),0.22814, cttip('CrowdFlower male',1.6, 50),0.25035, cttip('CrowdFlower female',1.6, 58.5)],
+['1.8',0.04308, cttip('AMT USA male',1.8, 2.4),0.06985, cttip('AMT USA female',1.8, 5.4),0.21186, cttip('AMT India male',1.8, 40.3),0.22443, cttip('AMT India female',1.8, 50),0.20069, cttip('CrowdFlower male',1.8, 52.7),0.20922, cttip('CrowdFlower female',1.8, 63.4)],
+['2',0.04901, cttip('AMT USA male',2, 4.7),0.07839, cttip('AMT USA female',2, 7),0.20755, cttip('AMT India male',2, 43.1),0.214, cttip('AMT India female',2, 53.8),0.17741, cttip('CrowdFlower male',2, 59.8),0.18471, cttip('CrowdFlower female',2, 72)],
+['2.2',0.05473, cttip('AMT USA male',2.2, 5.3),0.08759, cttip('AMT USA female',2.2, 8),0.20152, cttip('AMT India male',2.2, 47.2),0.20254, cttip('AMT India female',2.2, 57.7),0.16308, cttip('CrowdFlower male',2.2, 61.2),0.16248, cttip('CrowdFlower female',2.2, 73.2)],
+['2.4',0.05984, cttip('AMT USA male',2.4, 5.3),0.09619, cttip('AMT USA female',2.4, 8.3),0.19141, cttip('AMT India male',2.4, 50),0.18541, cttip('AMT India female',2.4, 61.5),0.14888, cttip('CrowdFlower male',2.4, 62.5),0.13408, cttip('CrowdFlower female',2.4, 75.6)],
+['2.6',0.06563, cttip('AMT USA male',2.6, 6.8),0.10293, cttip('AMT USA female',2.6, 13.4),0.17857, cttip('AMT India male',2.6, 56.9),0.16259, cttip('AMT India female',2.6, 61.5),0.13906, cttip('CrowdFlower male',2.6, 68.3),0.10618, cttip('CrowdFlower female',2.6, 78)],
+['2.8',0.07267, cttip('AMT USA male',2.8, 6.8),0.10759, cttip('AMT USA female',2.8, 14),0.16262, cttip('AMT India male',2.8, 58.3),0.14635, cttip('AMT India female',2.8, 69.2),0.13115, cttip('CrowdFlower male',2.8, 68.3),0.08, cttip('CrowdFlower female',2.8, 78)],
+['3',0.0788, cttip('AMT USA male',3, 10.9),0.11365, cttip('AMT USA female',3, 18.2),0.14862, cttip('AMT India male',3, 59.7),0.13255, cttip('AMT India female',3, 69.2),0.12203, cttip('CrowdFlower male',3, 71.4),0.05201, cttip('CrowdFlower female',3, 80.5)],
+['3.2',0.08426, cttip('AMT USA male',3.2, 11.5),0.12095, cttip('AMT USA female',3.2, 19.4),0.13417, cttip('AMT India male',3.2, 63.9),0.12046, cttip('AMT India female',3.2, 73.1),0.11092, cttip('CrowdFlower male',3.2, 72.3),0.04428, cttip('CrowdFlower female',3.2, 80.5)],
+['3.4',0.08865, cttip('AMT USA male',3.4, 13.6),0.12725, cttip('AMT USA female',3.4, 22.3),0.11922, cttip('AMT India male',3.4, 69.4),0.11225, cttip('AMT India female',3.4, 76.9),0.09772, cttip('CrowdFlower male',3.4, 77.2),0.04245, cttip('CrowdFlower female',3.4, 81.7)],
+['3.6',0.09287, cttip('AMT USA male',3.6, 14.5),0.13257, cttip('AMT USA female',3.6, 24.8),0.10697, cttip('AMT India male',3.6, 70.8),0.10451, cttip('AMT India female',3.6, 76.9),0.08902, cttip('CrowdFlower male',3.6, 77.7),0.04173, cttip('CrowdFlower female',3.6, 81.7)],
+['3.8',0.09705, cttip('AMT USA male',3.8, 16),0.13626, cttip('AMT USA female',3.8, 26.8),0.09251, cttip('AMT India male',3.8, 73.6),0.09533, cttip('AMT India female',3.8, 80.8),0.08034, cttip('CrowdFlower male',3.8, 79),0.03848, cttip('CrowdFlower female',3.8, 81.7)],
+['4',0.10121, cttip('AMT USA male',4, 19.5),0.13859, cttip('AMT USA female',4, 33.4),0.07773, cttip('AMT India male',4, 73.6),0.08637, cttip('AMT India female',4, 80.8),0.07558, cttip('CrowdFlower male',4, 82.6),0.03355, cttip('CrowdFlower female',4, 84.1)],
+['4.2',0.10462, cttip('AMT USA male',4.2, 22.2),0.13962, cttip('AMT USA female',4.2, 34.4),0.06461, cttip('AMT India male',4.2, 76.4),0.07954, cttip('AMT India female',4.2, 80.8),0.0683, cttip('CrowdFlower male',4.2, 82.6),0.04177, cttip('CrowdFlower female',4.2, 85.4)],
+['4.4',0.1078, cttip('AMT USA male',4.4, 23.7),0.13962, cttip('AMT USA female',4.4, 36.9),0.05179, cttip('AMT India male',4.4, 76.4),0.07265, cttip('AMT India female',4.4, 80.8),0.05771, cttip('CrowdFlower male',4.4, 83),0.04849, cttip('CrowdFlower female',4.4, 85.4)],
+['4.6',0.1101, cttip('AMT USA male',4.6, 25.1),0.13731, cttip('AMT USA female',4.6, 37.6),0.0413, cttip('AMT India male',4.6, 76.4),0.06422, cttip('AMT India female',4.6, 84.6),0.04825, cttip('CrowdFlower male',4.6, 83.5),0.05125, cttip('CrowdFlower female',4.6, 85.4)],
+['4.8',0.11199, cttip('AMT USA male',4.8, 26),0.13648, cttip('AMT USA female',4.8, 38.2),0.03008, cttip('AMT India male',4.8, 76.4),0.05951, cttip('AMT India female',4.8, 84.6),0.04191, cttip('CrowdFlower male',4.8, 83.9),0.04821, cttip('CrowdFlower female',4.8, 85.4)],
+['5',0.11256, cttip('AMT USA male',5, 34.6),0.13345, cttip('AMT USA female',5, 49.4),0.02061, cttip('AMT India male',5, 76.4),0.05433, cttip('AMT India female',5, 84.6),0.03882, cttip('CrowdFlower male',5, 87.1),0.04086, cttip('CrowdFlower female',5, 90.2)],
+['5.2',0.11453, cttip('AMT USA male',5.2, 34.6),0.1299, cttip('AMT USA female',5.2, 50),0.01353, cttip('AMT India male',5.2, 76.4),0.0506, cttip('AMT India female',5.2, 88.5),0.03561, cttip('CrowdFlower male',5.2, 87.1),0.04275, cttip('CrowdFlower female',5.2, 90.2)],
+['5.4',0.11504, cttip('AMT USA male',5.4, 36.1),0.12527, cttip('AMT USA female',5.4, 52.2),0.00939, cttip('AMT India male',5.4, 76.4),0.04982, cttip('AMT India female',5.4, 88.5),0.03361, cttip('CrowdFlower male',5.4, 87.1),0.04358, cttip('CrowdFlower female',5.4, 90.2)],
+['5.6',0.11529, cttip('AMT USA male',5.6, 37.6),0.12168, cttip('AMT USA female',5.6, 54.1),0.00623, cttip('AMT India male',5.6, 76.4),0.04761, cttip('AMT India female',5.6, 88.5),0.0345, cttip('CrowdFlower male',5.6, 87.1),0.03944, cttip('CrowdFlower female',5.6, 90.2)],
+['5.8',0.1147, cttip('AMT USA male',5.8, 38.2),0.11686, cttip('AMT USA female',5.8, 55.4),0.00683, cttip('AMT India male',5.8, 76.4),0.04581, cttip('AMT India female',5.8, 88.5),0.03399, cttip('CrowdFlower male',5.8, 87.1),0.03033, cttip('CrowdFlower female',5.8, 90.2)],
+['6',0.11418, cttip('AMT USA male',6, 42.6),0.11084, cttip('AMT USA female',6, 58.6),0.00927, cttip('AMT India male',6, 76.4),0.04379, cttip('AMT India female',6, 92.3),0.03231, cttip('CrowdFlower male',6, 88.4),0.01922, cttip('CrowdFlower female',6, 92.7)],
+['6.2',0.11269, cttip('AMT USA male',6.2, 43.2),0.10518, cttip('AMT USA female',6.2, 58.6),0.01255, cttip('AMT India male',6.2, 76.4),0.0404, cttip('AMT India female',6.2, 92.3),0.02952, cttip('CrowdFlower male',6.2, 88.4),0.01839, cttip('CrowdFlower female',6.2, 92.7)],
+['6.4',0.11049, cttip('AMT USA male',6.4, 46.2),0.10147, cttip('AMT USA female',6.4, 60.8),0.01558, cttip('AMT India male',6.4, 76.4),0.03562, cttip('AMT India female',6.4, 92.3),0.02615, cttip('CrowdFlower male',6.4, 90.2),0.01591, cttip('CrowdFlower female',6.4, 92.7)],
+['6.6',0.10805, cttip('AMT USA male',6.6, 47.9),0.09766, cttip('AMT USA female',6.6, 62.1),0.01807, cttip('AMT India male',6.6, 76.4),0.03235, cttip('AMT India female',6.6, 92.3),0.02532, cttip('CrowdFlower male',6.6, 90.2),0.01299, cttip('CrowdFlower female',6.6, 92.7)],
+['6.8',0.10582, cttip('AMT USA male',6.8, 50.9),0.09217, cttip('AMT USA female',6.8, 65),0.02003, cttip('AMT India male',6.8, 76.4),0.02853, cttip('AMT India female',6.8, 92.3),0.02436, cttip('CrowdFlower male',6.8, 91.5),0.01051, cttip('CrowdFlower female',6.8, 92.7)],
+['7',0.10292, cttip('AMT USA male',7, 52.4),0.08494, cttip('AMT USA female',7, 67.2),0.02145, cttip('AMT India male',7, 76.4),0.02474, cttip('AMT India female',7, 96.2),0.02246, cttip('CrowdFlower male',7, 92),0.00702, cttip('CrowdFlower female',7, 92.7)],
+['7.2',0.09901, cttip('AMT USA male',7.2, 53.8),0.0793, cttip('AMT USA female',7.2, 67.8),0.02233, cttip('AMT India male',7.2, 77.8),0.02239, cttip('AMT India female',7.2, 96.2),0.02035, cttip('CrowdFlower male',7.2, 92),0.00868, cttip('CrowdFlower female',7.2, 92.7)],
+['7.4',0.09391, cttip('AMT USA male',7.4, 54.7),0.07617, cttip('AMT USA female',7.4, 68.2),0.02268, cttip('AMT India male',7.4, 77.8),0.01935, cttip('AMT India female',7.4, 96.2),0.01712, cttip('CrowdFlower male',7.4, 92),0.00951, cttip('CrowdFlower female',7.4, 92.7)],
+['7.6',0.09158, cttip('AMT USA male',7.6, 60.7),0.0726, cttip('AMT USA female',7.6, 71.7),0.02249, cttip('AMT India male',7.6, 81.9),0.01561, cttip('AMT India female',7.6, 96.2),0.01433, cttip('CrowdFlower male',7.6, 92),0.00951, cttip('CrowdFlower female',7.6, 93.9)],
+['7.8',0.09206, cttip('AMT USA male',7.8, 60.9),0.06868, cttip('AMT USA female',7.8, 72),0.02177, cttip('AMT India male',7.8, 81.9),0.01255, cttip('AMT India female',7.8, 96.2),0.01443, cttip('CrowdFlower male',7.8, 92),0.00868, cttip('CrowdFlower female',7.8, 93.9)],
+['8',0.09148, cttip('AMT USA male',8, 63),0.06658, cttip('AMT USA female',8, 73.9),0.02051, cttip('AMT India male',8, 81.9),0.011, cttip('AMT India female',8, 96.2),0.01365, cttip('CrowdFlower male',8, 92.9),0.00702, cttip('CrowdFlower female',8, 93.9)],
+['8.2',0.08982, cttip('AMT USA male',8.2, 63),0.0659, cttip('AMT USA female',8.2, 74.2),0.01957, cttip('AMT India male',8.2, 81.9),0.01045, cttip('AMT India female',8.2, 96.2),0.01392, cttip('CrowdFlower male',8.2, 92.9),0.00752, cttip('CrowdFlower female',8.2, 93.9)],
+['8.4',0.0869, cttip('AMT USA male',8.4, 66),0.0646, cttip('AMT USA female',8.4, 77.1),0.02065, cttip('AMT India male',8.4, 81.9),0.01114, cttip('AMT India female',8.4, 96.2),0.01381, cttip('CrowdFlower male',8.4, 93.8),0.00711, cttip('CrowdFlower female',8.4, 93.9)],
+['8.6',0.08373, cttip('AMT USA male',8.6, 66.9),0.06293, cttip('AMT USA female',8.6, 78),0.0208, cttip('AMT India male',8.6, 81.9),0.01114, cttip('AMT India female',8.6, 96.2),0.01358, cttip('CrowdFlower male',8.6, 93.8),0.00795, cttip('CrowdFlower female',8.6, 93.9)],
+['8.8',0.08045, cttip('AMT USA male',8.8, 68.6),0.06056, cttip('AMT USA female',8.8, 78.7),0.02001, cttip('AMT India male',8.8, 81.9),0.01045, cttip('AMT India female',8.8, 96.2),0.01537, cttip('CrowdFlower male',8.8, 93.8),0.00919, cttip('CrowdFlower female',8.8, 93.9)],
+['9',0.07707, cttip('AMT USA male',9, 69.8),0.05867, cttip('AMT USA female',9, 79.6),0.01834, cttip('AMT India male',9, 81.9),0.011, cttip('AMT India female',9, 96.2),0.01685, cttip('CrowdFlower male',9, 94.6),0.00961, cttip('CrowdFlower female',9, 95.1)],
+['9.2',0.07336, cttip('AMT USA male',9.2, 70.4),0.05644, cttip('AMT USA female',9.2, 80.3),0.01698, cttip('AMT India male',9.2, 81.9),0.01255, cttip('AMT India female',9.2, 96.2),0.01711, cttip('CrowdFlower male',9.2, 94.6),0.01517, cttip('CrowdFlower female',9.2, 95.1)],
+['9.4',0.06975, cttip('AMT USA male',9.4, 70.4),0.05405, cttip('AMT USA female',9.4, 80.6),0.0163, cttip('AMT India male',9.4, 81.9),0.01375, cttip('AMT India female',9.4, 96.2),0.01652, cttip('CrowdFlower male',9.4, 94.6),0.01972, cttip('CrowdFlower female',9.4, 95.1)],
+['9.6',0.06563, cttip('AMT USA male',9.6, 71),0.05078, cttip('AMT USA female',9.6, 80.9),0.01875, cttip('AMT India male',9.6, 81.9),0.01461, cttip('AMT India female',9.6, 96.2),0.01602, cttip('CrowdFlower male',9.6, 94.6),0.02179, cttip('CrowdFlower female',9.6, 95.1)],
+['9.8',0.06143, cttip('AMT USA male',9.8, 71.6),0.04881, cttip('AMT USA female',9.8, 80.9),0.02141, cttip('AMT India male',9.8, 81.9),0.01513, cttip('AMT India female',9.8, 96.2),0.0154, cttip('CrowdFlower male',9.8, 94.6),0.02138, cttip('CrowdFlower female',9.8, 95.1)],
+['10',0.05692, cttip('AMT USA male',10, 81.1),0.04621, cttip('AMT USA female',10, 87.9),0.02341, cttip('AMT India male',10, 86.1),0.0153, cttip('AMT India female',10, 100),0.01464, cttip('CrowdFlower male',10, 96.9),0.01922, cttip('CrowdFlower female',10, 97.6)],
+['10.2',0.0555, cttip('AMT USA male',10.2, 81.1),0.04332, cttip('AMT USA female',10.2, 87.9),0.02473, cttip('AMT India male',10.2, 86.1),0.01513, cttip('AMT India female',10.2, 100),0.0131, cttip('CrowdFlower male',10.2, 96.9),0.01839, cttip('CrowdFlower female',10.2, 97.6)],
+['10.4',0.05329, cttip('AMT USA male',10.4, 81.4),0.04019, cttip('AMT USA female',10.4, 87.9),0.02539, cttip('AMT India male',10.4, 86.1),0.01461, cttip('AMT India female',10.4, 100),0.0115, cttip('CrowdFlower male',10.4, 96.9),0.01591, cttip('CrowdFlower female',10.4, 97.6)],
+['10.6',0.05072, cttip('AMT USA male',10.6, 81.4),0.03856, cttip('AMT USA female',10.6, 87.9),0.02537, cttip('AMT India male',10.6, 86.1),0.01375, cttip('AMT India female',10.6, 100),0.01012, cttip('CrowdFlower male',10.6, 96.9),0.01177, cttip('CrowdFlower female',10.6, 97.6)],
+['10.8',0.04755, cttip('AMT USA male',10.8, 81.7),0.03684, cttip('AMT USA female',10.8, 87.9),0.02468, cttip('AMT India male',10.8, 86.1),0.01255, cttip('AMT India female',10.8, 100),0.00873, cttip('CrowdFlower male',10.8, 96.9),0.00597, cttip('CrowdFlower female',10.8, 97.6)],
+['11',0.04553, cttip('AMT USA male',11, 81.7),0.03465, cttip('AMT USA female',11, 88.9),0.02332, cttip('AMT India male',11, 86.1),0.011, cttip('AMT India female',11, 100),0.00686, cttip('CrowdFlower male',11, 96.9),0, cttip('CrowdFlower female',11, 97.6)],
+['11.2',0.04325, cttip('AMT USA male',11.2, 81.7),0.03206, cttip('AMT USA female',11.2, 89.2),0.0213, cttip('AMT India male',11.2, 87.5),0.0091, cttip('AMT India female',11.2, 100),0.00452, cttip('CrowdFlower male',11.2, 96.9),0, cttip('CrowdFlower female',11.2, 97.6)],
+['11.4',0.04105, cttip('AMT USA male',11.4, 82),0.03023, cttip('AMT USA female',11.4, 89.5),0.0186, cttip('AMT India male',11.4, 88.9),0.00686, cttip('AMT India female',11.4, 100),0.00288, cttip('CrowdFlower male',11.4, 96.9),0, cttip('CrowdFlower female',11.4, 97.6)],
+['11.6',0.03884, cttip('AMT USA male',11.6, 82),0.02804, cttip('AMT USA female',11.6, 89.8),0.01523, cttip('AMT India male',11.6, 88.9),0.00428, cttip('AMT India female',11.6, 100),0.0037, cttip('CrowdFlower male',11.6, 96.9),0, cttip('CrowdFlower female',11.6, 97.6)],
+['11.8',0.03646, cttip('AMT USA male',11.8, 82.5),0.02519, cttip('AMT USA female',11.8, 90.1),0.01125, cttip('AMT India male',11.8, 88.9),0.00135, cttip('AMT India female',11.8, 100),0.00431, cttip('CrowdFlower male',11.8, 96.9),0, cttip('CrowdFlower female',11.8, 97.6)],
+['12',0.03356, cttip('AMT USA male',12, 83.7),0.02145, cttip('AMT USA female',12, 91.1),0.01066, cttip('AMT India male',12, 88.9),0, cttip('AMT India female',12, 100),0.0047, cttip('CrowdFlower male',12, 97.3),0, cttip('CrowdFlower female',12, 97.6)],
+['12.2',0.03023, cttip('AMT USA male',12.2, 83.7),0.01922, cttip('AMT USA female',12.2, 91.1),0.01054, cttip('AMT India male',12.2, 88.9),0, cttip('AMT India female',12.2, 100),0.00486, cttip('CrowdFlower male',12.2, 97.3),0, cttip('CrowdFlower female',12.2, 97.6)],
+['12.4',0.02637, cttip('AMT USA male',12.4, 83.7),0.01905, cttip('AMT USA female',12.4, 91.1),0.01001, cttip('AMT India male',12.4, 88.9),0, cttip('AMT India female',12.4, 100),0.00481, cttip('CrowdFlower male',12.4, 97.3),0, cttip('CrowdFlower female',12.4, 97.6)],
+['12.6',0.02495, cttip('AMT USA male',12.6, 87),0.01846, cttip('AMT USA female',12.6, 92.4),0.00908, cttip('AMT India male',12.6, 88.9),0, cttip('AMT India female',12.6, 100),0.00453, cttip('CrowdFlower male',12.6, 97.8),0, cttip('CrowdFlower female',12.6, 97.6)],
+['12.8',0.02526, cttip('AMT USA male',12.8, 87),0.01744, cttip('AMT USA female',12.8, 92.4),0.00774, cttip('AMT India male',12.8, 88.9),0, cttip('AMT India female',12.8, 100),0.00403, cttip('CrowdFlower male',12.8, 97.8),0, cttip('CrowdFlower female',12.8, 97.6)],
+['13',0.02531, cttip('AMT USA male',13, 87),0.01664, cttip('AMT USA female',13, 92.4),0.00627, cttip('AMT India male',13, 88.9),0, cttip('AMT India female',13, 100),0.00332, cttip('CrowdFlower male',13, 97.8),0, cttip('CrowdFlower female',13, 97.6)],
+['13.2',0.02496, cttip('AMT USA male',13.2, 87),0.01624, cttip('AMT USA female',13.2, 92.4),0.00633, cttip('AMT India male',13.2, 88.9),0, cttip('AMT India female',13.2, 100),0.00238, cttip('CrowdFlower male',13.2, 97.8),0, cttip('CrowdFlower female',13.2, 97.6)],
+['13.4',0.02436, cttip('AMT USA male',13.4, 88.8),0.01587, cttip('AMT USA female',13.4, 94.3),0.01048, cttip('AMT India male',13.4, 88.9),0, cttip('AMT India female',13.4, 100),0.0014, cttip('CrowdFlower male',13.4, 97.8),0, cttip('CrowdFlower female',13.4, 97.6)],
+['13.6',0.02336, cttip('AMT USA male',13.6, 88.8),0.01526, cttip('AMT USA female',13.6, 94.3),0.0147, cttip('AMT India male',13.6, 88.9),0, cttip('AMT India female',13.6, 100),0.00085, cttip('CrowdFlower male',13.6, 97.8),0, cttip('CrowdFlower female',13.6, 97.6)],
+['13.8',0.02203, cttip('AMT USA male',13.8, 88.8),0.01444, cttip('AMT USA female',13.8, 94.3),0.01825, cttip('AMT India male',13.8, 90.3),0, cttip('AMT India female',13.8, 100),0.00019, cttip('CrowdFlower male',13.8, 97.8),0, cttip('CrowdFlower female',13.8, 97.6)],
+['14',0.02041, cttip('AMT USA male',14, 89.6),0.01347, cttip('AMT USA female',14, 94.3),0.02112, cttip('AMT India male',14, 90.3),0, cttip('AMT India female',14, 100),0, cttip('CrowdFlower male',14, 97.8),0, cttip('CrowdFlower female',14, 97.6)],
+['14.2',0.01849, cttip('AMT USA male',14.2, 89.6),0.01244, cttip('AMT USA female',14.2, 94.3),0.02333, cttip('AMT India male',14.2, 90.3),0, cttip('AMT India female',14.2, 100),0, cttip('CrowdFlower male',14.2, 97.8),0.00299, cttip('CrowdFlower female',14.2, 97.6)],
+['14.4',0.01698, cttip('AMT USA male',14.4, 90.2),0.01144, cttip('AMT USA female',14.4, 94.3),0.02486, cttip('AMT India male',14.4, 90.3),0, cttip('AMT India female',14.4, 100),0, cttip('CrowdFlower male',14.4, 97.8),0.00588, cttip('CrowdFlower female',14.4, 97.6)],
+['14.6',0.01547, cttip('AMT USA male',14.6, 90.2),0.0102, cttip('AMT USA female',14.6, 94.3),0.02572, cttip('AMT India male',14.6, 90.3),0, cttip('AMT India female',14.6, 100),0, cttip('CrowdFlower male',14.6, 97.8),0.00795, cttip('CrowdFlower female',14.6, 97.6)],
+['14.8',0.01385, cttip('AMT USA male',14.8, 90.2),0.00989, cttip('AMT USA female',14.8, 94.3),0.02592, cttip('AMT India male',14.8, 90.3),0, cttip('AMT India female',14.8, 100),0, cttip('CrowdFlower male',14.8, 97.8),0.00919, cttip('CrowdFlower female',14.8, 97.6)],
+['15',0.01212, cttip('AMT USA male',15, 91.1),0.00933, cttip('AMT USA female',15, 95.9),0.02544, cttip('AMT India male',15, 94.4),0, cttip('AMT India female',15, 100),0, cttip('CrowdFlower male',15, 97.8),0.00961, cttip('CrowdFlower female',15, 98.8)],
+['15.2',0.0118, cttip('AMT USA male',15.2, 91.1),0.00849, cttip('AMT USA female',15.2, 95.9),0.02429, cttip('AMT India male',15.2, 95.8),0, cttip('AMT India female',15.2, 100),0, cttip('CrowdFlower male',15.2, 97.8),0.00919, cttip('CrowdFlower female',15.2, 98.8)],
+['15.4',0.01126, cttip('AMT USA male',15.4, 91.1),0.00737, cttip('AMT USA female',15.4, 95.9),0.02247, cttip('AMT India male',15.4, 95.8),0, cttip('AMT India female',15.4, 100),0, cttip('CrowdFlower male',15.4, 97.8),0.00795, cttip('CrowdFlower female',15.4, 98.8)],
+['15.6',0.01053, cttip('AMT USA male',15.6, 91.1),0.0071, cttip('AMT USA female',15.6, 95.9),0.02073, cttip('AMT India male',15.6, 95.8),0, cttip('AMT India female',15.6, 100),0, cttip('CrowdFlower male',15.6, 97.8),0.00588, cttip('CrowdFlower female',15.6, 98.8)],
+['15.8',0.00963, cttip('AMT USA male',15.8, 91.1),0.00694, cttip('AMT USA female',15.8, 95.9),0.01895, cttip('AMT India male',15.8, 95.8),0, cttip('AMT India female',15.8, 100),0, cttip('CrowdFlower male',15.8, 97.8),0.00299, cttip('CrowdFlower female',15.8, 98.8)],
+['16',0.00948, cttip('AMT USA male',16, 91.1),0.00663, cttip('AMT USA female',16, 95.9),0.01664, cttip('AMT India male',16, 95.8),0, cttip('AMT India female',16, 100),0, cttip('CrowdFlower male',16, 97.8),0, cttip('CrowdFlower female',16, 98.8)],
+['16.2',0.00923, cttip('AMT USA male',16.2, 91.1),0.00616, cttip('AMT USA female',16.2, 95.9),0.01379, cttip('AMT India male',16.2, 95.8),0, cttip('AMT India female',16.2, 100),0.00019, cttip('CrowdFlower male',16.2, 97.8),0, cttip('CrowdFlower female',16.2, 98.8)],
+['16.4',0.00888, cttip('AMT USA male',16.4, 91.1),0.00556, cttip('AMT USA female',16.4, 95.9),0.01041, cttip('AMT India male',16.4, 95.8),0, cttip('AMT India female',16.4, 100),0.00085, cttip('CrowdFlower male',16.4, 97.8),0, cttip('CrowdFlower female',16.4, 98.8)],
+['16.6',0.00865, cttip('AMT USA male',16.6, 91.1),0.0048, cttip('AMT USA female',16.6, 95.9),0.00648, cttip('AMT India male',16.6, 95.8),0, cttip('AMT India female',16.6, 100),0.0014, cttip('CrowdFlower male',16.6, 97.8),0, cttip('CrowdFlower female',16.6, 98.8)],
+['16.8',0.00849, cttip('AMT USA male',16.8, 92.3),0.0039, cttip('AMT USA female',16.8, 96.5),0.00203, cttip('AMT India male',16.8, 95.8),0, cttip('AMT India female',16.8, 100),0.00185, cttip('CrowdFlower male',16.8, 97.8),0, cttip('CrowdFlower female',16.8, 98.8)],
+['17',0.00842, cttip('AMT USA male',17, 92.3),0.00284, cttip('AMT USA female',17, 96.5),0, cttip('AMT India male',17, 95.8),0, cttip('AMT India female',17, 100),0.00218, cttip('CrowdFlower male',17, 97.8),0, cttip('CrowdFlower female',17, 98.8)],
+['17.2',0.0082, cttip('AMT USA male',17.2, 92.3),0.00219, cttip('AMT USA female',17.2, 96.5),0.00065, cttip('AMT India male',17.2, 95.8),0, cttip('AMT India female',17.2, 100),0.0024, cttip('CrowdFlower male',17.2, 97.8),0, cttip('CrowdFlower female',17.2, 98.8)],
+['17.4',0.00784, cttip('AMT USA male',17.4, 92.6),0.00205, cttip('AMT USA female',17.4, 96.5),0.00175, cttip('AMT India male',17.4, 95.8),0, cttip('AMT India female',17.4, 100),0.00251, cttip('CrowdFlower male',17.4, 97.8),0, cttip('CrowdFlower female',17.4, 98.8)],
+['17.6',0.0079, cttip('AMT USA male',17.6, 92.9),0.00188, cttip('AMT USA female',17.6, 96.5),0.00271, cttip('AMT India male',17.6, 95.8),0, cttip('AMT India female',17.6, 100),0.00251, cttip('CrowdFlower male',17.6, 98.2),0, cttip('CrowdFlower female',17.6, 98.8)],
+['17.8',0.00844, cttip('AMT USA male',17.8, 92.9),0.00166, cttip('AMT USA female',17.8, 96.5),0.00354, cttip('AMT India male',17.8, 95.8),0, cttip('AMT India female',17.8, 100),0.0024, cttip('CrowdFlower male',17.8, 98.2),0, cttip('CrowdFlower female',17.8, 98.8)],
+['18',0.00881, cttip('AMT USA male',18, 93.2),0.00162, cttip('AMT USA female',18, 96.5),0.00424, cttip('AMT India male',18, 95.8),0, cttip('AMT India female',18, 100),0.00218, cttip('CrowdFlower male',18, 98.2),0, cttip('CrowdFlower female',18, 98.8)],
+['18.2',0.00901, cttip('AMT USA male',18.2, 93.2),0.00172, cttip('AMT USA female',18.2, 96.5),0.00509, cttip('AMT India male',18.2, 95.8),0, cttip('AMT India female',18.2, 100),0.00185, cttip('CrowdFlower male',18.2, 98.2),0, cttip('CrowdFlower female',18.2, 98.8)],
+['18.4',0.00904, cttip('AMT USA male',18.4, 93.5),0.00174, cttip('AMT USA female',18.4, 96.5),0.00666, cttip('AMT India male',18.4, 95.8),0, cttip('AMT India female',18.4, 100),0.0014, cttip('CrowdFlower male',18.4, 98.2),0, cttip('CrowdFlower female',18.4, 98.8)],
+['18.6',0.00889, cttip('AMT USA male',18.6, 93.5),0.00167, cttip('AMT USA female',18.6, 96.5),0.00796, cttip('AMT India male',18.6, 95.8),0, cttip('AMT India female',18.6, 100),0.00085, cttip('CrowdFlower male',18.6, 98.2),0, cttip('CrowdFlower female',18.6, 98.8)],
+['18.8',0.00858, cttip('AMT USA male',18.8, 93.8),0.00158, cttip('AMT USA female',18.8, 96.5),0.00899, cttip('AMT India male',18.8, 95.8),0, cttip('AMT India female',18.8, 100),0.00019, cttip('CrowdFlower male',18.8, 98.2),0, cttip('CrowdFlower female',18.8, 98.8)],
+['19',0.00809, cttip('AMT USA male',19, 93.8),0.00181, cttip('AMT USA female',19, 96.5),0.00976, cttip('AMT India male',19, 97.2),0, cttip('AMT India female',19, 100),0, cttip('CrowdFlower male',19, 98.2),0, cttip('CrowdFlower female',19, 98.8)],
+['19.2',0.0076, cttip('AMT USA male',19.2, 93.8),0.002, cttip('AMT USA female',19.2, 96.5),0.01025, cttip('AMT India male',19.2, 97.2),0, cttip('AMT India female',19.2, 100),0, cttip('CrowdFlower male',19.2, 98.2),0, cttip('CrowdFlower female',19.2, 98.8)],
+['19.4',0.00742, cttip('AMT USA male',19.4, 93.8),0.00215, cttip('AMT USA female',19.4, 96.5),0.01048, cttip('AMT India male',19.4, 97.2),0, cttip('AMT India female',19.4, 100),0, cttip('CrowdFlower male',19.4, 98.2),0, cttip('CrowdFlower female',19.4, 98.8)],
+['19.6',0.00711, cttip('AMT USA male',19.6, 93.8),0.00225, cttip('AMT USA female',19.6, 96.5),0.01044, cttip('AMT India male',19.6, 97.2),0, cttip('AMT India female',19.6, 100),0, cttip('CrowdFlower male',19.6, 98.2),0, cttip('CrowdFlower female',19.6, 98.8)],
+['19.8',0.00668, cttip('AMT USA male',19.8, 93.8),0.00232, cttip('AMT USA female',19.8, 96.5),0.01013, cttip('AMT India male',19.8, 97.2),0, cttip('AMT India female',19.8, 100),0, cttip('CrowdFlower male',19.8, 98.2),0, cttip('CrowdFlower female',19.8, 98.8)],
+['20',0.00624, cttip('AMT USA male',20, 95.3),0.00234, cttip('AMT USA female',20, 97.1),0.00955, cttip('AMT India male',20, 98.6),0, cttip('AMT India female',20, 100),0, cttip('CrowdFlower male',20, 98.2),0, cttip('CrowdFlower female',20, 98.8)],
+
+    ];
+
+    var rowData2 = [
+/* Unpaid 2015 MaF */
+['x_axis','AMT USA male', {'type':'string','role':'tooltip','p':{'html':true}},'AMT USA female', {'type':'string','role':'tooltip','p':{'html':true}},'AMT India male', {'type':'string','role':'tooltip','p':{'html':true}},'AMT India female', {'type':'string','role':'tooltip','p':{'html':true}},'CrowdFlower male', {'type':'string','role':'tooltip','p':{'html':true}},'CrowdFlower female', {'type':'string','role':'tooltip','p':{'html':true}}],
+['0',0.01042, cttip_pu('AMT USA male',0, 0),0.02013, cttip_pu('AMT USA female',0, 0),0.13425, cttip_pu('AMT India male',0, 0),0.19196, cttip_pu('AMT India female',0, 0),0.2502, cttip_pu('CrowdFlower male',0, 0),0.28207, cttip_pu('CrowdFlower female',0, 0)],
+['0.2',0.01477, cttip_pu('AMT USA male',0.2, 0),0.02931, cttip_pu('AMT USA female',0.2, 0),0.16056, cttip_pu('AMT India male',0.2, 5.6),0.22776, cttip_pu('AMT India female',0.2, 7.7),0.33505, cttip_pu('CrowdFlower male',0.2, 6.7),0.40755, cttip_pu('CrowdFlower female',0.2, 7.2)],
+['0.4',0.0203, cttip_pu('AMT USA male',0.4, 0),0.03937, cttip_pu('AMT USA female',0.4, 0),0.18322, cttip_pu('AMT India male',0.4, 6.9),0.25588, cttip_pu('AMT India female',0.4, 7.7),0.40018, cttip_pu('CrowdFlower male',0.4, 20.1),0.51441, cttip_pu('CrowdFlower female',0.4, 20.5)],
+['0.6',0.02667, cttip_pu('AMT USA male',0.6, 0),0.05063, cttip_pu('AMT USA female',0.6, 0),0.20381, cttip_pu('AMT India male',0.6, 13.9),0.27448, cttip_pu('AMT India female',0.6, 11.5),0.43595, cttip_pu('CrowdFlower male',0.6, 29.9),0.56696, cttip_pu('CrowdFlower female',0.6, 32.5)],
+['0.8',0.03401, cttip_pu('AMT USA male',0.8, 0.6),0.06406, cttip_pu('AMT USA female',0.8, 0.3),0.22044, cttip_pu('AMT India male',0.8, 18.1),0.28638, cttip_pu('AMT India female',0.8, 26.9),0.43062, cttip_pu('CrowdFlower male',0.8, 39.3),0.53921, cttip_pu('CrowdFlower female',0.8, 48.2)],
+['1',0.04242, cttip_pu('AMT USA male',1, 0.9),0.07781, cttip_pu('AMT USA female',1, 2.9),0.23348, cttip_pu('AMT India male',1, 26.4),0.2915, cttip_pu('AMT India female',1, 30.8),0.38651, cttip_pu('CrowdFlower male',1, 51.3),0.4532, cttip_pu('CrowdFlower female',1, 62.7)],
+['1.2',0.05117, cttip_pu('AMT USA male',1.2, 1.8),0.09087, cttip_pu('AMT USA female',1.2, 4.5),0.24375, cttip_pu('AMT India male',1.2, 31.9),0.29049, cttip_pu('AMT India female',1.2, 50),0.32194, cttip_pu('CrowdFlower male',1.2, 54.9),0.36336, cttip_pu('CrowdFlower female',1.2, 66.3)],
+['1.4',0.05923, cttip_pu('AMT USA male',1.4, 3.3),0.10462, cttip_pu('AMT USA female',1.4, 5.8),0.24577, cttip_pu('AMT India male',1.4, 38.9),0.2843, cttip_pu('AMT India female',1.4, 57.7),0.26682, cttip_pu('CrowdFlower male',1.4, 61.2),0.28117, cttip_pu('CrowdFlower female',1.4, 71.1)],
+['1.6',0.06716, cttip_pu('AMT USA male',1.6, 4.4),0.11726, cttip_pu('AMT USA female',1.6, 8.3),0.24059, cttip_pu('AMT India male',1.6, 44.4),0.26758, cttip_pu('AMT India female',1.6, 61.5),0.21525, cttip_pu('CrowdFlower male',1.6, 64.3),0.21412, cttip_pu('CrowdFlower female',1.6, 74.7)],
+['1.8',0.07611, cttip_pu('AMT USA male',1.8, 5.6),0.13026, cttip_pu('AMT USA female',1.8, 12.1),0.23101, cttip_pu('AMT India male',1.8, 48.6),0.24478, cttip_pu('AMT India female',1.8, 65.4),0.17348, cttip_pu('CrowdFlower male',1.8, 69.2),0.15361, cttip_pu('CrowdFlower female',1.8, 78.3)],
+['2',0.08549, cttip_pu('AMT USA male',2, 8.3),0.14151, cttip_pu('AMT USA female',2, 15.3),0.21749, cttip_pu('AMT India male',2, 52.8),0.21476, cttip_pu('AMT India female',2, 65.4),0.14293, cttip_pu('CrowdFlower male',2, 72.3),0.11892, cttip_pu('CrowdFlower female',2, 84.3)],
+['2.2',0.09403, cttip_pu('AMT USA male',2.2, 9.5),0.14976, cttip_pu('AMT USA female',2.2, 17.9),0.20094, cttip_pu('AMT India male',2.2, 55.6),0.17481, cttip_pu('AMT India female',2.2, 65.4),0.11903, cttip_pu('CrowdFlower male',2.2, 73.7),0.09033, cttip_pu('CrowdFlower female',2.2, 84.3)],
+['2.4',0.10244, cttip_pu('AMT USA male',2.4, 11.5),0.15663, cttip_pu('AMT USA female',2.4, 21.4),0.1813, cttip_pu('AMT India male',2.4, 59.7),0.1474, cttip_pu('AMT India female',2.4, 69.2),0.10471, cttip_pu('CrowdFlower male',2.4, 75),0.06235, cttip_pu('CrowdFlower female',2.4, 84.3)],
+['2.6',0.11031, cttip_pu('AMT USA male',2.6, 14.5),0.16114, cttip_pu('AMT USA female',2.6, 26.5),0.16013, cttip_pu('AMT India male',2.6, 66.7),0.11676, cttip_pu('AMT India female',2.6, 73.1),0.09534, cttip_pu('CrowdFlower male',2.6, 77.2),0.04519, cttip_pu('CrowdFlower female',2.6, 85.5)],
+['2.8',0.11739, cttip_pu('AMT USA male',2.8, 16.9),0.1637, cttip_pu('AMT USA female',2.8, 28.1),0.14087, cttip_pu('AMT India male',2.8, 69.4),0.10002, cttip_pu('AMT India female',2.8, 76.9),0.09213, cttip_pu('CrowdFlower male',2.8, 79),0.05258, cttip_pu('CrowdFlower female',2.8, 86.7)],
+['3',0.12337, cttip_pu('AMT USA male',3, 18.9),0.16489, cttip_pu('AMT USA female',3, 33.5),0.12455, cttip_pu('AMT India male',3, 70.8),0.09645, cttip_pu('AMT India female',3, 80.8),0.08427, cttip_pu('CrowdFlower male',3, 81.3),0.06944, cttip_pu('CrowdFlower female',3, 88)],
+['3.2',0.12826, cttip_pu('AMT USA male',3.2, 19.5),0.16312, cttip_pu('AMT USA female',3.2, 34.8),0.10868, cttip_pu('AMT India male',3.2, 73.6),0.09524, cttip_pu('AMT India female',3.2, 80.8),0.07694, cttip_pu('CrowdFlower male',3.2, 82.6),0.07336, cttip_pu('CrowdFlower female',3.2, 88)],
+['3.4',0.13511, cttip_pu('AMT USA male',3.4, 23.4),0.16306, cttip_pu('AMT USA female',3.4, 40.6),0.09207, cttip_pu('AMT India male',3.4, 75),0.09279, cttip_pu('AMT India female',3.4, 80.8),0.06769, cttip_pu('CrowdFlower male',3.4, 84.8),0.06888, cttip_pu('CrowdFlower female',3.4, 91.6)],
+['3.6',0.13986, cttip_pu('AMT USA male',3.6, 26.6),0.16194, cttip_pu('AMT USA female',3.6, 43.8),0.07424, cttip_pu('AMT India male',3.6, 77.8),0.09244, cttip_pu('AMT India female',3.6, 80.8),0.05849, cttip_pu('CrowdFlower male',3.6, 86.2),0.05962, cttip_pu('CrowdFlower female',3.6, 94)],
+['3.8',0.14343, cttip_pu('AMT USA male',3.8, 29.6),0.15901, cttip_pu('AMT USA female',3.8, 45.4),0.05817, cttip_pu('AMT India male',3.8, 77.8),0.08761, cttip_pu('AMT India female',3.8, 84.6),0.04771, cttip_pu('CrowdFlower male',3.8, 86.6),0.0448, cttip_pu('CrowdFlower female',3.8, 94)],
+['4',0.14634, cttip_pu('AMT USA male',4, 34),0.15462, cttip_pu('AMT USA female',4, 49.8),0.04311, cttip_pu('AMT India male',4, 77.8),0.08119, cttip_pu('AMT India female',4, 84.6),0.03753, cttip_pu('CrowdFlower male',4, 87.1),0.02935, cttip_pu('CrowdFlower female',4, 94)],
+['4.2',0.14799, cttip_pu('AMT USA male',4.2, 36.1),0.14889, cttip_pu('AMT USA female',4.2, 52.4),0.03107, cttip_pu('AMT India male',4.2, 77.8),0.07415, cttip_pu('AMT India female',4.2, 84.6),0.03009, cttip_pu('CrowdFlower male',4.2, 88.4),0.01538, cttip_pu('CrowdFlower female',4.2, 94)],
+['4.4',0.14904, cttip_pu('AMT USA male',4.4, 39.1),0.14403, cttip_pu('AMT USA female',4.4, 54.3),0.02327, cttip_pu('AMT India male',4.4, 79.2),0.06812, cttip_pu('AMT India female',4.4, 92.3),0.0322, cttip_pu('CrowdFlower male',4.4, 88.4),0.02056, cttip_pu('CrowdFlower female',4.4, 94)],
+['4.6',0.14883, cttip_pu('AMT USA male',4.6, 42),0.13754, cttip_pu('AMT USA female',4.6, 57.5),0.01859, cttip_pu('AMT India male',4.6, 79.2),0.06536, cttip_pu('AMT India female',4.6, 92.3),0.03352, cttip_pu('CrowdFlower male',4.6, 88.8),0.02901, cttip_pu('CrowdFlower female',4.6, 95.2)],
+['4.8',0.14706, cttip_pu('AMT USA male',4.8, 44.4),0.13041, cttip_pu('AMT USA female',4.8, 58.8),0.01635, cttip_pu('AMT India male',4.8, 79.2),0.0617, cttip_pu('AMT India female',4.8, 92.3),0.03264, cttip_pu('CrowdFlower male',4.8, 88.8),0.03239, cttip_pu('CrowdFlower female',4.8, 95.2)],
+['5',0.14267, cttip_pu('AMT USA male',5, 51.5),0.12432, cttip_pu('AMT USA female',5, 66.8),0.01458, cttip_pu('AMT India male',5, 79.2),0.0558, cttip_pu('AMT India female',5, 96.2),0.02938, cttip_pu('CrowdFlower male',5, 91.5),0.0307, cttip_pu('CrowdFlower female',5, 97.6)],
+['5.2',0.13717, cttip_pu('AMT USA male',5.2, 51.8),0.11821, cttip_pu('AMT USA female',5.2, 67.1),0.01706, cttip_pu('AMT India male',5.2, 79.2),0.04766, cttip_pu('AMT India female',5.2, 96.2),0.02817, cttip_pu('CrowdFlower male',5.2, 91.5),0.02394, cttip_pu('CrowdFlower female',5.2, 97.6)],
+['5.4',0.13172, cttip_pu('AMT USA male',5.4, 54.7),0.11239, cttip_pu('AMT USA female',5.4, 68.7),0.02012, cttip_pu('AMT India male',5.4, 79.2),0.03747, cttip_pu('AMT India female',5.4, 96.2),0.02653, cttip_pu('CrowdFlower male',5.4, 91.5),0.01723, cttip_pu('CrowdFlower female',5.4, 97.6)],
+['5.6',0.12732, cttip_pu('AMT USA male',5.6, 56.8),0.1058, cttip_pu('AMT USA female',5.6, 70.6),0.02213, cttip_pu('AMT India male',5.6, 79.2),0.02965, cttip_pu('AMT India female',5.6, 96.2),0.02394, cttip_pu('CrowdFlower male',5.6, 92),0.00878, cttip_pu('CrowdFlower female',5.6, 97.6)],
+['5.8',0.12199, cttip_pu('AMT USA male',5.8, 59.8),0.09782, cttip_pu('AMT USA female',5.8, 71.9),0.02312, cttip_pu('AMT India male',5.8, 79.2),0.02014, cttip_pu('AMT India female',5.8, 96.2),0.01762, cttip_pu('CrowdFlower male',5.8, 92),0, cttip_pu('CrowdFlower female',5.8, 97.6)],
+['6',0.1166, cttip_pu('AMT USA male',6, 62.7),0.09078, cttip_pu('AMT USA female',6, 74.1),0.02429, cttip_pu('AMT India male',6, 81.9),0.01099, cttip_pu('AMT India female',6, 96.2),0.02061, cttip_pu('CrowdFlower male',6, 92.9),0, cttip_pu('CrowdFlower female',6, 97.6)],
+['6.2',0.11113, cttip_pu('AMT USA male',6.2, 63.3),0.08388, cttip_pu('AMT USA female',6.2, 74.4),0.02815, cttip_pu('AMT India male',6.2, 81.9),0.00791, cttip_pu('AMT India female',6.2, 96.2),0.02402, cttip_pu('CrowdFlower male',6.2, 92.9),0, cttip_pu('CrowdFlower female',6.2, 97.6)],
+['6.4',0.10488, cttip_pu('AMT USA male',6.4, 65.1),0.07752, cttip_pu('AMT USA female',6.4, 76.4),0.03075, cttip_pu('AMT India male',6.4, 81.9),0.00427, cttip_pu('AMT India female',6.4, 96.2),0.02417, cttip_pu('CrowdFlower male',6.4, 93.3),0, cttip_pu('CrowdFlower female',6.4, 97.6)],
+['6.6',0.09811, cttip_pu('AMT USA male',6.6, 66.9),0.07078, cttip_pu('AMT USA female',6.6, 78),0.03211, cttip_pu('AMT India male',6.6, 83.3),0.00008, cttip_pu('AMT India female',6.6, 96.2),0.02274, cttip_pu('CrowdFlower male',6.6, 93.3),0, cttip_pu('CrowdFlower female',6.6, 97.6)],
+['6.8',0.09196, cttip_pu('AMT USA male',6.8, 68.3),0.0643, cttip_pu('AMT USA female',6.8, 80.2),0.03223, cttip_pu('AMT India male',6.8, 84.7),0, cttip_pu('AMT India female',6.8, 96.2),0.01869, cttip_pu('CrowdFlower male',6.8, 95.1),0.00164, cttip_pu('CrowdFlower female',6.8, 97.6)],
+['7',0.08872, cttip_pu('AMT USA male',7, 70.7),0.06148, cttip_pu('AMT USA female',7, 81.5),0.0311, cttip_pu('AMT India male',7, 84.7),0, cttip_pu('AMT India female',7, 96.2),0.01424, cttip_pu('CrowdFlower male',7, 95.1),0.00671, cttip_pu('CrowdFlower female',7, 97.6)],
+['7.2',0.08466, cttip_pu('AMT USA male',7.2, 73.4),0.0582, cttip_pu('AMT USA female',7.2, 82.4),0.02873, cttip_pu('AMT India male',7.2, 84.7),0, cttip_pu('AMT India female',7.2, 96.2),0.01152, cttip_pu('CrowdFlower male',7.2, 95.1),0.01009, cttip_pu('CrowdFlower female',7.2, 97.6)],
+['7.4',0.08013, cttip_pu('AMT USA male',7.4, 74.6),0.05438, cttip_pu('AMT USA female',7.4, 82.7),0.02511, cttip_pu('AMT India male',7.4, 84.7),0, cttip_pu('AMT India female',7.4, 96.2),0.00906, cttip_pu('CrowdFlower male',7.4, 95.1),0.01178, cttip_pu('CrowdFlower female',7.4, 97.6)],
+['7.6',0.07636, cttip_pu('AMT USA male',7.6, 76.6),0.0506, cttip_pu('AMT USA female',7.6, 83.4),0.02054, cttip_pu('AMT India male',7.6, 87.5),0, cttip_pu('AMT India female',7.6, 96.2),0.0098, cttip_pu('CrowdFlower male',7.6, 95.1),0.01178, cttip_pu('CrowdFlower female',7.6, 98.8)],
+['7.8',0.07187, cttip_pu('AMT USA male',7.8, 78.1),0.04634, cttip_pu('AMT USA female',7.8, 84),0.01795, cttip_pu('AMT India male',7.8, 87.5),0, cttip_pu('AMT India female',7.8, 96.2),0.01474, cttip_pu('CrowdFlower male',7.8, 95.1),0.01009, cttip_pu('CrowdFlower female',7.8, 98.8)],
+['8',0.06696, cttip_pu('AMT USA male',8, 79),0.04228, cttip_pu('AMT USA female',8, 85.9),0.01454, cttip_pu('AMT India male',8, 87.5),0, cttip_pu('AMT India female',8, 96.2),0.01764, cttip_pu('CrowdFlower male',8, 96),0.00671, cttip_pu('CrowdFlower female',8, 98.8)],
+['8.2',0.06147, cttip_pu('AMT USA male',8.2, 79),0.03799, cttip_pu('AMT USA female',8.2, 86.6),0.0117, cttip_pu('AMT India male',8.2, 87.5),0, cttip_pu('AMT India female',8.2, 96.2),0.01851, cttip_pu('CrowdFlower male',8.2, 96),0.00164, cttip_pu('CrowdFlower female',8.2, 98.8)],
+['8.4',0.05842, cttip_pu('AMT USA male',8.4, 82.2),0.03612, cttip_pu('AMT USA female',8.4, 87.9),0.0113, cttip_pu('AMT India male',8.4, 87.5),0.00008, cttip_pu('AMT India female',8.4, 96.2),0.01733, cttip_pu('CrowdFlower male',8.4, 97.3),0, cttip_pu('CrowdFlower female',8.4, 98.8)],
+['8.6',0.05492, cttip_pu('AMT USA male',8.6, 83.1),0.03526, cttip_pu('AMT USA female',8.6, 88.2),0.0163, cttip_pu('AMT India male',8.6, 87.5),0.00427, cttip_pu('AMT India female',8.6, 96.2),0.01412, cttip_pu('CrowdFlower male',8.6, 97.3),0, cttip_pu('CrowdFlower female',8.6, 98.8)],
+['8.8',0.05076, cttip_pu('AMT USA male',8.8, 84),0.03422, cttip_pu('AMT USA female',8.8, 88.5),0.02044, cttip_pu('AMT India male',8.8, 87.5),0.00791, cttip_pu('AMT India female',8.8, 96.2),0.00891, cttip_pu('CrowdFlower male',8.8, 97.3),0, cttip_pu('CrowdFlower female',8.8, 98.8)],
+['9',0.04662, cttip_pu('AMT USA male',9, 84.6),0.03272, cttip_pu('AMT USA female',9, 89.1),0.02313, cttip_pu('AMT India male',9, 87.5),0.01099, cttip_pu('AMT India female',9, 96.2),0.00483, cttip_pu('CrowdFlower male',9, 97.3),0, cttip_pu('CrowdFlower female',9, 98.8)],
+['9.2',0.04352, cttip_pu('AMT USA male',9.2, 85.5),0.03071, cttip_pu('AMT USA female',9.2, 89.8),0.02507, cttip_pu('AMT India male',9.2, 87.5),0.01351, cttip_pu('AMT India female',9.2, 96.2),0.00014, cttip_pu('CrowdFlower male',9.2, 97.3),0, cttip_pu('CrowdFlower female',9.2, 98.8)],
+['9.4',0.04072, cttip_pu('AMT USA male',9.4, 85.8),0.02837, cttip_pu('AMT USA female',9.4, 89.8),0.02968, cttip_pu('AMT India male',9.4, 87.5),0.01547, cttip_pu('AMT India female',9.4, 96.2),0, cttip_pu('CrowdFlower male',9.4, 97.3),0, cttip_pu('CrowdFlower female',9.4, 98.8)],
+['9.6',0.03784, cttip_pu('AMT USA male',9.6, 85.8),0.02571, cttip_pu('AMT USA female',9.6, 90.1),0.03338, cttip_pu('AMT India male',9.6, 87.5),0.01687, cttip_pu('AMT India female',9.6, 96.2),0, cttip_pu('CrowdFlower male',9.6, 97.3),0, cttip_pu('CrowdFlower female',9.6, 98.8)],
+['9.8',0.03485, cttip_pu('AMT USA male',9.8, 85.8),0.02406, cttip_pu('AMT USA female',9.8, 90.4),0.03583, cttip_pu('AMT India male',9.8, 88.9),0.01771, cttip_pu('AMT India female',9.8, 96.2),0.00041, cttip_pu('CrowdFlower male',9.8, 97.3),0, cttip_pu('CrowdFlower female',9.8, 98.8)],
+['10',0.03111, cttip_pu('AMT USA male',10, 89.6),0.02283, cttip_pu('AMT USA female',10, 93.3),0.03703, cttip_pu('AMT India male',10, 94.4),0.01799, cttip_pu('AMT India female',10, 100),0.00188, cttip_pu('CrowdFlower male',10, 97.3),0, cttip_pu('CrowdFlower female',10, 98.8)],
+['10.2',0.02767, cttip_pu('AMT USA male',10.2, 89.6),0.022, cttip_pu('AMT USA female',10.2, 93.3),0.037, cttip_pu('AMT India male',10.2, 94.4),0.01771, cttip_pu('AMT India female',10.2, 100),0.00295, cttip_pu('CrowdFlower male',10.2, 97.3),0, cttip_pu('CrowdFlower female',10.2, 98.8)],
+['10.4',0.02531, cttip_pu('AMT USA male',10.4, 89.6),0.02145, cttip_pu('AMT USA female',10.4, 93.3),0.03571, cttip_pu('AMT India male',10.4, 94.4),0.01687, cttip_pu('AMT India female',10.4, 100),0.00362, cttip_pu('CrowdFlower male',10.4, 97.3),0, cttip_pu('CrowdFlower female',10.4, 98.8)],
+['10.6',0.023, cttip_pu('AMT USA male',10.6, 89.6),0.02038, cttip_pu('AMT USA female',10.6, 93.3),0.03318, cttip_pu('AMT India male',10.6, 94.4),0.01547, cttip_pu('AMT India female',10.6, 100),0.00387, cttip_pu('CrowdFlower male',10.6, 97.3),0, cttip_pu('CrowdFlower female',10.6, 98.8)],
+['10.8',0.0215, cttip_pu('AMT USA male',10.8, 90.2),0.01952, cttip_pu('AMT USA female',10.8, 93.3),0.02941, cttip_pu('AMT India male',10.8, 94.4),0.01351, cttip_pu('AMT India female',10.8, 100),0.00481, cttip_pu('CrowdFlower male',10.8, 97.8),0, cttip_pu('CrowdFlower female',10.8, 98.8)],
+['11',0.02096, cttip_pu('AMT USA male',11, 90.5),0.0186, cttip_pu('AMT USA female',11, 93.6),0.02439, cttip_pu('AMT India male',11, 95.8),0.01099, cttip_pu('AMT India female',11, 100),0.00555, cttip_pu('CrowdFlower male',11, 97.8),0, cttip_pu('CrowdFlower female',11, 98.8)],
+['11.2',0.02046, cttip_pu('AMT USA male',11.2, 90.8),0.01729, cttip_pu('AMT USA female',11.2, 93.6),0.01812, cttip_pu('AMT India male',11.2, 95.8),0.00791, cttip_pu('AMT India female',11.2, 100),0.00548, cttip_pu('CrowdFlower male',11.2, 97.8),0, cttip_pu('CrowdFlower female',11.2, 98.8)],
+['11.4',0.01915, cttip_pu('AMT USA male',11.4, 91.1),0.01556, cttip_pu('AMT USA female',11.4, 94.2),0.01126, cttip_pu('AMT India male',11.4, 95.8),0.00427, cttip_pu('AMT India female',11.4, 100),0.00459, cttip_pu('CrowdFlower male',11.4, 97.8),0, cttip_pu('CrowdFlower female',11.4, 98.8)],
+['11.6',0.01702, cttip_pu('AMT USA male',11.6, 91.1),0.01355, cttip_pu('AMT USA female',11.6, 94.9),0.00493, cttip_pu('AMT India male',11.6, 95.8),0.00008, cttip_pu('AMT India female',11.6, 100),0.00385, cttip_pu('CrowdFlower male',11.6, 98.2),0, cttip_pu('CrowdFlower female',11.6, 98.8)],
+['11.8',0.01481, cttip_pu('AMT USA male',11.8, 91.1),0.01127, cttip_pu('AMT USA female',11.8, 95.2),0.00441, cttip_pu('AMT India male',11.8, 95.8),0, cttip_pu('AMT India female',11.8, 100),0.00353, cttip_pu('CrowdFlower male',11.8, 98.2),0, cttip_pu('CrowdFlower female',11.8, 98.8)],
+['12',0.01576, cttip_pu('AMT USA male',12, 91.4),0.01121, cttip_pu('AMT USA female',12, 95.5),0.00478, cttip_pu('AMT India male',12, 95.8),0, cttip_pu('AMT India female',12, 100),0.00279, cttip_pu('CrowdFlower male',12, 98.2),0, cttip_pu('CrowdFlower female',12, 98.8)],
+['12.2',0.01655, cttip_pu('AMT USA male',12.2, 91.4),0.01115, cttip_pu('AMT USA female',12.2, 95.5),0.00473, cttip_pu('AMT India male',12.2, 95.8),0, cttip_pu('AMT India female',12.2, 100),0.00164, cttip_pu('CrowdFlower male',12.2, 98.2),0, cttip_pu('CrowdFlower female',12.2, 98.8)],
+['12.4',0.01672, cttip_pu('AMT USA male',12.4, 91.4),0.01071, cttip_pu('AMT USA female',12.4, 95.5),0.00427, cttip_pu('AMT India male',12.4, 95.8),0, cttip_pu('AMT India female',12.4, 100),0.00009, cttip_pu('CrowdFlower male',12.4, 98.2),0, cttip_pu('CrowdFlower female',12.4, 98.8)],
+['12.6',0.01662, cttip_pu('AMT USA male',12.6, 93.5),0.00989, cttip_pu('AMT USA female',12.6, 96.2),0.0051, cttip_pu('AMT India male',12.6, 95.8),0, cttip_pu('AMT India female',12.6, 100),0, cttip_pu('CrowdFlower male',12.6, 98.2),0, cttip_pu('CrowdFlower female',12.6, 98.8)],
+['12.8',0.01638, cttip_pu('AMT USA male',12.8, 93.8),0.00873, cttip_pu('AMT USA female',12.8, 96.2),0.00576, cttip_pu('AMT India male',12.8, 95.8),0, cttip_pu('AMT India female',12.8, 100),0, cttip_pu('CrowdFlower male',12.8, 98.2),0, cttip_pu('CrowdFlower female',12.8, 98.8)],
+['13',0.01592, cttip_pu('AMT USA male',13, 93.8),0.00748, cttip_pu('AMT USA female',13, 96.2),0.00621, cttip_pu('AMT India male',13, 95.8),0, cttip_pu('AMT India female',13, 100),0, cttip_pu('CrowdFlower male',13, 98.2),0, cttip_pu('CrowdFlower female',13, 98.8)],
+['13.2',0.01535, cttip_pu('AMT USA male',13.2, 93.8),0.00608, cttip_pu('AMT USA female',13.2, 96.2),0.00645, cttip_pu('AMT India male',13.2, 95.8),0, cttip_pu('AMT India female',13.2, 100),0.00061, cttip_pu('CrowdFlower male',13.2, 98.2),0, cttip_pu('CrowdFlower female',13.2, 98.8)],
+['13.4',0.01437, cttip_pu('AMT USA male',13.4, 94.1),0.00577, cttip_pu('AMT USA female',13.4, 96.2),0.00648, cttip_pu('AMT India male',13.4, 97.2),0, cttip_pu('AMT India female',13.4, 100),0.00204, cttip_pu('CrowdFlower male',13.4, 98.2),0, cttip_pu('CrowdFlower female',13.4, 98.8)],
+['13.6',0.01294, cttip_pu('AMT USA male',13.6, 94.4),0.00553, cttip_pu('AMT USA female',13.6, 96.2),0.00656, cttip_pu('AMT India male',13.6, 97.2),0, cttip_pu('AMT India female',13.6, 100),0.00454, cttip_pu('CrowdFlower male',13.6, 98.2),0, cttip_pu('CrowdFlower female',13.6, 98.8)],
+['13.8',0.01109, cttip_pu('AMT USA male',13.8, 95.3),0.00544, cttip_pu('AMT USA female',13.8, 96.8),0.00768, cttip_pu('AMT India male',13.8, 97.2),0, cttip_pu('AMT India female',13.8, 100),0.00634, cttip_pu('CrowdFlower male',13.8, 98.2),0, cttip_pu('CrowdFlower female',13.8, 98.8)],
+['14',0.00906, cttip_pu('AMT USA male',14, 95.3),0.00526, cttip_pu('AMT USA female',14, 96.8),0.00839, cttip_pu('AMT India male',14, 97.2),0, cttip_pu('AMT India female',14, 100),0.00733, cttip_pu('CrowdFlower male',14, 98.7),0, cttip_pu('CrowdFlower female',14, 98.8)],
+['14.2',0.00661, cttip_pu('AMT USA male',14.2, 95.3),0.00488, cttip_pu('AMT USA female',14.2, 96.8),0.00869, cttip_pu('AMT India male',14.2, 97.2),0, cttip_pu('AMT India female',14.2, 100),0.00751, cttip_pu('CrowdFlower male',14.2, 98.7),0, cttip_pu('CrowdFlower female',14.2, 98.8)],
+['14.4',0.00506, cttip_pu('AMT USA male',14.4, 95.3),0.00476, cttip_pu('AMT USA female',14.4, 96.8),0.00857, cttip_pu('AMT India male',14.4, 97.2),0, cttip_pu('AMT India female',14.4, 100),0.00687, cttip_pu('CrowdFlower male',14.4, 99.1),0.00439, cttip_pu('CrowdFlower female',14.4, 98.8)],
+['14.6',0.00419, cttip_pu('AMT USA male',14.6, 95.3),0.00494, cttip_pu('AMT USA female',14.6, 96.8),0.00944, cttip_pu('AMT India male',14.6, 97.2),0, cttip_pu('AMT India female',14.6, 100),0.00541, cttip_pu('CrowdFlower male',14.6, 99.1),0.00861, cttip_pu('CrowdFlower female',14.6, 98.8)],
+['14.8',0.00355, cttip_pu('AMT USA male',14.8, 95.3),0.00494, cttip_pu('AMT USA female',14.8, 96.8),0.00984, cttip_pu('AMT India male',14.8, 97.2),0, cttip_pu('AMT India female',14.8, 100),0.00314, cttip_pu('CrowdFlower male',14.8, 99.1),0.01115, cttip_pu('CrowdFlower female',14.8, 98.8)],
+['15',0.00316, cttip_pu('AMT USA male',15, 95.3),0.00525, cttip_pu('AMT USA female',15, 97.4),0.01033, cttip_pu('AMT India male',15, 97.2),0, cttip_pu('AMT India female',15, 100),0.00127, cttip_pu('CrowdFlower male',15, 99.1),0.01199, cttip_pu('CrowdFlower female',15, 100)],
+['15.2',0.00303, cttip_pu('AMT USA male',15.2, 95.3),0.00572, cttip_pu('AMT USA female',15.2, 97.4),0.01223, cttip_pu('AMT India male',15.2, 98.6),0, cttip_pu('AMT India female',15.2, 100),0, cttip_pu('CrowdFlower male',15.2, 99.1),0.01115, cttip_pu('CrowdFlower female',15.2, 100)],
+['15.4',0.00299, cttip_pu('AMT USA male',15.4, 95.3),0.00591, cttip_pu('AMT USA female',15.4, 97.4),0.01423, cttip_pu('AMT India male',15.4, 98.6),0, cttip_pu('AMT India female',15.4, 100),0, cttip_pu('CrowdFlower male',15.4, 99.1),0.00861, cttip_pu('CrowdFlower female',15.4, 100)],
+['15.6',0.00376, cttip_pu('AMT USA male',15.6, 95.3),0.00625, cttip_pu('AMT USA female',15.6, 97.4),0.01559, cttip_pu('AMT India male',15.6, 98.6),0, cttip_pu('AMT India female',15.6, 100),0, cttip_pu('CrowdFlower male',15.6, 99.1),0.00439, cttip_pu('CrowdFlower female',15.6, 100)],
+['15.8',0.00482, cttip_pu('AMT USA male',15.8, 95.3),0.00658, cttip_pu('AMT USA female',15.8, 97.4),0.01634, cttip_pu('AMT India male',15.8, 98.6),0, cttip_pu('AMT India female',15.8, 100),0, cttip_pu('CrowdFlower male',15.8, 99.1),0, cttip_pu('CrowdFlower female',15.8, 100)],
+['16',0.0057, cttip_pu('AMT USA male',16, 95.3),0.00671, cttip_pu('AMT USA female',16, 97.4),0.01646, cttip_pu('AMT India male',16, 100),0, cttip_pu('AMT India female',16, 100),0, cttip_pu('CrowdFlower male',16, 99.1),0, cttip_pu('CrowdFlower female',16, 100)],
+['16.2',0.00655, cttip_pu('AMT USA male',16.2, 95.3),0.00663, cttip_pu('AMT USA female',16.2, 97.8),0.01596, cttip_pu('AMT India male',16.2, 100),0, cttip_pu('AMT India female',16.2, 100),0, cttip_pu('CrowdFlower male',16.2, 99.1),0, cttip_pu('CrowdFlower female',16.2, 100)],
+['16.4',0.0073, cttip_pu('AMT USA male',16.4, 95.6),0.00634, cttip_pu('AMT USA female',16.4, 97.8),0.01484, cttip_pu('AMT India male',16.4, 100),0, cttip_pu('AMT India female',16.4, 100),0, cttip_pu('CrowdFlower male',16.4, 99.1),0, cttip_pu('CrowdFlower female',16.4, 100)],
+['16.6',0.00783, cttip_pu('AMT USA male',16.6, 95.6),0.00584, cttip_pu('AMT USA female',16.6, 97.8),0.01309, cttip_pu('AMT India male',16.6, 100),0, cttip_pu('AMT India female',16.6, 100),0, cttip_pu('CrowdFlower male',16.6, 99.1),0, cttip_pu('CrowdFlower female',16.6, 100)],
+['16.8',0.00813, cttip_pu('AMT USA male',16.8, 96.4),0.00522, cttip_pu('AMT USA female',16.8, 98.7),0.01128, cttip_pu('AMT India male',16.8, 100),0, cttip_pu('AMT India female',16.8, 100),0, cttip_pu('CrowdFlower male',16.8, 99.1),0, cttip_pu('CrowdFlower female',16.8, 100)],
+['17',0.0082, cttip_pu('AMT USA male',17, 96.4),0.00496, cttip_pu('AMT USA female',17, 98.7),0.01011, cttip_pu('AMT India male',17, 100),0, cttip_pu('AMT India female',17, 100),0, cttip_pu('CrowdFlower male',17, 99.1),0, cttip_pu('CrowdFlower female',17, 100)],
+['17.2',0.00805, cttip_pu('AMT USA male',17.2, 96.7),0.00457, cttip_pu('AMT USA female',17.2, 98.7),0.00851, cttip_pu('AMT India male',17.2, 100),0, cttip_pu('AMT India female',17.2, 100),0, cttip_pu('CrowdFlower male',17.2, 99.1),0, cttip_pu('CrowdFlower female',17.2, 100)],
+['17.4',0.00767, cttip_pu('AMT USA male',17.4, 97),0.00404, cttip_pu('AMT USA female',17.4, 98.7),0.00651, cttip_pu('AMT India male',17.4, 100),0, cttip_pu('AMT India female',17.4, 100),0, cttip_pu('CrowdFlower male',17.4, 99.1),0, cttip_pu('CrowdFlower female',17.4, 100)],
+['17.6',0.00707, cttip_pu('AMT USA male',17.6, 97),0.00337, cttip_pu('AMT USA female',17.6, 98.7),0.00423, cttip_pu('AMT India male',17.6, 100),0, cttip_pu('AMT India female',17.6, 100),0, cttip_pu('CrowdFlower male',17.6, 99.1),0, cttip_pu('CrowdFlower female',17.6, 100)],
+['17.8',0.00642, cttip_pu('AMT USA male',17.8, 97),0.00257, cttip_pu('AMT USA female',17.8, 98.7),0.00316, cttip_pu('AMT India male',17.8, 100),0, cttip_pu('AMT India female',17.8, 100),0, cttip_pu('CrowdFlower male',17.8, 99.1),0, cttip_pu('CrowdFlower female',17.8, 100)],
+['18',0.00561, cttip_pu('AMT USA male',18, 97.3),0.00178, cttip_pu('AMT USA female',18, 98.7),0.00188, cttip_pu('AMT India male',18, 100),0, cttip_pu('AMT India female',18, 100),0, cttip_pu('CrowdFlower male',18, 99.1),0, cttip_pu('CrowdFlower female',18, 100)],
+['18.2',0.00464, cttip_pu('AMT USA male',18.2, 97.3),0.00103, cttip_pu('AMT USA female',18.2, 98.7),0.00039, cttip_pu('AMT India male',18.2, 100),0, cttip_pu('AMT India female',18.2, 100),0, cttip_pu('CrowdFlower male',18.2, 99.1),0, cttip_pu('CrowdFlower female',18.2, 100)],
+['18.4',0.00457, cttip_pu('AMT USA male',18.4, 97.3),0.0007, cttip_pu('AMT USA female',18.4, 98.7),0, cttip_pu('AMT India male',18.4, 100),0, cttip_pu('AMT India female',18.4, 100),0, cttip_pu('CrowdFlower male',18.4, 99.1),0, cttip_pu('CrowdFlower female',18.4, 100)],
+['18.6',0.00502, cttip_pu('AMT USA male',18.6, 97.3),0.00103, cttip_pu('AMT USA female',18.6, 98.7),0, cttip_pu('AMT India male',18.6, 100),0, cttip_pu('AMT India female',18.6, 100),0, cttip_pu('CrowdFlower male',18.6, 99.1),0, cttip_pu('CrowdFlower female',18.6, 100)],
+['18.8',0.00538, cttip_pu('AMT USA male',18.8, 97.3),0.00148, cttip_pu('AMT USA female',18.8, 98.7),0, cttip_pu('AMT India male',18.8, 100),0, cttip_pu('AMT India female',18.8, 100),0, cttip_pu('CrowdFlower male',18.8, 99.1),0, cttip_pu('CrowdFlower female',18.8, 100)],
+['19',0.00561, cttip_pu('AMT USA male',19, 97.3),0.00185, cttip_pu('AMT USA female',19, 98.7),0, cttip_pu('AMT India male',19, 100),0, cttip_pu('AMT India female',19, 100),0, cttip_pu('CrowdFlower male',19, 99.1),0, cttip_pu('CrowdFlower female',19, 100)],
+['19.2',0.00582, cttip_pu('AMT USA male',19.2, 97.3),0.00217, cttip_pu('AMT USA female',19.2, 98.7),0, cttip_pu('AMT India male',19.2, 100),0, cttip_pu('AMT India female',19.2, 100),0, cttip_pu('CrowdFlower male',19.2, 99.1),0, cttip_pu('CrowdFlower female',19.2, 100)],
+['19.4',0.00606, cttip_pu('AMT USA male',19.4, 97.3),0.00241, cttip_pu('AMT USA female',19.4, 98.7),0, cttip_pu('AMT India male',19.4, 100),0, cttip_pu('AMT India female',19.4, 100),0, cttip_pu('CrowdFlower male',19.4, 99.1),0, cttip_pu('CrowdFlower female',19.4, 100)],
+['19.6',0.00611, cttip_pu('AMT USA male',19.6, 97.6),0.00258, cttip_pu('AMT USA female',19.6, 98.7),0, cttip_pu('AMT India male',19.6, 100),0, cttip_pu('AMT India female',19.6, 100),0, cttip_pu('CrowdFlower male',19.6, 99.1),0, cttip_pu('CrowdFlower female',19.6, 100)],
+['19.8',0.00622, cttip_pu('AMT USA male',19.8, 97.6),0.00268, cttip_pu('AMT USA female',19.8, 98.7),0, cttip_pu('AMT India male',19.8, 100),0, cttip_pu('AMT India female',19.8, 100),0, cttip_pu('CrowdFlower male',19.8, 99.1),0, cttip_pu('CrowdFlower female',19.8, 100)],
+['20',0.00621, cttip_pu('AMT USA male',20, 98.8),0.00272, cttip_pu('AMT USA female',20, 99.4),0, cttip_pu('AMT India male',20, 100),0, cttip_pu('AMT India female',20, 100),0, cttip_pu('CrowdFlower male',20, 99.1),0, cttip_pu('CrowdFlower female',20, 100)],
+
+
+    ];
+    var data = [];
+    data[0] = google.visualization.arrayToDataTable(rowData1);
+    data[1] = google.visualization.arrayToDataTable(rowData2);
+
+	var options = [];
+    options = {
+		tooltip: {isHtml: true},
+		curveType: 'function',
+		chartArea:{left:40,top:75,width:'70%',height:'70%'},
+		hAxis: {title: "$ per hour" },
+		vAxis: {viewWindow:{min:0}},
+		series:{0: 	{color: colorRange[0], lineDashStyle: [10, 2]},
+				1: 	{color: colorRange[0], lineDashStyle: [2, 2]},
+				2: 	{color: colorRange[1], lineDashStyle: [10, 2]},
+				3: 	{color: colorRange[1], lineDashStyle: [2, 2] },
+				4: 	{color: colorRange[2], lineDashStyle: [10, 2]},
+				5: 	{color: colorRange[2], lineDashStyle: [2, 2] },
+				6:	{color: colorRange[3], lineDashStyle: [10, 2]},
+				7: {color: colorRange[3], lineDashStyle: [2, 2] },
+				8: {color: colorRange[4], lineDashStyle: [10, 2]},
+				9: {color: colorRange[4], lineDashStyle: [2, 2] },
+				10: {color: colorRange[5], lineDashStyle: [10, 2]},
+				11: {color: colorRange[5], lineDashStyle: [2, 2] }
+				}
+    };
+
+    var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+
+	var viewMFp = new google.visualization.DataView(data[0]);
+	var viewMFpu = new google.visualization.DataView(data[1]);
+
+options.title = 'Paid / MF';
+chart1.draw(viewMFp, options);
+options.title = 'Paid-Unpaid / MF';
+chart2.draw(viewMFpu, options);
+
+/* LISTENER */
+    var columns = [];
+    var series = {};
+    for (var i = 0; i < data[0].getNumberOfColumns(); i++) {
+        columns.push(i);
+        if (i > 0) {
+            series[i - 1] = {};
+        }
+    }
+    google.visualization.events.addListener(chart1, 'select', function () {
+        var sel = chart1.getSelection();
+        if (sel.length > 0) {
+            if (sel[0].row === null) {
+                var col = sel[0].column;
+                if (columns[col] == col) {
+                    columns[col] = {
+                        label: data[0].getColumnLabel(col),
+                        type: data[0].getColumnType(col),
+                        calc: function () {
+                            return null;
+                        }
+                    };
+                    series[col - 1].color = '#CCCCCC';
+                }
+                else {
+                    columns[col] = col;
+                    series[col - 1].color = null;
+                }
+                var view = new google.visualization.DataView(data[0]);
+                viewMFp.setColumns(columns);
+				chart1.draw(viewMFp, options);
+            }
+        }
+    });
+    google.visualization.events.addListener(chart2, 'select', function () {
+        var sel = chart2.getSelection();
+        if (sel.length > 0) {
+            if (sel[0].row === null) {
+                var col = sel[0].column;
+                if (columns[col] == col) {
+                    columns[col] = {
+                        label: data[1].getColumnLabel(col),
+                        type: data[1].getColumnType(col),
+                        calc: function () {
+                            return null;
+                        }
+                    };
+                    series[col - 1].color = '#CCCCCC';
+                }
+                else {
+                    columns[col] = col;
+                    series[col - 1].color = null;
+                }
+                var view = new google.visualization.DataView(data[1]);
+                viewMFpu.setColumns(columns);
+				chart2.draw(viewMFpu, options);
+            }
+        }
+    });
+/* END - listener */    
+}
+</script>
+</head>
+<body>
+	<div><b>2015</b> Male & Female</div>
+	<div id="chart_div1" style="width: 836px; height: 350px;"></div>
+	<div id="chart_div2" style="width: 836px; height: 350px;"></div>
+</body>
+</html>
