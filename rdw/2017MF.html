@@ -1,0 +1,333 @@
+ <html>
+  <head>
+	<script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+
+var colorRange=[];
+colorRange[0]='#3366CC';
+colorRange[1]='#DC3912';
+colorRange[2]='#FFCC7F';
+colorRange[3]='#109618';
+colorRange[4]='#990099';
+colorRange[5]='#0099C6';
+
+function cttip(title,val,rate) {
+		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all workers on <b>' + title + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid work</div>';
+	}
+function cttip_pu(title,val,rate) {
+		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all workers on <b>' + title + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid and unpaid work</div>';
+	}
+function drawChart() {
+    var rowData1 = [
+/* Paid 2017 total*/
+['x_axis','AMT USA total', {'type':'string','role':'tooltip','p':{'html':true}},'AMT India total', {'type':'string','role':'tooltip','p':{'html':true}},'CrowdFlower total', {'type':'string','role':'tooltip','p':{'html':true}},'Clickworker total', {'type':'string','role':'tooltip','p':{'html':true}},'Prolific total', {'type':'string','role':'tooltip','p':{'html':true}},'Microworkers total', {'type':'string','role':'tooltip','p':{'html':true}}],
+['0',0.0013, cttip('AMT USA total',0, 0),0.11174, cttip('AMT India total',0, 0),0.13979, cttip('CrowdFlower total',0, 0),0.07274, cttip('Clickworker total',0, 0),0.04338, cttip('Prolific total',0, 0),0.17802, cttip('Microworkers total',0, 0)],
+['0.2',0.00208, cttip('AMT USA total',0.2, 0),0.14249, cttip('AMT India total',0.2, 0.9),0.20098, cttip('CrowdFlower total',0.2, 2),0.09004, cttip('Clickworker total',0.2, 0.5),0.05052, cttip('Prolific total',0.2, 0.4),0.211, cttip('Microworkers total',0.2, 4.7)],
+['0.4',0.00341, cttip('AMT USA total',0.4, 0),0.16976, cttip('AMT India total',0.4, 4.1),0.25924, cttip('CrowdFlower total',0.4, 8.1),0.10666, cttip('Clickworker total',0.4, 2.8),0.05717, cttip('Prolific total',0.4, 1.6),0.23852, cttip('Microworkers total',0.4, 12.6)],
+['0.6',0.00471, cttip('AMT USA total',0.6, 0),0.19367, cttip('AMT India total',0.6, 9.2),0.30659, cttip('CrowdFlower total',0.6, 16.4),0.12496, cttip('Clickworker total',0.6, 5.7),0.06591, cttip('Prolific total',0.6, 3.3),0.25802, cttip('Microworkers total',0.6, 21.8)],
+['0.8',0.00634, cttip('AMT USA total',0.8, 0),0.21602, cttip('AMT India total',0.8, 15.7),0.34033, cttip('CrowdFlower total',0.8, 22.5),0.1398, cttip('Clickworker total',0.8, 8.2),0.07413, cttip('Prolific total',0.8, 4.2),0.27031, cttip('Microworkers total',0.8, 27.7)],
+['1',0.00806, cttip('AMT USA total',1, 0),0.23025, cttip('AMT India total',1, 25.8),0.34679, cttip('CrowdFlower total',1, 34.2),0.15316, cttip('Clickworker total',1, 11.1),0.08188, cttip('Prolific total',1, 7.8),0.2714, cttip('Microworkers total',1, 39.4)],
+['1.2',0.00977, cttip('AMT USA total',1.2, 0),0.23886, cttip('AMT India total',1.2, 28.6),0.33222, cttip('CrowdFlower total',1.2, 40.9),0.16486, cttip('Clickworker total',1.2, 18),0.08983, cttip('Prolific total',1.2, 9.1),0.26183, cttip('Microworkers total',1.2, 41)],
+['1.4',0.01165, cttip('AMT USA total',1.4, 0),0.24152, cttip('AMT India total',1.4, 33.6),0.30116, cttip('CrowdFlower total',1.4, 47),0.17257, cttip('Clickworker total',1.4, 21.6),0.09775, cttip('Prolific total',1.4, 13.3),0.24307, cttip('Microworkers total',1.4, 45.7)],
+['1.6',0.01405, cttip('AMT USA total',1.6, 0.5),0.23826, cttip('AMT India total',1.6, 38.2),0.26724, cttip('CrowdFlower total',1.6, 53.7),0.17815, cttip('Clickworker total',1.6, 26.2),0.10432, cttip('Prolific total',1.6, 15.3),0.2158, cttip('Microworkers total',1.6, 49.5)],
+['1.8',0.01718, cttip('AMT USA total',1.8, 0.5),0.22911, cttip('AMT India total',1.8, 42.4),0.2345, cttip('CrowdFlower total',1.8, 58.4),0.18036, cttip('Clickworker total',1.8, 29.6),0.10997, cttip('Prolific total',1.8, 16.4),0.19085, cttip('Microworkers total',1.8, 54.1)],
+['2',0.0205, cttip('AMT USA total',2, 0.9),0.21572, cttip('AMT India total',2, 48.4),0.19479, cttip('CrowdFlower total',2, 61.4),0.18006, cttip('Clickworker total',2, 33.2),0.11523, cttip('Prolific total',2, 18.9),0.16888, cttip('Microworkers total',2, 58.3)],
+['2.2',0.02368, cttip('AMT USA total',2.2, 0.9),0.20137, cttip('AMT India total',2.2, 50.7),0.16741, cttip('CrowdFlower total',2.2, 63.8),0.17661, cttip('Clickworker total',2.2, 38.3),0.11878, cttip('Prolific total',2.2, 20.4),0.14894, cttip('Microworkers total',2.2, 59.5)],
+['2.4',0.02657, cttip('AMT USA total',2.4, 0.9),0.1855, cttip('AMT India total',2.4, 52.5),0.14851, cttip('CrowdFlower total',2.4, 66.1),0.17026, cttip('Clickworker total',2.4, 39.3),0.1208, cttip('Prolific total',2.4, 21.1),0.13072, cttip('Microworkers total',2.4, 60.4)],
+['2.6',0.02944, cttip('AMT USA total',2.6, 2.7),0.17394, cttip('AMT India total',2.6, 58.1),0.13131, cttip('CrowdFlower total',2.6, 70.5),0.16128, cttip('Clickworker total',2.6, 41.6),0.12171, cttip('Prolific total',2.6, 27.6),0.11907, cttip('Microworkers total',2.6, 65.1)],
+['2.8',0.03697, cttip('AMT USA total',2.8, 3.2),0.16459, cttip('AMT India total',2.8, 61.8),0.1213, cttip('CrowdFlower total',2.8, 72.1),0.15094, cttip('Clickworker total',2.8, 46.5),0.12109, cttip('Prolific total',2.8, 29.1),0.10837, cttip('Microworkers total',2.8, 66.9)],
+['3',0.04445, cttip('AMT USA total',3, 4.1),0.15507, cttip('AMT India total',3, 67.7),0.108, cttip('CrowdFlower total',3, 75.8),0.1422, cttip('Clickworker total',3, 48.8),0.1214, cttip('Prolific total',3, 31.6),0.0982, cttip('Microworkers total',3, 69.4)],
+['3.2',0.05135, cttip('AMT USA total',3.2, 4.5),0.14198, cttip('AMT India total',3.2, 68.2),0.09403, cttip('CrowdFlower total',3.2, 76.2),0.13208, cttip('Clickworker total',3.2, 53.5),0.12212, cttip('Prolific total',3.2, 33.1),0.08991, cttip('Microworkers total',3.2, 70.3)],
+['3.4',0.05864, cttip('AMT USA total',3.4, 5),0.12652, cttip('AMT India total',3.4, 70.5),0.08116, cttip('CrowdFlower total',3.4, 78.5),0.12356, cttip('Clickworker total',3.4, 54.8),0.12289, cttip('Prolific total',3.4, 38),0.08165, cttip('Microworkers total',3.4, 72.5)],
+['3.6',0.06531, cttip('AMT USA total',3.6, 5.4),0.11286, cttip('AMT India total',3.6, 72.8),0.06778, cttip('CrowdFlower total',3.6, 80.2),0.11526, cttip('Clickworker total',3.6, 59.1),0.12284, cttip('Prolific total',3.6, 39.3),0.07504, cttip('Microworkers total',3.6, 73.4)],
+['3.8',0.0732, cttip('AMT USA total',3.8, 7.2),0.09889, cttip('AMT India total',3.8, 75.1),0.05719, cttip('CrowdFlower total',3.8, 81.2),0.11264, cttip('Clickworker total',3.8, 60.4),0.12189, cttip('Prolific total',3.8, 41.1),0.07373, cttip('Microworkers total',3.8, 74.8)],
+['4',0.08116, cttip('AMT USA total',4, 9.5),0.08429, cttip('AMT India total',4, 78.3),0.04631, cttip('CrowdFlower total',4, 82.2),0.11048, cttip('Clickworker total',4, 61.4),0.1201, cttip('Prolific total',4, 45.8),0.07485, cttip('Microworkers total',4, 76.6)],
+['4.2',0.08857, cttip('AMT USA total',4.2, 10.4),0.07122, cttip('AMT India total',4.2, 79.3),0.04505, cttip('CrowdFlower total',4.2, 82.6),0.10597, cttip('Clickworker total',4.2, 62),0.11659, cttip('Prolific total',4.2, 46.7),0.07574, cttip('Microworkers total',4.2, 76.6)],
+['4.4',0.09573, cttip('AMT USA total',4.4, 10.8),0.06201, cttip('AMT India total',4.4, 80.2),0.0438, cttip('CrowdFlower total',4.4, 83.6),0.09984, cttip('Clickworker total',4.4, 64.8),0.11298, cttip('Prolific total',4.4, 48.9),0.07477, cttip('Microworkers total',4.4, 77.5)],
+['4.6',0.10204, cttip('AMT USA total',4.6, 11.3),0.05492, cttip('AMT India total',4.6, 80.2),0.04359, cttip('CrowdFlower total',4.6, 83.6),0.0948, cttip('Clickworker total',4.6, 65),0.11011, cttip('Prolific total',4.6, 50.7),0.07309, cttip('Microworkers total',4.6, 79.5)],
+['4.8',0.10734, cttip('AMT USA total',4.8, 11.7),0.04809, cttip('AMT India total',4.8, 80.6),0.04381, cttip('CrowdFlower total',4.8, 83.9),0.08958, cttip('Clickworker total',4.8, 66.1),0.10701, cttip('Prolific total',4.8, 50.9),0.07145, cttip('Microworkers total',4.8, 80)],
+['5',0.11243, cttip('AMT USA total',5, 23.9),0.04183, cttip('AMT India total',5, 82.9),0.04342, cttip('CrowdFlower total',5, 87.2),0.0854, cttip('Clickworker total',5, 69.2),0.10455, cttip('Prolific total',5, 57.6),0.069, cttip('Microworkers total',5, 86.7)],
+['5.2',0.11719, cttip('AMT USA total',5.2, 24.3),0.03556, cttip('AMT India total',5.2, 82.9),0.04304, cttip('CrowdFlower total',5.2, 87.2),0.08145, cttip('Clickworker total',5.2, 69.7),0.10068, cttip('Prolific total',5.2, 60.7),0.0653, cttip('Microworkers total',5.2, 86.9)],
+['5.4',0.1212, cttip('AMT USA total',5.4, 24.8),0.02983, cttip('AMT India total',5.4, 82.9),0.04332, cttip('CrowdFlower total',5.4, 88.6),0.07832, cttip('Clickworker total',5.4, 77.1),0.09602, cttip('Prolific total',5.4, 62),0.05975, cttip('Microworkers total',5.4, 87.2)],
+['5.6',0.12379, cttip('AMT USA total',5.6, 27.5),0.02744, cttip('AMT India total',5.6, 83.9),0.04172, cttip('CrowdFlower total',5.6, 88.6),0.07609, cttip('Clickworker total',5.6, 77.1),0.09284, cttip('Prolific total',5.6, 62.4),0.05335, cttip('Microworkers total',5.6, 87.8)],
+['5.8',0.1252, cttip('AMT USA total',5.8, 29.7),0.02748, cttip('AMT India total',5.8, 84.3),0.03723, cttip('CrowdFlower total',5.8, 89.3),0.07238, cttip('Clickworker total',5.8, 77.4),0.08899, cttip('Prolific total',5.8, 62.7),0.04512, cttip('Microworkers total',5.8, 87.8)],
+['6',0.12522, cttip('AMT USA total',6, 35.1),0.0265, cttip('AMT India total',6, 85.3),0.02885, cttip('CrowdFlower total',6, 89.9),0.06801, cttip('Clickworker total',6, 77.9),0.08485, cttip('Prolific total',6, 65.1),0.03705, cttip('Microworkers total',6, 89.2)],
+['6.2',0.12537, cttip('AMT USA total',6.2, 35.6),0.02496, cttip('AMT India total',6.2, 85.3),0.02518, cttip('CrowdFlower total',6.2, 90.3),0.0645, cttip('Clickworker total',6.2, 77.9),0.08135, cttip('Prolific total',6.2, 65.1),0.0284, cttip('Microworkers total',6.2, 89.2)],
+['6.4',0.12403, cttip('AMT USA total',6.4, 38.7),0.02336, cttip('AMT India total',6.4, 85.7),0.02106, cttip('CrowdFlower total',6.4, 91.3),0.05961, cttip('Clickworker total',6.4, 80.7),0.07799, cttip('Prolific total',6.4, 65.6),0.02066, cttip('Microworkers total',6.4, 90.1)],
+['6.6',0.12271, cttip('AMT USA total',6.6, 40.5),0.02371, cttip('AMT India total',6.6, 85.7),0.01948, cttip('CrowdFlower total',6.6, 91.6),0.05306, cttip('Clickworker total',6.6, 81.7),0.07443, cttip('Prolific total',6.6, 71.1),0.02016, cttip('Microworkers total',6.6, 90.1)],
+['6.8',0.11984, cttip('AMT USA total',6.8, 44.1),0.02343, cttip('AMT India total',6.8, 86.2),0.01801, cttip('CrowdFlower total',6.8, 91.9),0.04602, cttip('Clickworker total',6.8, 81.7),0.07064, cttip('Prolific total',6.8, 72.9),0.01977, cttip('Microworkers total',6.8, 90.3)],
+['7',0.11523, cttip('AMT USA total',7, 45.9),0.02295, cttip('AMT India total',7, 87.6),0.01547, cttip('CrowdFlower total',7, 91.9),0.04005, cttip('Clickworker total',7, 82.3),0.06632, cttip('Prolific total',7, 73.6),0.01899, cttip('Microworkers total',7, 90.5)],
+['7.2',0.10874, cttip('AMT USA total',7.2, 47.7),0.0242, cttip('AMT India total',7.2, 87.6),0.01299, cttip('CrowdFlower total',7.2, 91.9),0.03908, cttip('Clickworker total',7.2, 83.8),0.06197, cttip('Prolific total',7.2, 74),0.01828, cttip('Microworkers total',7.2, 90.5)],
+['7.4',0.10126, cttip('AMT USA total',7.4, 49.1),0.02448, cttip('AMT India total',7.4, 87.6),0.0123, cttip('CrowdFlower total',7.4, 91.9),0.03841, cttip('Clickworker total',7.4, 84.1),0.05944, cttip('Prolific total',7.4, 74.2),0.01728, cttip('Microworkers total',7.4, 91)],
+['7.6',0.09715, cttip('AMT USA total',7.6, 53.2),0.02462, cttip('AMT India total',7.6, 88.9),0.01317, cttip('CrowdFlower total',7.6, 93.3),0.03684, cttip('Clickworker total',7.6, 85.1),0.05756, cttip('Prolific total',7.6, 76),0.01729, cttip('Microworkers total',7.6, 92.1)],
+['7.8',0.09821, cttip('AMT USA total',7.8, 53.2),0.024, cttip('AMT India total',7.8, 88.9),0.01473, cttip('CrowdFlower total',7.8, 93.3),0.03406, cttip('Clickworker total',7.8, 85.9),0.05522, cttip('Prolific total',7.8, 77.1),0.01738, cttip('Microworkers total',7.8, 92.1)],
+['8',0.09868, cttip('AMT USA total',8, 55.4),0.02234, cttip('AMT India total',8, 89.4),0.0163, cttip('CrowdFlower total',8, 93.3),0.03074, cttip('Clickworker total',8, 86.9),0.05341, cttip('Prolific total',8, 78.2),0.01712, cttip('Microworkers total',8, 92.8)],
+['8.2',0.09872, cttip('AMT USA total',8.2, 55.9),0.02021, cttip('AMT India total',8.2, 89.4),0.01617, cttip('CrowdFlower total',8.2, 93.3),0.02808, cttip('Clickworker total',8.2, 86.9),0.05105, cttip('Prolific total',8.2, 79.1),0.01713, cttip('Microworkers total',8.2, 92.8)],
+['8.4',0.09717, cttip('AMT USA total',8.4, 60.4),0.01757, cttip('AMT India total',8.4, 91.2),0.01435, cttip('CrowdFlower total',8.4, 94),0.02738, cttip('Clickworker total',8.4, 86.9),0.04881, cttip('Prolific total',8.4, 80.2),0.01644, cttip('Microworkers total',8.4, 93.2)],
+['8.6',0.09617, cttip('AMT USA total',8.6, 60.4),0.016, cttip('AMT India total',8.6, 91.2),0.01198, cttip('CrowdFlower total',8.6, 94.3),0.02604, cttip('Clickworker total',8.6, 88.2),0.04581, cttip('Prolific total',8.6, 80.7),0.01501, cttip('Microworkers total',8.6, 93.5)],
+['8.8',0.09493, cttip('AMT USA total',8.8, 63.1),0.01615, cttip('AMT India total',8.8, 91.2),0.01109, cttip('CrowdFlower total',8.8, 95),0.02378, cttip('Clickworker total',8.8, 88.7),0.04439, cttip('Prolific total',8.8, 82),0.01509, cttip('Microworkers total',8.8, 93.9)],
+['9',0.09282, cttip('AMT USA total',9, 64),0.01595, cttip('AMT India total',9, 91.2),0.00981, cttip('CrowdFlower total',9, 95),0.0233, cttip('Clickworker total',9, 88.9),0.04427, cttip('Prolific total',9, 83.1),0.01588, cttip('Microworkers total',9, 93.9)],
+['9.2',0.09079, cttip('AMT USA total',9.2, 64.4),0.01588, cttip('AMT India total',9.2, 91.2),0.01053, cttip('CrowdFlower total',9.2, 95),0.02381, cttip('Clickworker total',9.2, 89.2),0.04356, cttip('Prolific total',9.2, 84),0.01621, cttip('Microworkers total',9.2, 93.9)],
+['9.4',0.08794, cttip('AMT USA total',9.4, 64.9),0.01479, cttip('AMT India total',9.4, 91.2),0.00998, cttip('CrowdFlower total',9.4, 95),0.0242, cttip('Clickworker total',9.4, 89.2),0.04237, cttip('Prolific total',9.4, 84.2),0.01602, cttip('Microworkers total',9.4, 94.6)],
+['9.6',0.08496, cttip('AMT USA total',9.6, 65.3),0.01345, cttip('AMT India total',9.6, 91.7),0.00989, cttip('CrowdFlower total',9.6, 95),0.02453, cttip('Clickworker total',9.6, 89.7),0.04066, cttip('Prolific total',9.6, 84.2),0.01581, cttip('Microworkers total',9.6, 94.8)],
+['9.8',0.08173, cttip('AMT USA total',9.8, 65.3),0.01215, cttip('AMT India total',9.8, 91.7),0.00949, cttip('CrowdFlower total',9.8, 95),0.02463, cttip('Clickworker total',9.8, 90),0.03891, cttip('Prolific total',9.8, 84.7),0.01509, cttip('Microworkers total',9.8, 94.8)],
+['10',0.07871, cttip('AMT USA total',10, 80.2),0.01267, cttip('AMT India total',10, 93.5),0.00987, cttip('CrowdFlower total',10, 96.3),0.02436, cttip('Clickworker total',10, 91.3),0.03733, cttip('Prolific total',10, 88.2),0.01412, cttip('Microworkers total',10, 96.4)],
+['10.2',0.07597, cttip('AMT USA total',10.2, 80.2),0.01277, cttip('AMT India total',10.2, 93.5),0.00949, cttip('CrowdFlower total',10.2, 96.3),0.02341, cttip('Clickworker total',10.2, 91.3),0.0356, cttip('Prolific total',10.2, 88.2),0.01287, cttip('Microworkers total',10.2, 96.4)],
+['10.4',0.07369, cttip('AMT USA total',10.4, 80.6),0.01362, cttip('AMT India total',10.4, 93.5),0.00836, cttip('CrowdFlower total',10.4, 96.3),0.02273, cttip('Clickworker total',10.4, 91.3),0.03401, cttip('Prolific total',10.4, 88.9),0.01154, cttip('Microworkers total',10.4, 96.4)],
+['10.6',0.07091, cttip('AMT USA total',10.6, 81.1),0.01426, cttip('AMT India total',10.6, 93.5),0.00733, cttip('CrowdFlower total',10.6, 96.3),0.02207, cttip('Clickworker total',10.6, 91.3),0.03242, cttip('Prolific total',10.6, 89.3),0.0097, cttip('Microworkers total',10.6, 96.6)],
+['10.8',0.06783, cttip('AMT USA total',10.8, 81.1),0.014, cttip('AMT India total',10.8, 93.5),0.00608, cttip('CrowdFlower total',10.8, 96.3),0.0212, cttip('Clickworker total',10.8, 93.8),0.03043, cttip('Prolific total',10.8, 89.8),0.00813, cttip('Microworkers total',10.8, 96.6)],
+['11',0.06493, cttip('AMT USA total',11, 81.5),0.01307, cttip('AMT India total',11, 93.5),0.00402, cttip('CrowdFlower total',11, 96.3),0.0203, cttip('Clickworker total',11, 94.1),0.02951, cttip('Prolific total',11, 90.9),0.00674, cttip('Microworkers total',11, 96.6)],
+['11.2',0.06183, cttip('AMT USA total',11.2, 81.5),0.01352, cttip('AMT India total',11.2, 93.5),0.00526, cttip('CrowdFlower total',11.2, 96.3),0.0187, cttip('Clickworker total',11.2, 94.3),0.02844, cttip('Prolific total',11.2, 91.1),0.00491, cttip('Microworkers total',11.2, 96.6)],
+['11.4',0.05861, cttip('AMT USA total',11.4, 82),0.01446, cttip('AMT India total',11.4, 94),0.00638, cttip('CrowdFlower total',11.4, 96.3),0.01695, cttip('Clickworker total',11.4, 94.3),0.02758, cttip('Prolific total',11.4, 91.1),0.00303, cttip('Microworkers total',11.4, 96.6)],
+['11.6',0.05492, cttip('AMT USA total',11.6, 82),0.0171, cttip('AMT India total',11.6, 94),0.00694, cttip('CrowdFlower total',11.6, 96.6),0.01512, cttip('Clickworker total',11.6, 94.3),0.02621, cttip('Prolific total',11.6, 91.3),0.00315, cttip('Microworkers total',11.6, 96.6)],
+['11.8',0.05047, cttip('AMT USA total',11.8, 83.3),0.01885, cttip('AMT India total',11.8, 95.4),0.00705, cttip('CrowdFlower total',11.8, 97),0.0133, cttip('Clickworker total',11.8, 94.6),0.02425, cttip('Prolific total',11.8, 92),0.00324, cttip('Microworkers total',11.8, 96.8)],
+['12',0.04521, cttip('AMT USA total',12, 84.2),0.01968, cttip('AMT India total',12, 95.4),0.00733, cttip('CrowdFlower total',12, 97.3),0.01166, cttip('Clickworker total',12, 94.6),0.02188, cttip('Prolific total',12, 93.1),0.0032, cttip('Microworkers total',12, 97.1)],
+['12.2',0.03894, cttip('AMT USA total',12.2, 84.2),0.01961, cttip('AMT India total',12.2, 95.4),0.00686, cttip('CrowdFlower total',12.2, 97.3),0.00965, cttip('Clickworker total',12.2, 94.9),0.01957, cttip('Prolific total',12.2, 93.1),0.00326, cttip('Microworkers total',12.2, 97.1)],
+['12.4',0.03257, cttip('AMT USA total',12.4, 84.2),0.01862, cttip('AMT India total',12.4, 95.4),0.00563, cttip('CrowdFlower total',12.4, 97.3),0.00763, cttip('Clickworker total',12.4, 94.9),0.01861, cttip('Prolific total',12.4, 93.1),0.00316, cttip('Microworkers total',12.4, 97.1)],
+['12.6',0.03235, cttip('AMT USA total',12.6, 88.7),0.01672, cttip('AMT India total',12.6, 97.7),0.00441, cttip('CrowdFlower total',12.6, 97.3),0.00758, cttip('Clickworker total',12.6, 95.4),0.01731, cttip('Prolific total',12.6, 93.6),0.00289, cttip('Microworkers total',12.6, 97.1)],
+['12.8',0.03201, cttip('AMT USA total',12.8, 88.7),0.01446, cttip('AMT India total',12.8, 97.7),0.00343, cttip('CrowdFlower total',12.8, 97.3),0.00752, cttip('Clickworker total',12.8, 95.4),0.01618, cttip('Prolific total',12.8, 93.6),0.00247, cttip('Microworkers total',12.8, 97.1)],
+['13',0.03143, cttip('AMT USA total',13, 89.2),0.01157, cttip('AMT India total',13, 97.7),0.0026, cttip('CrowdFlower total',13, 97.7),0.00733, cttip('Clickworker total',13, 95.9),0.01546, cttip('Prolific total',13, 95.3),0.00188, cttip('Microworkers total',13, 97.3)],
+['13.2',0.0303, cttip('AMT USA total',13.2, 89.2),0.00934, cttip('AMT India total',13.2, 97.7),0.00305, cttip('CrowdFlower total',13.2, 97.7),0.00701, cttip('Clickworker total',13.2, 95.9),0.01483, cttip('Prolific total',13.2, 95.3),0.00146, cttip('Microworkers total',13.2, 97.3)],
+['13.4',0.02874, cttip('AMT USA total',13.4, 90.5),0.00731, cttip('AMT India total',13.4, 97.7),0.00386, cttip('CrowdFlower total',13.4, 97.7),0.00644, cttip('Clickworker total',13.4, 95.9),0.01433, cttip('Prolific total',13.4, 95.6),0.00106, cttip('Microworkers total',13.4, 97.3)],
+['13.6',0.02725, cttip('AMT USA total',13.6, 90.5),0.00479, cttip('AMT India total',13.6, 97.7),0.00441, cttip('CrowdFlower total',13.6, 97.7),0.00588, cttip('Clickworker total',13.6, 95.9),0.01349, cttip('Prolific total',13.6, 95.6),0.00088, cttip('Microworkers total',13.6, 97.3)],
+['13.8',0.02544, cttip('AMT USA total',13.8, 91.4),0.00306, cttip('AMT India total',13.8, 97.7),0.0044, cttip('CrowdFlower total',13.8, 97.7),0.00512, cttip('Clickworker total',13.8, 96.1),0.01242, cttip('Prolific total',13.8, 95.6),0.0015, cttip('Microworkers total',13.8, 97.3)],
+['14',0.02312, cttip('AMT USA total',14, 91.9),0.00244, cttip('AMT India total',14, 97.7),0.00474, cttip('CrowdFlower total',14, 98),0.0043, cttip('Clickworker total',14, 96.1),0.01141, cttip('Prolific total',14, 95.8),0.00211, cttip('Microworkers total',14, 97.3)],
+['14.2',0.02087, cttip('AMT USA total',14.2, 91.9),0.00336, cttip('AMT India total',14.2, 97.7),0.00482, cttip('CrowdFlower total',14.2, 98),0.00341, cttip('Clickworker total',14.2, 96.4),0.01041, cttip('Prolific total',14.2, 95.8),0.00251, cttip('Microworkers total',14.2, 97.3)],
+['14.4',0.019, cttip('AMT USA total',14.4, 92.3),0.00407, cttip('AMT India total',14.4, 97.7),0.00453, cttip('CrowdFlower total',14.4, 98.3),0.00346, cttip('Clickworker total',14.4, 96.4),0.00977, cttip('Prolific total',14.4, 96),0.00304, cttip('Microworkers total',14.4, 97.3)],
+['14.6',0.01759, cttip('AMT USA total',14.6, 92.3),0.00457, cttip('AMT India total',14.6, 97.7),0.00385, cttip('CrowdFlower total',14.6, 98.3),0.00349, cttip('Clickworker total',14.6, 96.4),0.00922, cttip('Prolific total',14.6, 96),0.00344, cttip('Microworkers total',14.6, 97.3)],
+['14.8',0.01564, cttip('AMT USA total',14.8, 92.3),0.00488, cttip('AMT India total',14.8, 97.7),0.0028, cttip('CrowdFlower total',14.8, 98.3),0.00353, cttip('Clickworker total',14.8, 96.4),0.0089, cttip('Prolific total',14.8, 96),0.00369, cttip('Microworkers total',14.8, 97.3)],
+['15',0.01474, cttip('AMT USA total',15, 92.8),0.00498, cttip('AMT India total',15, 98.6),0.0018, cttip('CrowdFlower total',15, 98.3),0.00372, cttip('Clickworker total',15, 96.4),0.00836, cttip('Prolific total',15, 97.1),0.00377, cttip('Microworkers total',15, 98)],
+['15.2',0.0147, cttip('AMT USA total',15.2, 92.8),0.00488, cttip('AMT India total',15.2, 98.6),0.00258, cttip('CrowdFlower total',15.2, 98.3),0.00376, cttip('Clickworker total',15.2, 96.4),0.00794, cttip('Prolific total',15.2, 97.1),0.00369, cttip('Microworkers total',15.2, 98)],
+['15.4',0.01496, cttip('AMT USA total',15.4, 92.8),0.00457, cttip('AMT India total',15.4, 98.6),0.00335, cttip('CrowdFlower total',15.4, 98.3),0.00365, cttip('Clickworker total',15.4, 96.4),0.00823, cttip('Prolific total',15.4, 97.1),0.00344, cttip('Microworkers total',15.4, 98)],
+['15.6',0.01486, cttip('AMT USA total',15.6, 92.8),0.00407, cttip('AMT India total',15.6, 98.6),0.00426, cttip('CrowdFlower total',15.6, 98.3),0.00366, cttip('Clickworker total',15.6, 96.4),0.00849, cttip('Prolific total',15.6, 97.1),0.00304, cttip('Microworkers total',15.6, 98)],
+['15.8',0.01474, cttip('AMT USA total',15.8, 93.7),0.00336, cttip('AMT India total',15.8, 98.6),0.00548, cttip('CrowdFlower total',15.8, 98.3),0.00354, cttip('Clickworker total',15.8, 96.4),0.00868, cttip('Prolific total',15.8, 97.1),0.00247, cttip('Microworkers total',15.8, 98)],
+['16',0.01469, cttip('AMT USA total',16, 93.7),0.00244, cttip('AMT India total',16, 98.6),0.00635, cttip('CrowdFlower total',16, 99),0.00343, cttip('Clickworker total',16, 97.2),0.00884, cttip('Prolific total',16, 97.1),0.00174, cttip('Microworkers total',16, 98)],
+['16.2',0.01466, cttip('AMT USA total',16.2, 93.7),0.00168, cttip('AMT India total',16.2, 98.6),0.00666, cttip('CrowdFlower total',16.2, 99),0.00384, cttip('Clickworker total',16.2, 97.2),0.00885, cttip('Prolific total',16.2, 97.1),0.00085, cttip('Microworkers total',16.2, 98)],
+['16.4',0.01456, cttip('AMT USA total',16.4, 93.7),0.00097, cttip('AMT India total',16.4, 98.6),0.0064, cttip('CrowdFlower total',16.4, 99),0.00413, cttip('Clickworker total',16.4, 97.2),0.00874, cttip('Prolific total',16.4, 97.3),0, cttip('Microworkers total',16.4, 98)],
+['16.6',0.01442, cttip('AMT USA total',16.6, 93.7),0.00146, cttip('AMT India total',16.6, 98.6),0.00557, cttip('CrowdFlower total',16.6, 99),0.00426, cttip('Clickworker total',16.6, 97.2),0.00854, cttip('Prolific total',16.6, 97.6),0, cttip('Microworkers total',16.6, 98)],
+['16.8',0.01421, cttip('AMT USA total',16.8, 95.9),0.00187, cttip('AMT India total',16.8, 98.6),0.00418, cttip('CrowdFlower total',16.8, 99.3),0.00423, cttip('Clickworker total',16.8, 97.2),0.00817, cttip('Prolific total',16.8, 98.4),0, cttip('Microworkers total',16.8, 98)],
+['17',0.01384, cttip('AMT USA total',17, 95.9),0.00217, cttip('AMT India total',17, 98.6),0.00232, cttip('CrowdFlower total',17, 99.3),0.00405, cttip('Clickworker total',17, 97.2),0.0076, cttip('Prolific total',17, 98.4),0, cttip('Microworkers total',17, 98)],
+['17.2',0.01324, cttip('AMT USA total',17.2, 95.9),0.00238, cttip('AMT India total',17.2, 98.6),0.0018, cttip('CrowdFlower total',17.2, 99.3),0.00371, cttip('Clickworker total',17.2, 97.2),0.00711, cttip('Prolific total',17.2, 98.4),0, cttip('Microworkers total',17.2, 98)],
+['17.4',0.01245, cttip('AMT USA total',17.4, 95.9),0.00248, cttip('AMT India total',17.4, 98.6),0.0012, cttip('CrowdFlower total',17.4, 99.3),0.00322, cttip('Clickworker total',17.4, 97.2),0.00692, cttip('Prolific total',17.4, 98.7),0, cttip('Microworkers total',17.4, 98)],
+['17.6',0.01166, cttip('AMT USA total',17.6, 97.3),0.00248, cttip('AMT India total',17.6, 99.1),0.00042, cttip('CrowdFlower total',17.6, 99.3),0.00279, cttip('Clickworker total',17.6, 97.2),0.00659, cttip('Prolific total',17.6, 98.9),0, cttip('Microworkers total',17.6, 98)],
+['17.8',0.01087, cttip('AMT USA total',17.8, 97.3),0.00238, cttip('AMT India total',17.8, 99.1),0, cttip('CrowdFlower total',17.8, 99.3),0.00273, cttip('Clickworker total',17.8, 97.7),0.00613, cttip('Prolific total',17.8, 98.9),0, cttip('Microworkers total',17.8, 98)],
+['18',0.00988, cttip('AMT USA total',18, 97.3),0.00217, cttip('AMT India total',18, 99.1),0, cttip('CrowdFlower total',18, 99.3),0.00287, cttip('Clickworker total',18, 97.7),0.00586, cttip('Prolific total',18, 99.3),0, cttip('Microworkers total',18, 98)],
+['18.2',0.00885, cttip('AMT USA total',18.2, 97.3),0.00187, cttip('AMT India total',18.2, 99.1),0, cttip('CrowdFlower total',18.2, 99.3),0.00292, cttip('Clickworker total',18.2, 97.7),0.00551, cttip('Prolific total',18.2, 99.3),0.00015, cttip('Microworkers total',18.2, 98)],
+['18.4',0.00793, cttip('AMT USA total',18.4, 97.3),0.00146, cttip('AMT India total',18.4, 99.1),0, cttip('CrowdFlower total',18.4, 99.3),0.00287, cttip('Clickworker total',18.4, 97.7),0.005, cttip('Prolific total',18.4, 99.3),0.00047, cttip('Microworkers total',18.4, 98)],
+['18.6',0.00683, cttip('AMT USA total',18.6, 97.3),0.00096, cttip('AMT India total',18.6, 99.1),0, cttip('CrowdFlower total',18.6, 99.3),0.00273, cttip('Clickworker total',18.6, 97.7),0.00446, cttip('Prolific total',18.6, 99.3),0.00073, cttip('Microworkers total',18.6, 98)],
+['18.8',0.00554, cttip('AMT USA total',18.8, 97.3),0.00035, cttip('AMT India total',18.8, 99.1),0, cttip('CrowdFlower total',18.8, 99.3),0.0025, cttip('Clickworker total',18.8, 97.7),0.00386, cttip('Prolific total',18.8, 99.3),0.00151, cttip('Microworkers total',18.8, 98)],
+['19',0.00407, cttip('AMT USA total',19, 97.3),0, cttip('AMT India total',19, 99.1),0.00011, cttip('CrowdFlower total',19, 99.3),0.00218, cttip('Clickworker total',19, 97.7),0.00369, cttip('Prolific total',19, 99.3),0.00226, cttip('Microworkers total',19, 98)],
+['19.2',0.00342, cttip('AMT USA total',19.2, 97.3),0, cttip('AMT India total',19.2, 99.1),0.00096, cttip('CrowdFlower total',19.2, 99.3),0.00176, cttip('Clickworker total',19.2, 97.9),0.00349, cttip('Prolific total',19.2, 99.3),0.00285, cttip('Microworkers total',19.2, 98)],
+['19.4',0.00293, cttip('AMT USA total',19.4, 97.3),0, cttip('AMT India total',19.4, 99.1),0.00162, cttip('CrowdFlower total',19.4, 99.3),0.00125, cttip('Clickworker total',19.4, 97.9),0.0032, cttip('Prolific total',19.4, 99.3),0.00328, cttip('Microworkers total',19.4, 98)],
+['19.6',0.00236, cttip('AMT USA total',19.6, 97.3),0, cttip('AMT India total',19.6, 99.1),0.00209, cttip('CrowdFlower total',19.6, 99.3),0.00107, cttip('Clickworker total',19.6, 97.9),0.00289, cttip('Prolific total',19.6, 99.3),0.00354, cttip('Microworkers total',19.6, 98.2)],
+['19.8',0.00171, cttip('AMT USA total',19.8, 97.3),0, cttip('AMT India total',19.8, 99.1),0.00237, cttip('CrowdFlower total',19.8, 99.3),0.00098, cttip('Clickworker total',19.8, 97.9),0.00268, cttip('Prolific total',19.8, 99.3),0.00365, cttip('Microworkers total',19.8, 98.2)],
+['20',0.00146, cttip('AMT USA total',20, 97.7),0, cttip('AMT India total',20, 99.1),0.00247, cttip('CrowdFlower total',20, 99.7),0.00086, cttip('Clickworker total',20, 97.9),0.00244, cttip('Prolific total',20, 100),0.00359, cttip('Microworkers total',20, 98.6)],
+    ];
+
+    var rowData2 = [
+/* Unpaid 2017 total */
+['x_axis','AMT USA total', {'type':'string','role':'tooltip','p':{'html':true}},'AMT India total', {'type':'string','role':'tooltip','p':{'html':true}},'CrowdFlower total', {'type':'string','role':'tooltip','p':{'html':true}},'Clickworker total', {'type':'string','role':'tooltip','p':{'html':true}},'Prolific total', {'type':'string','role':'tooltip','p':{'html':true}},'Microworkers total', {'type':'string','role':'tooltip','p':{'html':true}}],
+['0',0.00459, cttip_pu('AMT USA total',0, 0),0.13439, cttip_pu('AMT India total',0, 0),0.19771, cttip_pu('CrowdFlower total',0, 0),0.11446, cttip_pu('Clickworker total',0, 0),0.06615, cttip_pu('Prolific total',0, 0),0.26787, cttip_pu('Microworkers total',0, 0)],
+['0.2',0.00648, cttip_pu('AMT USA total',0.2, 0),0.1889, cttip_pu('AMT India total',0.2, 1.8),0.28742, cttip_pu('CrowdFlower total',0.2, 3.7),0.14853, cttip_pu('Clickworker total',0.2, 1.5),0.07679, cttip_pu('Prolific total',0.2, 0.7),0.34175, cttip_pu('Microworkers total',0.2, 9.4)],
+['0.4',0.01029, cttip_pu('AMT USA total',0.4, 0),0.2415, cttip_pu('AMT India total',0.4, 7.4),0.37305, cttip_pu('CrowdFlower total',0.4, 12),0.18092, cttip_pu('Clickworker total',0.4, 5.9),0.08816, cttip_pu('Prolific total',0.4, 3.4),0.38956, cttip_pu('Microworkers total',0.4, 21.9)],
+['0.6',0.01457, cttip_pu('AMT USA total',0.6, 0),0.2801, cttip_pu('AMT India total',0.6, 13.8),0.42876, cttip_pu('CrowdFlower total',0.6, 25.4),0.20952, cttip_pu('Clickworker total',0.6, 11.3),0.09862, cttip_pu('Prolific total',0.6, 5.6),0.40662, cttip_pu('Microworkers total',0.6, 32.8)],
+['0.8',0.01944, cttip_pu('AMT USA total',0.8, 0),0.30757, cttip_pu('AMT India total',0.8, 24),0.44718, cttip_pu('CrowdFlower total',0.8, 33.1),0.22944, cttip_pu('Clickworker total',0.8, 16.9),0.11058, cttip_pu('Prolific total',0.8, 9.2),0.38668, cttip_pu('Microworkers total',0.8, 41.1)],
+['1',0.02466, cttip_pu('AMT USA total',1, 0.5),0.31992, cttip_pu('AMT India total',1, 32.3),0.41368, cttip_pu('CrowdFlower total',1, 46.5),0.24396, cttip_pu('Clickworker total',1, 23.3),0.12133, cttip_pu('Prolific total',1, 14.1),0.33025, cttip_pu('Microworkers total',1, 50)],
+['1.2',0.0314, cttip_pu('AMT USA total',1.2, 0.9),0.31525, cttip_pu('AMT India total',1.2, 38.2),0.35651, cttip_pu('CrowdFlower total',1.2, 52.2),0.2478, cttip_pu('Clickworker total',1.2, 29.7),0.1297, cttip_pu('Prolific total',1.2, 16.1),0.26682, cttip_pu('Microworkers total',1.2, 52.5)],
+['1.4',0.03872, cttip_pu('AMT USA total',1.4, 0.9),0.29985, cttip_pu('AMT India total',1.4, 44.2),0.29804, cttip_pu('CrowdFlower total',1.4, 58.9),0.24421, cttip_pu('Clickworker total',1.4, 35.9),0.13586, cttip_pu('Prolific total',1.4, 20.2),0.21699, cttip_pu('Microworkers total',1.4, 56.9)],
+['1.6',0.0465, cttip_pu('AMT USA total',1.6, 0.9),0.27754, cttip_pu('AMT India total',1.6, 47),0.24873, cttip_pu('CrowdFlower total',1.6, 64.5),0.23511, cttip_pu('Clickworker total',1.6, 41.3),0.14178, cttip_pu('Prolific total',1.6, 22),0.18219, cttip_pu('Microworkers total',1.6, 60.3)],
+['1.8',0.05468, cttip_pu('AMT USA total',1.8, 1.4),0.25601, cttip_pu('AMT India total',1.8, 53.9),0.2025, cttip_pu('CrowdFlower total',1.8, 67.2),0.22107, cttip_pu('Clickworker total',1.8, 46.2),0.14511, cttip_pu('Prolific total',1.8, 24.4),0.16303, cttip_pu('Microworkers total',1.8, 64.5)],
+['2',0.06405, cttip_pu('AMT USA total',2, 2.7),0.23381, cttip_pu('AMT India total',2, 60.4),0.17169, cttip_pu('CrowdFlower total',2, 71.9),0.2056, cttip_pu('Clickworker total',2, 48.2),0.14508, cttip_pu('Prolific total',2, 27.1),0.15019, cttip_pu('Microworkers total',2, 67.6)],
+['2.2',0.07355, cttip_pu('AMT USA total',2.2, 2.7),0.21133, cttip_pu('AMT India total',2.2, 62.7),0.14412, cttip_pu('CrowdFlower total',2.2, 73.9),0.18796, cttip_pu('Clickworker total',2.2, 52.3),0.14451, cttip_pu('Prolific total',2.2, 31.2),0.13489, cttip_pu('Microworkers total',2.2, 69.9)],
+['2.4',0.0829, cttip_pu('AMT USA total',2.4, 3.6),0.18902, cttip_pu('AMT India total',2.4, 67.3),0.12535, cttip_pu('CrowdFlower total',2.4, 77.3),0.17168, cttip_pu('Clickworker total',2.4, 53.6),0.142, cttip_pu('Prolific total',2.4, 32.7),0.119, cttip_pu('Microworkers total',2.4, 71.9)],
+['2.6',0.09135, cttip_pu('AMT USA total',2.6, 8.6),0.16171, cttip_pu('AMT India total',2.6, 72.4),0.10496, cttip_pu('CrowdFlower total',2.6, 79.6),0.15873, cttip_pu('Clickworker total',2.6, 56.9),0.13958, cttip_pu('Prolific total',2.6, 39.2),0.10234, cttip_pu('Microworkers total',2.6, 75.4)],
+['2.8',0.10135, cttip_pu('AMT USA total',2.8, 9.9),0.13589, cttip_pu('AMT India total',2.8, 74.7),0.0852, cttip_pu('CrowdFlower total',2.8, 81.3),0.14608, cttip_pu('Clickworker total',2.8, 63.1),0.13662, cttip_pu('Prolific total',2.8, 41),0.08799, cttip_pu('Microworkers total',2.8, 77.2)],
+['3',0.11059, cttip_pu('AMT USA total',3, 12.2),0.1137, cttip_pu('AMT India total',3, 77.9),0.06903, cttip_pu('CrowdFlower total',3, 82.6),0.13461, cttip_pu('Clickworker total',3, 64.9),0.13305, cttip_pu('Prolific total',3, 42.6),0.07478, cttip_pu('Microworkers total',3, 78.3)],
+['3.2',0.11812, cttip_pu('AMT USA total',3.2, 13.5),0.09486, cttip_pu('AMT India total',3.2, 77.9),0.05702, cttip_pu('CrowdFlower total',3.2, 83.9),0.12566, cttip_pu('Clickworker total',3.2, 68.5),0.13009, cttip_pu('Prolific total',3.2, 43.7),0.06464, cttip_pu('Microworkers total',3.2, 79.2)],
+['3.4',0.12451, cttip_pu('AMT USA total',3.4, 17.6),0.07856, cttip_pu('AMT India total',3.4, 79.3),0.05021, cttip_pu('CrowdFlower total',3.4, 84.6),0.11429, cttip_pu('Clickworker total',3.4, 69.5),0.12849, cttip_pu('Prolific total',3.4, 49.1),0.0564, cttip_pu('Microworkers total',3.4, 80.1)],
+['3.6',0.13004, cttip_pu('AMT USA total',3.6, 20.3),0.06542, cttip_pu('AMT India total',3.6, 81.1),0.04384, cttip_pu('CrowdFlower total',3.6, 85.6),0.10252, cttip_pu('Clickworker total',3.6, 72.8),0.12644, cttip_pu('Prolific total',3.6, 51.1),0.05482, cttip_pu('Microworkers total',3.6, 81.3)],
+['3.8',0.13464, cttip_pu('AMT USA total',3.8, 23),0.05686, cttip_pu('AMT India total',3.8, 82.9),0.03726, cttip_pu('CrowdFlower total',3.8, 86.6),0.09055, cttip_pu('Clickworker total',3.8, 74.1),0.12312, cttip_pu('Prolific total',3.8, 52.2),0.05429, cttip_pu('Microworkers total',3.8, 83.3)],
+['4',0.13772, cttip_pu('AMT USA total',4, 27),0.04809, cttip_pu('AMT India total',4, 84.3),0.03212, cttip_pu('CrowdFlower total',4, 87.6),0.07893, cttip_pu('Clickworker total',4, 75.1),0.11796, cttip_pu('Prolific total',4, 56.5),0.05222, cttip_pu('Microworkers total',4, 83.9)],
+['4.2',0.13917, cttip_pu('AMT USA total',4.2, 31.1),0.04507, cttip_pu('AMT India total',4.2, 84.8),0.02805, cttip_pu('CrowdFlower total',4.2, 87.6),0.07733, cttip_pu('Clickworker total',4.2, 75.9),0.11344, cttip_pu('Prolific total',4.2, 57.2),0.05342, cttip_pu('Microworkers total',4.2, 85)],
+['4.4',0.1387, cttip_pu('AMT USA total',4.4, 32.4),0.03873, cttip_pu('AMT India total',4.4, 84.8),0.03181, cttip_pu('CrowdFlower total',4.4, 88),0.07425, cttip_pu('Clickworker total',4.4, 78.2),0.10797, cttip_pu('Prolific total',4.4, 61.2),0.05632, cttip_pu('Microworkers total',4.4, 85.5)],
+['4.6',0.13686, cttip_pu('AMT USA total',4.6, 36.5),0.03296, cttip_pu('AMT India total',4.6, 85.7),0.03437, cttip_pu('CrowdFlower total',4.6, 88.6),0.07037, cttip_pu('Clickworker total',4.6, 79),0.10469, cttip_pu('Prolific total',4.6, 62.8),0.05576, cttip_pu('Microworkers total',4.6, 86.2)],
+['4.8',0.13339, cttip_pu('AMT USA total',4.8, 37.8),0.02924, cttip_pu('AMT India total',4.8, 85.7),0.03693, cttip_pu('CrowdFlower total',4.8, 89),0.06595, cttip_pu('Clickworker total',4.8, 79.5),0.10339, cttip_pu('Prolific total',4.8, 63),0.05489, cttip_pu('Microworkers total',4.8, 87.1)],
+['5',0.13009, cttip_pu('AMT USA total',5, 46.8),0.02844, cttip_pu('AMT India total',5, 87.6),0.03721, cttip_pu('CrowdFlower total',5, 91.3),0.06196, cttip_pu('Clickworker total',5, 82.1),0.10041, cttip_pu('Prolific total',5, 67.9),0.05174, cttip_pu('Microworkers total',5, 91.1)],
+['5.2',0.12588, cttip_pu('AMT USA total',5.2, 47.3),0.0288, cttip_pu('AMT India total',5.2, 87.6),0.03334, cttip_pu('CrowdFlower total',5.2, 91.6),0.05889, cttip_pu('Clickworker total',5.2, 82.1),0.09577, cttip_pu('Prolific total',5.2, 70),0.04719, cttip_pu('Microworkers total',5.2, 91.1)],
+['5.4',0.12173, cttip_pu('AMT USA total',5.4, 47.7),0.02966, cttip_pu('AMT India total',5.4, 88),0.02757, cttip_pu('CrowdFlower total',5.4, 92.3),0.05451, cttip_pu('Clickworker total',5.4, 86.2),0.09266, cttip_pu('Prolific total',5.4, 71.1),0.04044, cttip_pu('Microworkers total',5.4, 91.5)],
+['5.6',0.11659, cttip_pu('AMT USA total',5.6, 49.5),0.02863, cttip_pu('AMT India total',5.6, 88.5),0.02084, cttip_pu('CrowdFlower total',5.6, 92.3),0.04885, cttip_pu('Clickworker total',5.6, 86.7),0.08865, cttip_pu('Prolific total',5.6, 72.9),0.03162, cttip_pu('Microworkers total',5.6, 91.7)],
+['5.8',0.11113, cttip_pu('AMT USA total',5.8, 51.8),0.02626, cttip_pu('AMT India total',5.8, 88.9),0.01331, cttip_pu('CrowdFlower total',5.8, 92.3),0.04442, cttip_pu('Clickworker total',5.8, 86.7),0.08371, cttip_pu('Prolific total',5.8, 73.3),0.02065, cttip_pu('Microworkers total',5.8, 92.2)],
+['6',0.10573, cttip_pu('AMT USA total',6, 55.4),0.02124, cttip_pu('AMT India total',6, 89.9),0.01474, cttip_pu('CrowdFlower total',6, 92.6),0.03966, cttip_pu('Clickworker total',6, 86.9),0.07993, cttip_pu('Prolific total',6, 76),0.01363, cttip_pu('Microworkers total',6, 92.6)],
+['6.2',0.10084, cttip_pu('AMT USA total',6.2, 56.3),0.02077, cttip_pu('AMT India total',6.2, 89.9),0.01622, cttip_pu('CrowdFlower total',6.2, 92.6),0.03402, cttip_pu('Clickworker total',6.2, 87.4),0.07513, cttip_pu('Prolific total',6.2, 76),0.01198, cttip_pu('Microworkers total',6.2, 92.6)],
+['6.4',0.09513, cttip_pu('AMT USA total',6.4, 58.6),0.01919, cttip_pu('AMT India total',6.4, 90.8),0.01949, cttip_pu('CrowdFlower total',6.4, 93.3),0.02824, cttip_pu('Clickworker total',6.4, 88.5),0.07139, cttip_pu('Prolific total',6.4, 78),0.01268, cttip_pu('Microworkers total',6.4, 93.1)],
+['6.6',0.09065, cttip_pu('AMT USA total',6.6, 58.6),0.01896, cttip_pu('AMT India total',6.6, 90.8),0.02155, cttip_pu('CrowdFlower total',6.6, 94),0.02251, cttip_pu('Clickworker total',6.6, 88.5),0.06745, cttip_pu('Prolific total',6.6, 81.8),0.01257, cttip_pu('Microworkers total',6.6, 93.1)],
+['6.8',0.0871, cttip_pu('AMT USA total',6.8, 60.4),0.01759, cttip_pu('AMT India total',6.8, 90.8),0.02025, cttip_pu('CrowdFlower total',6.8, 94.3),0.02157, cttip_pu('Clickworker total',6.8, 89),0.06227, cttip_pu('Prolific total',6.8, 82.7),0.01417, cttip_pu('Microworkers total',6.8, 93.1)],
+['7',0.08438, cttip_pu('AMT USA total',7, 62.2),0.01575, cttip_pu('AMT India total',7, 91.7),0.01802, cttip_pu('CrowdFlower total',7, 94.6),0.02166, cttip_pu('Clickworker total',7, 89.2),0.05809, cttip_pu('Prolific total',7, 83.2),0.01481, cttip_pu('Microworkers total',7, 93.5)],
+['7.2',0.08183, cttip_pu('AMT USA total',7.2, 64),0.0151, cttip_pu('AMT India total',7.2, 91.7),0.01458, cttip_pu('CrowdFlower total',7.2, 95.3),0.02091, cttip_pu('Clickworker total',7.2, 90),0.05476, cttip_pu('Prolific total',7.2, 84.3),0.01547, cttip_pu('Microworkers total',7.2, 94.2)],
+['7.4',0.08035, cttip_pu('AMT USA total',7.4, 64),0.01515, cttip_pu('AMT India total',7.4, 92.2),0.01283, cttip_pu('CrowdFlower total',7.4, 95.3),0.01999, cttip_pu('Clickworker total',7.4, 90.3),0.05223, cttip_pu('Prolific total',7.4, 84.5),0.01591, cttip_pu('Microworkers total',7.4, 94.2)],
+['7.6',0.0804, cttip_pu('AMT USA total',7.6, 67.6),0.01531, cttip_pu('AMT India total',7.6, 92.6),0.01253, cttip_pu('CrowdFlower total',7.6, 95.3),0.0185, cttip_pu('Clickworker total',7.6, 90.8),0.04942, cttip_pu('Prolific total',7.6, 85.7),0.0154, cttip_pu('Microworkers total',7.6, 94.9)],
+['7.8',0.08042, cttip_pu('AMT USA total',7.8, 68.5),0.01434, cttip_pu('AMT India total',7.8, 92.6),0.01085, cttip_pu('CrowdFlower total',7.8, 95.7),0.01721, cttip_pu('Clickworker total',7.8, 90.8),0.04548, cttip_pu('Prolific total',7.8, 86.8),0.01364, cttip_pu('Microworkers total',7.8, 94.9)],
+['8',0.08, cttip_pu('AMT USA total',8, 69.8),0.01375, cttip_pu('AMT India total',8, 93.1),0.01109, cttip_pu('CrowdFlower total',8, 96),0.01691, cttip_pu('Clickworker total',8, 91.8),0.04141, cttip_pu('Prolific total',8, 87.7),0.01259, cttip_pu('Microworkers total',8, 95.3)],
+['8.2',0.07907, cttip_pu('AMT USA total',8.2, 70.7),0.01483, cttip_pu('AMT India total',8.2, 93.1),0.01442, cttip_pu('CrowdFlower total',8.2, 96.3),0.01704, cttip_pu('Clickworker total',8.2, 91.8),0.03741, cttip_pu('Prolific total',8.2, 88.1),0.01309, cttip_pu('Microworkers total',8.2, 95.3)],
+['8.4',0.07786, cttip_pu('AMT USA total',8.4, 73.4),0.01494, cttip_pu('AMT India total',8.4, 93.5),0.01693, cttip_pu('CrowdFlower total',8.4, 96.3),0.01662, cttip_pu('Clickworker total',8.4, 91.8),0.03389, cttip_pu('Prolific total',8.4, 89.2),0.01258, cttip_pu('Microworkers total',8.4, 95.5)],
+['8.6',0.07676, cttip_pu('AMT USA total',8.6, 73.4),0.0153, cttip_pu('AMT India total',8.6, 93.5),0.01878, cttip_pu('CrowdFlower total',8.6, 96.7),0.01716, cttip_pu('Clickworker total',8.6, 92.3),0.03271, cttip_pu('Prolific total',8.6, 89.5),0.01318, cttip_pu('Microworkers total',8.6, 95.8)],
+['8.8',0.07544, cttip_pu('AMT USA total',8.8, 75.2),0.01561, cttip_pu('AMT India total',8.8, 94),0.01837, cttip_pu('CrowdFlower total',8.8, 97.3),0.01744, cttip_pu('Clickworker total',8.8, 92.3),0.03142, cttip_pu('Prolific total',8.8, 90.8),0.01298, cttip_pu('Microworkers total',8.8, 96.4)],
+['9',0.07295, cttip_pu('AMT USA total',9, 77.5),0.01492, cttip_pu('AMT India total',9, 94.9),0.01677, cttip_pu('CrowdFlower total',9, 97.7),0.01789, cttip_pu('Clickworker total',9, 92.6),0.02953, cttip_pu('Prolific total',9, 91.3),0.0127, cttip_pu('Microworkers total',9, 96.7)],
+['9.2',0.07064, cttip_pu('AMT USA total',9.2, 79.7),0.0193, cttip_pu('AMT India total',9.2, 94.9),0.01443, cttip_pu('CrowdFlower total',9.2, 98.3),0.01727, cttip_pu('Clickworker total',9.2, 93.1),0.02797, cttip_pu('Prolific total',9.2, 92.2),0.01334, cttip_pu('Microworkers total',9.2, 96.7)],
+['9.4',0.06852, cttip_pu('AMT USA total',9.4, 82.4),0.02151, cttip_pu('AMT India total',9.4, 94.9),0.01367, cttip_pu('CrowdFlower total',9.4, 98.3),0.01727, cttip_pu('Clickworker total',9.4, 93.8),0.02591, cttip_pu('Prolific total',9.4, 92.4),0.01457, cttip_pu('Microworkers total',9.4, 96.9)],
+['9.6',0.06602, cttip_pu('AMT USA total',9.6, 84.2),0.0223, cttip_pu('AMT India total',9.6, 95.4),0.01174, cttip_pu('CrowdFlower total',9.6, 98.3),0.0187, cttip_pu('Clickworker total',9.6, 94.1),0.02398, cttip_pu('Prolific total',9.6, 92.4),0.01433, cttip_pu('Microworkers total',9.6, 97.1)],
+['9.8',0.06267, cttip_pu('AMT USA total',9.8, 84.7),0.02127, cttip_pu('AMT India total',9.8, 95.4),0.01058, cttip_pu('CrowdFlower total',9.8, 98.3),0.01927, cttip_pu('Clickworker total',9.8, 94.6),0.02262, cttip_pu('Prolific total',9.8, 92.4),0.01423, cttip_pu('Microworkers total',9.8, 97.3)],
+['10',0.05954, cttip_pu('AMT USA total',10, 88.3),0.02113, cttip_pu('AMT India total',10, 97.7),0.00922, cttip_pu('CrowdFlower total',10, 99.3),0.01961, cttip_pu('Clickworker total',10, 94.9),0.02131, cttip_pu('Prolific total',10, 93.5),0.01327, cttip_pu('Microworkers total',10, 98.4)],
+['10.2',0.05606, cttip_pu('AMT USA total',10.2, 88.3),0.02049, cttip_pu('AMT India total',10.2, 97.7),0.00866, cttip_pu('CrowdFlower total',10.2, 99.3),0.01896, cttip_pu('Clickworker total',10.2, 95.1),0.02004, cttip_pu('Prolific total',10.2, 93.7),0.01116, cttip_pu('Microworkers total',10.2, 98.4)],
+['10.4',0.05259, cttip_pu('AMT USA total',10.4, 88.3),0.01814, cttip_pu('AMT India total',10.4, 97.7),0.00697, cttip_pu('CrowdFlower total',10.4, 99.3),0.01775, cttip_pu('Clickworker total',10.4, 95.1),0.01909, cttip_pu('Prolific total',10.4, 94.4),0.00856, cttip_pu('Microworkers total',10.4, 98.4)],
+['10.6',0.04885, cttip_pu('AMT USA total',10.6, 88.3),0.01432, cttip_pu('AMT India total',10.6, 97.7),0.00417, cttip_pu('CrowdFlower total',10.6, 99.3),0.01649, cttip_pu('Clickworker total',10.6, 95.1),0.01804, cttip_pu('Prolific total',10.6, 94.4),0.00619, cttip_pu('Microworkers total',10.6, 98.4)],
+['10.8',0.04521, cttip_pu('AMT USA total',10.8, 89.2),0.01076, cttip_pu('AMT India total',10.8, 98.2),0.00025, cttip_pu('CrowdFlower total',10.8, 99.3),0.01536, cttip_pu('Clickworker total',10.8, 96.4),0.0175, cttip_pu('Prolific total',10.8, 94.6),0.00326, cttip_pu('Microworkers total',10.8, 98.4)],
+['11',0.04106, cttip_pu('AMT USA total',11, 89.6),0.00641, cttip_pu('AMT India total',11, 98.2),0, cttip_pu('CrowdFlower total',11, 99.3),0.01363, cttip_pu('Clickworker total',11, 96.9),0.01673, cttip_pu('Prolific total',11, 95.3),0.00174, cttip_pu('Microworkers total',11, 98.4)],
+['11.2',0.03705, cttip_pu('AMT USA total',11.2, 89.6),0.0072, cttip_pu('AMT India total',11.2, 98.2),0, cttip_pu('CrowdFlower total',11.2, 99.3),0.01223, cttip_pu('Clickworker total',11.2, 97.2),0.01667, cttip_pu('Prolific total',11.2, 95.3),0.00188, cttip_pu('Microworkers total',11.2, 98.4)],
+['11.4',0.0333, cttip_pu('AMT USA total',11.4, 90.5),0.00778, cttip_pu('AMT India total',11.4, 98.2),0, cttip_pu('CrowdFlower total',11.4, 99.3),0.01062, cttip_pu('Clickworker total',11.4, 97.2),0.01663, cttip_pu('Prolific total',11.4, 95.5),0.00183, cttip_pu('Microworkers total',11.4, 98.7)],
+['11.6',0.03001, cttip_pu('AMT USA total',11.6, 92.3),0.00831, cttip_pu('AMT India total',11.6, 98.2),0, cttip_pu('CrowdFlower total',11.6, 99.3),0.00926, cttip_pu('Clickworker total',11.6, 97.2),0.01618, cttip_pu('Prolific total',11.6, 96.4),0.00159, cttip_pu('Microworkers total',11.6, 98.7)],
+['11.8',0.02716, cttip_pu('AMT USA total',11.8, 92.8),0.00845, cttip_pu('AMT India total',11.8, 98.6),0.00078, cttip_pu('CrowdFlower total',11.8, 99.3),0.00733, cttip_pu('Clickworker total',11.8, 97.4),0.0152, cttip_pu('Prolific total',11.8, 96.6),0.00189, cttip_pu('Microworkers total',11.8, 98.7)],
+['12',0.02512, cttip_pu('AMT USA total',12, 93.2),0.00894, cttip_pu('AMT India total',12, 99.1),0.00199, cttip_pu('CrowdFlower total',12, 99.3),0.00507, cttip_pu('Clickworker total',12, 97.4),0.01421, cttip_pu('Prolific total',12, 97.1),0.00185, cttip_pu('Microworkers total',12, 98.7)],
+['12.2',0.02307, cttip_pu('AMT USA total',12.2, 93.2),0.00864, cttip_pu('AMT India total',12.2, 99.1),0.00404, cttip_pu('CrowdFlower total',12.2, 99.3),0.00432, cttip_pu('Clickworker total',12.2, 97.4),0.01335, cttip_pu('Prolific total',12.2, 97.3),0.00225, cttip_pu('Microworkers total',12.2, 98.7)],
+['12.4',0.02105, cttip_pu('AMT USA total',12.4, 93.2),0.00755, cttip_pu('AMT India total',12.4, 99.1),0.00535, cttip_pu('CrowdFlower total',12.4, 99.3),0.00404, cttip_pu('Clickworker total',12.4, 97.4),0.01243, cttip_pu('Prolific total',12.4, 97.3),0.00305, cttip_pu('Microworkers total',12.4, 98.7)],
+['12.6',0.02004, cttip_pu('AMT USA total',12.6, 94.6),0.00569, cttip_pu('AMT India total',12.6, 99.5),0.00591, cttip_pu('CrowdFlower total',12.6, 99.7),0.00402, cttip_pu('Clickworker total',12.6, 97.7),0.01194, cttip_pu('Prolific total',12.6, 97.5),0.00347, cttip_pu('Microworkers total',12.6, 98.9)],
+['12.8',0.01882, cttip_pu('AMT USA total',12.8, 94.6),0.00385, cttip_pu('AMT India total',12.8, 99.5),0.00572, cttip_pu('CrowdFlower total',12.8, 99.7),0.00394, cttip_pu('Clickworker total',12.8, 97.9),0.01122, cttip_pu('Prolific total',12.8, 97.5),0.00374, cttip_pu('Microworkers total',12.8, 98.9)],
+['13',0.01727, cttip_pu('AMT USA total',13, 95),0.00256, cttip_pu('AMT India total',13, 99.5),0.00479, cttip_pu('CrowdFlower total',13, 100),0.00374, cttip_pu('Clickworker total',13, 97.9),0.01049, cttip_pu('Prolific total',13, 98.4),0.0041, cttip_pu('Microworkers total',13, 99.1)],
+['13.2',0.01568, cttip_pu('AMT USA total',13.2, 95),0.00178, cttip_pu('AMT India total',13.2, 99.5),0.00311, cttip_pu('CrowdFlower total',13.2, 100),0.00362, cttip_pu('Clickworker total',13.2, 97.9),0.0097, cttip_pu('Prolific total',13.2, 98.4),0.00389, cttip_pu('Microworkers total',13.2, 99.1)],
+['13.4',0.0142, cttip_pu('AMT USA total',13.4, 95.9),0.00155, cttip_pu('AMT India total',13.4, 99.5),0.00139, cttip_pu('CrowdFlower total',13.4, 100),0.00331, cttip_pu('Clickworker total',13.4, 97.9),0.0089, cttip_pu('Prolific total',13.4, 98.7),0.00314, cttip_pu('Microworkers total',13.4, 99.1)],
+['13.6',0.01254, cttip_pu('AMT USA total',13.6, 95.9),0.00185, cttip_pu('AMT India total',13.6, 99.5),0.00008, cttip_pu('CrowdFlower total',13.6, 100),0.00279, cttip_pu('Clickworker total',13.6, 97.9),0.00848, cttip_pu('Prolific total',13.6, 98.7),0.00274, cttip_pu('Microworkers total',13.6, 99.1)],
+['13.8',0.01096, cttip_pu('AMT USA total',13.8, 95.9),0.00261, cttip_pu('AMT India total',13.8, 99.5),0, cttip_pu('CrowdFlower total',13.8, 100),0.00207, cttip_pu('Clickworker total',13.8, 98.2),0.00799, cttip_pu('Prolific total',13.8, 98.7),0.00197, cttip_pu('Microworkers total',13.8, 99.3)],
+['14',0.00997, cttip_pu('AMT USA total',14, 96.4),0.00312, cttip_pu('AMT India total',14, 99.5),0, cttip_pu('CrowdFlower total',14, 100),0.00183, cttip_pu('Clickworker total',14, 98.2),0.00745, cttip_pu('Prolific total',14, 98.7),0.00157, cttip_pu('Microworkers total',14, 99.3)],
+['14.2',0.00918, cttip_pu('AMT USA total',14.2, 96.4),0.00336, cttip_pu('AMT India total',14.2, 99.5),0, cttip_pu('CrowdFlower total',14.2, 100),0.00186, cttip_pu('Clickworker total',14.2, 98.2),0.00703, cttip_pu('Prolific total',14.2, 98.7),0.00113, cttip_pu('Microworkers total',14.2, 99.3)],
+['14.4',0.00856, cttip_pu('AMT USA total',14.4, 96.4),0.00334, cttip_pu('AMT India total',14.4, 100),0, cttip_pu('CrowdFlower total',14.4, 100),0.00225, cttip_pu('Clickworker total',14.4, 98.2),0.00654, cttip_pu('Prolific total',14.4, 99.3),0.00051, cttip_pu('Microworkers total',14.4, 99.3)],
+['14.6',0.00808, cttip_pu('AMT USA total',14.6, 96.4),0.00306, cttip_pu('AMT India total',14.6, 100),0, cttip_pu('CrowdFlower total',14.6, 100),0.00257, cttip_pu('Clickworker total',14.6, 98.2),0.00602, cttip_pu('Prolific total',14.6, 99.3),0, cttip_pu('Microworkers total',14.6, 99.3)],
+['14.8',0.00745, cttip_pu('AMT USA total',14.8, 96.4),0.00252, cttip_pu('AMT India total',14.8, 100),0, cttip_pu('CrowdFlower total',14.8, 100),0.00269, cttip_pu('Clickworker total',14.8, 98.2),0.00543, cttip_pu('Prolific total',14.8, 99.3),0, cttip_pu('Microworkers total',14.8, 99.3)],
+['15',0.00733, cttip_pu('AMT USA total',15, 96.8),0.00183, cttip_pu('AMT India total',15, 100),0, cttip_pu('CrowdFlower total',15, 100),0.00261, cttip_pu('Clickworker total',15, 98.2),0.00575, cttip_pu('Prolific total',15, 99.8),0, cttip_pu('Microworkers total',15, 99.3)],
+['15.2',0.00725, cttip_pu('AMT USA total',15.2, 96.8),0.00194, cttip_pu('AMT India total',15.2, 100),0.00008, cttip_pu('CrowdFlower total',15.2, 100),0.0028, cttip_pu('Clickworker total',15.2, 98.5),0.00621, cttip_pu('Prolific total',15.2, 99.8),0, cttip_pu('Microworkers total',15.2, 99.3)],
+['15.4',0.00718, cttip_pu('AMT USA total',15.4, 96.8),0.00221, cttip_pu('AMT India total',15.4, 100),0.00139, cttip_pu('CrowdFlower total',15.4, 100),0.00286, cttip_pu('Clickworker total',15.4, 98.5),0.00659, cttip_pu('Prolific total',15.4, 99.8),0, cttip_pu('Microworkers total',15.4, 99.3)],
+['15.6',0.00693, cttip_pu('AMT USA total',15.6, 96.8),0.00286, cttip_pu('AMT India total',15.6, 100),0.00232, cttip_pu('CrowdFlower total',15.6, 100),0.00278, cttip_pu('Clickworker total',15.6, 98.7),0.00675, cttip_pu('Prolific total',15.6, 99.8),0, cttip_pu('Microworkers total',15.6, 99.3)],
+['15.8',0.00683, cttip_pu('AMT USA total',15.8, 97.3),0.00325, cttip_pu('AMT India total',15.8, 100),0.00289, cttip_pu('CrowdFlower total',15.8, 100),0.00258, cttip_pu('Clickworker total',15.8, 98.7),0.0067, cttip_pu('Prolific total',15.8, 99.8),0, cttip_pu('Microworkers total',15.8, 99.3)],
+['16',0.00699, cttip_pu('AMT USA total',16, 97.3),0.00338, cttip_pu('AMT India total',16, 100),0.00407, cttip_pu('CrowdFlower total',16, 100),0.00224, cttip_pu('Clickworker total',16, 98.7),0.00644, cttip_pu('Prolific total',16, 100),0, cttip_pu('Microworkers total',16, 99.3)],
+['16.2',0.00704, cttip_pu('AMT USA total',16.2, 97.3),0.00325, cttip_pu('AMT India total',16.2, 100),0.00494, cttip_pu('CrowdFlower total',16.2, 100),0.00177, cttip_pu('Clickworker total',16.2, 98.7),0.006, cttip_pu('Prolific total',16.2, 100),0, cttip_pu('Microworkers total',16.2, 99.3)],
+['16.4',0.00702, cttip_pu('AMT USA total',16.4, 97.3),0.00286, cttip_pu('AMT India total',16.4, 100),0.00506, cttip_pu('CrowdFlower total',16.4, 100),0.00116, cttip_pu('Clickworker total',16.4, 98.7),0.0059, cttip_pu('Prolific total',16.4, 100),0, cttip_pu('Microworkers total',16.4, 99.3)],
+['16.6',0.00704, cttip_pu('AMT USA total',16.6, 97.3),0.00221, cttip_pu('AMT India total',16.6, 100),0.00444, cttip_pu('CrowdFlower total',16.6, 100),0.00179, cttip_pu('Clickworker total',16.6, 98.7),0.00564, cttip_pu('Prolific total',16.6, 100),0, cttip_pu('Microworkers total',16.6, 99.3)],
+['16.8',0.00694, cttip_pu('AMT USA total',16.8, 98.2),0.00129, cttip_pu('AMT India total',16.8, 100),0.00307, cttip_pu('CrowdFlower total',16.8, 100),0.00245, cttip_pu('Clickworker total',16.8, 98.7),0.00523, cttip_pu('Prolific total',16.8, 100),0, cttip_pu('Microworkers total',16.8, 99.3)],
+['17',0.00671, cttip_pu('AMT USA total',17, 98.2),0.00011, cttip_pu('AMT India total',17, 100),0.00255, cttip_pu('CrowdFlower total',17, 100),0.00305, cttip_pu('Clickworker total',17, 98.7),0.00499, cttip_pu('Prolific total',17, 100),0, cttip_pu('Microworkers total',17, 99.3)],
+['17.2',0.00635, cttip_pu('AMT USA total',17.2, 98.6),0, cttip_pu('AMT India total',17.2, 100),0.00174, cttip_pu('CrowdFlower total',17.2, 100),0.00368, cttip_pu('Clickworker total',17.2, 98.7),0.00483, cttip_pu('Prolific total',17.2, 100),0, cttip_pu('Microworkers total',17.2, 99.3)],
+['17.4',0.00594, cttip_pu('AMT USA total',17.4, 98.6),0, cttip_pu('AMT India total',17.4, 100),0.00056, cttip_pu('CrowdFlower total',17.4, 100),0.0041, cttip_pu('Clickworker total',17.4, 98.7),0.00454, cttip_pu('Prolific total',17.4, 100),0, cttip_pu('Microworkers total',17.4, 99.3)],
+['17.6',0.00559, cttip_pu('AMT USA total',17.6, 98.6),0, cttip_pu('AMT India total',17.6, 100),0, cttip_pu('CrowdFlower total',17.6, 100),0.00433, cttip_pu('Clickworker total',17.6, 98.7),0.00411, cttip_pu('Prolific total',17.6, 100),0, cttip_pu('Microworkers total',17.6, 99.3)],
+['17.8',0.00531, cttip_pu('AMT USA total',17.8, 98.6),0, cttip_pu('AMT India total',17.8, 100),0, cttip_pu('CrowdFlower total',17.8, 100),0.00437, cttip_pu('Clickworker total',17.8, 99.5),0.00355, cttip_pu('Prolific total',17.8, 100),0, cttip_pu('Microworkers total',17.8, 99.3)],
+['18',0.00501, cttip_pu('AMT USA total',18, 98.6),0, cttip_pu('AMT India total',18, 100),0, cttip_pu('CrowdFlower total',18, 100),0.0042, cttip_pu('Clickworker total',18, 99.5),0.00295, cttip_pu('Prolific total',18, 100),0, cttip_pu('Microworkers total',18, 99.3)],
+['18.2',0.00481, cttip_pu('AMT USA total',18.2, 99.1),0, cttip_pu('AMT India total',18.2, 100),0, cttip_pu('CrowdFlower total',18.2, 100),0.00383, cttip_pu('Clickworker total',18.2, 99.5),0.00241, cttip_pu('Prolific total',18.2, 100),0, cttip_pu('Microworkers total',18.2, 99.3)],
+['18.4',0.0045, cttip_pu('AMT USA total',18.4, 99.1),0, cttip_pu('AMT India total',18.4, 100),0, cttip_pu('CrowdFlower total',18.4, 100),0.00326, cttip_pu('Clickworker total',18.4, 99.5),0.00182, cttip_pu('Prolific total',18.4, 100),0, cttip_pu('Microworkers total',18.4, 99.3)],
+['18.6',0.00409, cttip_pu('AMT USA total',18.6, 99.1),0, cttip_pu('AMT India total',18.6, 100),0, cttip_pu('CrowdFlower total',18.6, 100),0.00249, cttip_pu('Clickworker total',18.6, 99.5),0.00126, cttip_pu('Prolific total',18.6, 100),0, cttip_pu('Microworkers total',18.6, 99.3)],
+['18.8',0.00358, cttip_pu('AMT USA total',18.8, 99.1),0, cttip_pu('AMT India total',18.8, 100),0, cttip_pu('CrowdFlower total',18.8, 100),0.00152, cttip_pu('Clickworker total',18.8, 99.5),0.00139, cttip_pu('Prolific total',18.8, 100),0, cttip_pu('Microworkers total',18.8, 99.3)],
+['19',0.00295, cttip_pu('AMT USA total',19, 99.1),0, cttip_pu('AMT India total',19, 100),0, cttip_pu('CrowdFlower total',19, 100),0.00036, cttip_pu('Clickworker total',19, 99.5),0.00149, cttip_pu('Prolific total',19, 100),0, cttip_pu('Microworkers total',19, 99.3)],
+['19.2',0.00271, cttip_pu('AMT USA total',19.2, 99.1),0, cttip_pu('AMT India total',19.2, 100),0, cttip_pu('CrowdFlower total',19.2, 100),0, cttip_pu('Clickworker total',19.2, 99.5),0.00154, cttip_pu('Prolific total',19.2, 100),0.00037, cttip_pu('Microworkers total',19.2, 99.3)],
+['19.4',0.00243, cttip_pu('AMT USA total',19.4, 99.1),0, cttip_pu('AMT India total',19.4, 100),0, cttip_pu('CrowdFlower total',19.4, 100),0, cttip_pu('Clickworker total',19.4, 99.5),0.00155, cttip_pu('Prolific total',19.4, 100),0.00103, cttip_pu('Microworkers total',19.4, 99.3)],
+['19.6',0.00232, cttip_pu('AMT USA total',19.6, 99.1),0, cttip_pu('AMT India total',19.6, 100),0, cttip_pu('CrowdFlower total',19.6, 100),0, cttip_pu('Clickworker total',19.6, 99.5),0.00153, cttip_pu('Prolific total',19.6, 100),0.00151, cttip_pu('Microworkers total',19.6, 99.3)],
+['19.8',0.00219, cttip_pu('AMT USA total',19.8, 99.1),0, cttip_pu('AMT India total',19.8, 100),0, cttip_pu('CrowdFlower total',19.8, 100),0, cttip_pu('Clickworker total',19.8, 99.5),0.00147, cttip_pu('Prolific total',19.8, 100),0.00179, cttip_pu('Microworkers total',19.8, 99.3)],
+['20',0.00202, cttip_pu('AMT USA total',20, 99.5),0, cttip_pu('AMT India total',20, 100),0, cttip_pu('CrowdFlower total',20, 100),0, cttip_pu('Clickworker total',20, 99.5),0.00137, cttip_pu('Prolific total',20, 100),0.00188, cttip_pu('Microworkers total',20, 99.6)],
+    ];
+    var data = [];
+    data[0] = google.visualization.arrayToDataTable(rowData1);
+    data[1] = google.visualization.arrayToDataTable(rowData2);
+
+    var options = {
+		tooltip: {isHtml: true},
+		curveType: 'function',
+		chartArea:{left:40,top:75,width:'70%',height:'70%'},
+		hAxis: {title: "$ per hour" },
+		vAxis: {viewWindow:{min:0}},
+		series:{0: {color: colorRange[0]},
+				1: {color: colorRange[1]},
+				2: {color: colorRange[2]},
+				3: {color: colorRange[3]},
+				4: {color: colorRange[4]},
+				5: {color: colorRange[5]}}
+    };
+
+    var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+    var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+
+	var viewMFp = new google.visualization.DataView(data[0]);
+	var viewMFpu = new google.visualization.DataView(data[1]);
+
+options.title = 'Paid / MF';
+chart1.draw(viewMFp, options);
+options.title = 'Paid-Unpaid / MF';
+chart2.draw(viewMFpu, options);
+
+/* LISTENER */
+    var columns = [];
+    var series = {};
+    for (var i = 0; i < data[0].getNumberOfColumns(); i++) {
+        columns.push(i);
+        if (i > 0) {
+            series[i - 1] = {};
+        }
+    }
+    google.visualization.events.addListener(chart1, 'select', function () {
+        var sel = chart1.getSelection();
+        if (sel.length > 0) {
+            if (sel[0].row === null) {
+                var col = sel[0].column;
+                if (columns[col] == col) {
+                    columns[col] = {
+                        label: data[0].getColumnLabel(col),
+                        type: data[0].getColumnType(col),
+                        calc: function () {
+                            return null;
+                        }
+                    };
+                    series[col - 1].color = '#CCCCCC';
+                }
+                else {
+                    columns[col] = col;
+                    series[col - 1].color = null;
+                }
+                var view = new google.visualization.DataView(data[0]);
+                viewMFp.setColumns(columns);
+				chart1.draw(viewMFp, options);
+            }
+        }
+    });
+    google.visualization.events.addListener(chart2, 'select', function () {
+        var sel = chart2.getSelection();
+        if (sel.length > 0) {
+            if (sel[0].row === null) {
+                var col = sel[0].column;
+                if (columns[col] == col) {
+                    columns[col] = {
+                        label: data[1].getColumnLabel(col),
+                        type: data[1].getColumnType(col),
+                        calc: function () {
+                            return null;
+                        }
+                    };
+                    series[col - 1].color = '#CCCCCC';
+                }
+                else {
+                    columns[col] = col;
+                    series[col - 1].color = null;
+                }
+                var view = new google.visualization.DataView(data[1]);
+                viewMFpu.setColumns(columns);
+				chart2.draw(viewMFpu, options);
+            }
+        }
+    });
+/* END - listener */
+}
+</script>
+</head>
+<body>
+	<div><b>2017</b> Total</div>
+	<div id="chart_div1" style="width: 836px; height: 350px;"></div>
+	<div id="chart_div2" style="width: 836px; height: 350px;"></div>
+</body>
+</html>
