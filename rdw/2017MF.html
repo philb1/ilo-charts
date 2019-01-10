@@ -237,7 +237,23 @@ function drawChart() {
     data[0] = google.visualization.arrayToDataTable(rowData1);
     data[1] = google.visualization.arrayToDataTable(rowData2);
 
-    var options = {
+    var options1 = {
+		title: 'Paid / MF',
+		tooltip: {isHtml: true},
+		curveType: 'function',
+		chartArea:{left:40,top:75,width:'70%',height:'70%'},
+		hAxis: {title: "$ per hour" },
+		vAxis: {viewWindow:{min:0}},
+		series:{0: {color: colorRange[0]},
+				1: {color: colorRange[1]},
+				2: {color: colorRange[2]},
+				3: {color: colorRange[3]},
+				4: {color: colorRange[4]},
+				5: {color: colorRange[5]}}
+    };
+    var options2 = {
+		legend: 'none',
+		title: 'Paid-Unpaid / MF',
 		tooltip: {isHtml: true},
 		curveType: 'function',
 		chartArea:{left:40,top:75,width:'70%',height:'70%'},
@@ -253,14 +269,10 @@ function drawChart() {
 
     var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
     var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
-
 	var viewMFp = new google.visualization.DataView(data[0]);
 	var viewMFpu = new google.visualization.DataView(data[1]);
-
-options.title = 'Paid / MF';
-chart1.draw(viewMFp, options);
-options.title = 'Paid-Unpaid / MF';
-chart2.draw(viewMFpu, options);
+	chart1.draw(viewMFp, options1);
+	chart2.draw(viewMFpu, options2);
 
 /* LISTENER */
     var columns = [];
@@ -280,31 +292,10 @@ chart2.draw(viewMFpu, options);
                     columns[col] = {
                         label: data[0].getColumnLabel(col),
                         type: data[0].getColumnType(col),
-                        calc: function () {
-                            return null;
-                        }
-                    };
-                    series[col - 1].color = '#CCCCCC';
-                }
-                else {
-                    columns[col] = col;
-                    series[col - 1].color = null;
-                }
-                var view = new google.visualization.DataView(data[0]);
-                viewMFp.setColumns(columns);
-				chart1.draw(viewMFp, options);
-            }
-        }
-    });
-    google.visualization.events.addListener(chart2, 'select', function () {
-        var sel = chart2.getSelection();
-        if (sel.length > 0) {
-            if (sel[0].row === null) {
-                var col = sel[0].column;
-                if (columns[col] == col) {
-                    columns[col] = {
+
                         label: data[1].getColumnLabel(col),
                         type: data[1].getColumnType(col),
+
                         calc: function () {
                             return null;
                         }
@@ -315,9 +306,10 @@ chart2.draw(viewMFpu, options);
                     columns[col] = col;
                     series[col - 1].color = null;
                 }
-                var view = new google.visualization.DataView(data[1]);
+                viewMFp.setColumns(columns);
                 viewMFpu.setColumns(columns);
-				chart2.draw(viewMFpu, options);
+				chart1.draw(viewMFp, options1);
+				chart2.draw(viewMFpu, options2);
             }
         }
     });
@@ -326,7 +318,7 @@ chart2.draw(viewMFpu, options);
 </script>
 </head>
 <body>
-	<div><b>2017</b></div>
+	<!--<div><b>2017</b></div>-->
 	<div id="chart_div1" style="width: 836px; height: 350px;"></div>
 	<div id="chart_div2" style="width: 836px; height: 350px;"></div>
 </body>
