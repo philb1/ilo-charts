@@ -16,10 +16,27 @@ colorRange[4]='#990099';
 colorRange[5]='#0099C6';
 
 function cttip(title,val,rate) {
+	console.log(title);
+	if (title=='AMT USA'){
+		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>American</b> workers on AMT<br> earned less than <b>' + val + ' US$/hour</b></div>';
+		}
+	if (title=='AMT India'){
+		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>Indian</b> workers on AMT<br> earned less than <b>' + val + ' US$/hour</b></div>';
+		}
+	else {
 		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all workers on <b>' + title + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid work</div>';
+		}
 	}
 function cttip_pu(title,val,rate) {
+	if (title=='AMT USA'){
+		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>American</b> workers on AMT<br> earned less than <b>' + val + ' US$/hour</b></div>';
+		}
+	if (title=='AMT India'){
+		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>Indian</b> workers on AMT<br> earned less than <b>' + val + ' US$/hour</b></div>';
+		}
+	else {
 		return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all workers on <b>' + title + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid and unpaid work</div>';
+		}
 	}
 function drawChart() {
     var rowData1 = [
