@@ -16,20 +16,52 @@ colorRange[4]='#990099';
 colorRange[5]='#0099C6';
 
 function cttip(title,val,rate) {
-		if (title.search("female")!=-1){
+	if (title.search("female")!=-1){
+		if (title=='AMT USA female'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>female American</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		if (title=='AMT India'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>female Indian</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		else{
 			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>female</b> workers on <b>' + title.substring(0,title.search("female")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid work</div>';
 			}
-		else if (title.search("male")!=-1){
+		}
+	else if (title.search("male")!=-1){
+		if (title=='AMT USA male'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>male American</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		if (title=='AMT India'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>male Indian</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		else{
 			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>male</b> workers on <b>' + title.substring(0,title.search("male")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid work</div>';
 			}
+		}
 	}
 function cttip_pu(title,val,rate) {
-		if (title.search("female")!=-1){
+	if (title.search("female")!=-1){
+		if (title=='AMT USA female'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>female American</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		if (title=='AMT India'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>female Indian</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		else{
 			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>female</b> workers on <b>' + title.substring(0,title.search("female")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid and unpaid work</div>';
 			}
-		else if (title.search("male")!=-1){
+		}
+	else if (title.search("male")!=-1){
+		if (title=='AMT USA male'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>male American</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		if (title=='AMT India'){
+			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>male Indian</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
+			}
+		else{
 			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of <b>male</b> workers on <b>' + title.substring(0,title.search("male")) + '</b><br>earn less than <b>' + val + ' US$/hour</b><br>of paid and unpaid work</div>';
 			}
+		}
 	}
 function drawChart() {
     var rowData1 = [
