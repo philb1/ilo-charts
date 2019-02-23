@@ -52,7 +52,7 @@ function cttip_pu(title,val,rate) {
 			}
 		}
 	else if (title.search("male")!=-1){
-		if (title=='AMT USA male'){
+		if (title=='AMT USA male'){2017MaF
 			return '<div style="background-color:#f0f0f0;font-size:14px;padding:5px 5px 5px 5px;"><b>' + rate + '%</b> of all <b>male American</b> workers on <b>AMT</b><br> earned less than <b>' + val + ' US$/hour</b></div>';
 			}
 		if (title=='AMT India male'){
@@ -275,7 +275,7 @@ function drawChart() {
 ['19.8',0.00224, cttip_pu('AMT USA male',19.8, 98.4),0.00185, cttip_pu('AMT USA female',19.8, 100),0, cttip_pu('AMT India male',19.8, 100),0, cttip_pu('AMT India female',19.8, 100),0, cttip_pu('CrowdFlower male',19.8, 100),0, cttip_pu('CrowdFlower female',19.8, 100),0, cttip_pu('Clickworker male',19.8, 100),0, cttip_pu('Clickworker female',19.8, 98.9),0.00149, cttip_pu('Prolific male',19.8, 100),0.00128, cttip_pu('Prolific female',19.8, 100),0.00245, cttip_pu('Microworkers male',19.8, 99),0, cttip_pu('Microworkers female',19.8, 100)],
 ['20',0.00225, cttip_pu('AMT USA male',20, 99.2),0.00153, cttip_pu('AMT USA female',20, 100),0, cttip_pu('AMT India male',20, 100),0, cttip_pu('AMT India female',20, 100),0, cttip_pu('CrowdFlower male',20, 100),0, cttip_pu('CrowdFlower female',20, 100),0, cttip_pu('Clickworker male',20, 100),0, cttip_pu('Clickworker female',20, 98.9),0.00151, cttip_pu('Prolific male',20, 100),0.00111, cttip_pu('Prolific female',20, 100),0.00256, cttip_pu('Microworkers male',20, 99.4),0, cttip_pu('Microworkers female',20, 100)],
     ];
-    var data = [];
+    var data = [];2017MaF
     data[0] = google.visualization.arrayToDataTable(rowData1);
     data[1] = google.visualization.arrayToDataTable(rowData2);
 
@@ -283,10 +283,11 @@ function drawChart() {
     /* ON LOAD CHART - 'MF' ONLY*/
     options1 = {
 		title: 'Paid work, by gender',
+		theme: 'material',
 		tooltip: {isHtml: true},
 		curveType: 'function',
 		chartArea:{left:40,top:30,width:'70%',height:'70%'},
-		hAxis: {title: "$ per hour" },
+		hAxis: {title: "$ per hour", ticks: [0,2,4,6,8,10,12,14,16,18,20]},
 		vAxis: {viewWindow:{min:0}},
 		series:{0: 	{color: colorRange[0], lineDashStyle: [10, 2]},
 				1: 	{color: colorRange[0], lineDashStyle: [2, 2]},
@@ -305,10 +306,11 @@ function drawChart() {
     options2 = {
 		legend: 'none',
 		title: 'Paid and unpaid work, by gender',
+		theme: 'material',
 		tooltip: {isHtml: true},
 		curveType: 'function',
 		chartArea:{left:40,top:30,width:'70%',height:'70%'},
-		hAxis: {title: "$ per hour" },
+		hAxis: {title: "$ per hour", ticks: [0,2,4,6,8,10,12,14,16,18,20]},
 		vAxis: {viewWindow:{min:0}},
 		series:{0: 	{color: colorRange[0], lineDashStyle: [10, 2]},
 				1: 	{color: colorRange[0], lineDashStyle: [2, 2]},
