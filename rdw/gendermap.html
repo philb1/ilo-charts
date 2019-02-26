@@ -248,12 +248,12 @@ colors: ['#2166ac','#67a9cf','#d1e5f0','#fddbc7','#ef8a62','#b2182b'],
 		tooltip: {
 				useHTML: true,
 				formatter: function() { 
-					var t = '<div class="mtip"><b>' + this.point.country + '</b>: ' + this.point.value.toFixed(1) + '%' +
+					var t = '<div class="mtip"><b>' + this.point.country + ': ' + this.point.value.toFixed(1) + '%</b>' +
 					'<br>In <b>'+ this.point.country + '</b>, <b>' + this.point.n_female + '</b> out of <b>' + this.point.n_total +
 					'</b> crowdworkers surveyed in 2017 '
-					if (this.point.n_female==1) {t=t+'was '}
-					else {t=t+'were '}
-					t=t+'a woman</div>';
+					if (this.point.n_female==1) {t=t+'was a woman'}
+					else {t=t+'were women'}
+					t=t+'</div>';
 					return  t;
 				}
 			},
@@ -294,9 +294,10 @@ $('#btns').on('click', '.serie', function() {
 <center><h1>To what extent do women participate in crowdwork?</h1></center>
 <div id="container">&nbsp;</div>
 <div id="btns" style="text-align: center; margin-top: 10px; margin-bottom: 10px">
-	<button class="serie" id="b1" value="1">2015</button>
 	<button class="serie" id="b0" value="0">2017</button>
+	<button class="serie" id="b1" value="1">2015</button>
 </div>
 
-<font size="-2">Statistics for countries with less than 5 observations are omitted. The boundaries shown on this map do not imply endorsement or acceptance by the ILO.</font></div>
+<font size="-1">Note: Statistics based on a survey of 1167 workers from 51 countries (2015) and 2350 workers from 75 countries (2017). Statistics for countries with less than 5 observations are omitted. The boundaries shown on this map do not imply endorsement or acceptance by the ILO.
+Source: ILO Survey of crowdworkers, 2015 and 2017.</font></div>
 </div>
