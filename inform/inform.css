@@ -1,0 +1,51 @@
+#wrapper {
+	border: solid 1px;
+ /*    height: 500px;
+    width: 1000px;
+*/
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+#container {
+    float: left;
+    width: 1000px; 
+    height: 500px; 
+    margin: 0;
+}
+#info {
+/*    float: left;*/
+    float: right;
+    width: 270px;
+    padding-left: 20px;
+    margin: 10px 0 0 0;
+    border-left: 1px solid silver;
+}
+#menu {
+/*    float: left;*/
+    float: right;
+    width: 270px;
+    padding-left: 20px;
+    margin: 0 0 0 0;
+    border: none;
+}
+#info h2 {
+    display: inline;
+    font-size: 13pt;
+}
+#info .f32 .flag {
+    vertical-align: bottom !important;
+}
+
+#info h4 {
+    margin: 1em 0 0 0;
+}
+
+#switchMap {
+   width: 240px;
+   height: 34px;
+   overflow: hidden;
+/*   background: url(new_arrow.png) no-repeat right #ddd;*/
+   border: 1px solid #ccc;
+   }
