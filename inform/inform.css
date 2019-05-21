@@ -43,7 +43,9 @@
 }
 
 #switchMap {
-   width: 94%;
+      font-size: 12px;
+
+    width: 94%;
    height: 34px;
 /*   background: url(new_arrow.png) no-repeat right #ddd;*/
    border: 1px solid #ccc;
