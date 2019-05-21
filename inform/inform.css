@@ -1,7 +1,4 @@
 #wrapper {
- /*    height: 500px;
-    width: 1000px;
-*/
     height: 100%;
     width: 100%;
     margin: 0 auto;
@@ -9,27 +6,26 @@
 }
 #container {
     float: left;
-/*    width: 800px; */
     width: 62%; 
-/*    height: 500px; */
+    height: 100%; 
+    margin: 0;
+}
+#rightcol {
+    float: right;
+    width: 37%; 
     height: 100%; 
     margin: 0;
 }
 #info {
-/*    float: left;*/
     float: right;
-    width: 36%; 
-/*    width: 400px;*/
-/*    height: 70%;*/
-/*    padding-left: 20px;/*
-    margin: 0 0 0 0;
+    width: 94%;
+    padding-left: 20px;
+    margin: 10px 0 0 0;
     border-left: 1px solid silver;
 }
 #menu {
-/*    float: left;*/
     float: right;
-/*    width: 270px;*/
-/*    padding-left: 20px;*/
+    padding-left: 20px;
     margin: 0 0 0 0;
 }
 #info h2 {
@@ -45,9 +41,8 @@
 }
 
 #switchMap {
-   width: 240px;
+   width: 94%;
    height: 34px;
-   overflow: hidden;
 /*   background: url(new_arrow.png) no-repeat right #ddd;*/
    border: 1px solid #ccc;
    }
