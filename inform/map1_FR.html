@@ -1,0 +1,326 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+<link rel='stylesheet' href='inform.css' type='text/css' />
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/maps/modules/map.js"></script>
+<!--<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>-->
+<script src="world.js"></script>
+
+<script type='text/javascript'>//<![CDATA[
+var mapTitle='Proportion d\'emploi informel dans l\'emploi total';
+var subChartTitle ='Proportion d\'emploi informel selon le sexe (y-compris et hors agriculture)';
+
+$.ajax({
+    url: 'map1_FR.csv',
+    success: function (csv) {
+        // Parse the CSV Data
+        /*Highcharts.data({
+            csv: data,
+            switchRowsAndColumns: true,
+            parsed: function () {
+                console.log(this.columns);
+            }
+        });*/
+        // Very simple and case-specific CSV string splitting
+        function CSVtoArray(text) {
+            return text.replace(/^"/, '')
+                .replace(/",$/, '')
+                .split('","');
+        }
+        csv = csv.split(/\n/);
+//        csv = csv.split(/\r/); // Windows CRLF
+
+        var countries = {},
+            mapChart,
+            subChart,
+            numRegex = /^[0-9\.]+$/,
+            lastCommaRegex = /,\s$/,
+            quoteRegex = /\"/g,
+            categories = CSVtoArray(csv[2]).slice(4);
+        // Parse the CSV into arrays, one array each country
+        $.each(csv.slice(3), function (j, line) {
+            var row = CSVtoArray(line),
+                data = row.slice(4);
+            $.each(data, function (i, val) {
+                val = val.replace(quoteRegex, '');
+                if (numRegex.test(val)) {
+                    val = parseFloat(val, 10);
+                } else if (!val || lastCommaRegex.test(val)) {
+                    val = null;
+                }
+                data[i] = val;
+            });
+
+            countries[row[1]] = {
+                name: row[0],
+                code3: row[1],
+                data: data
+            };
+        });
+
+        // For each country, use the latest value
+        var data = [];
+        for (var code3 in countries) {
+            if (countries.hasOwnProperty(code3)) {
+                var value = null,
+//                    year,
+//                    name = countries[code3].name,			/* toto */
+                    itemData = countries[code3].data,
+                    i = itemData.length;
+/*
+                while (i--) {
+                    if (typeof itemData[i] === 'number') {
+                        value = itemData[i];
+                        year = categories[i];
+                        break;
+                    }
+                }
+*/
+                data.push({
+                    nameILO: countries[code3].name,
+                    code3: code3,
+//                    value: value,
+					value: countries[code3].data[0],
+//                    year: year
+                });
+            }
+        }
+
+        // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
+        var mapData = Highcharts.geojson(Highcharts.maps['custom/world']);
+        $.each(mapData, function () {
+            this.id = this.properties['hc-key']; // for Chart.get()
+            this.flag = this.id.replace('UK', 'GB').toLowerCase();
+        });
+
+        // Wrap point.select to get to the total selected points
+        Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
+
+            proceed.apply(this, Array.prototype.slice.call(arguments, 1));
+
+            var points = mapChart.getSelectedPoints();
+//            console.log(points);
+            if (points.length) {
+                if (points.length === 1) {
+                    $('#info #flag').attr('class', 'flag ' + points[0].flag);
+                    $('#info h2').html(points[0].nameILO);
+                } else {
+                    $('#info #flag').attr('class', 'flag');
+                    $('#info h2').html('Comparing countries');
+
+                }
+//                $('#info .subheader').html('<h4>' + subChartTitle + '</h4><small><em>Shift + Click on map to compare countries</em></small>');
+                $('#info .subheader').html('<h4>' + subChartTitle + '</h4>');
+
+                if (!subChart) {
+                    subChart = Highcharts.chart('sub-chart', {
+                        chart: {
+                            height: '90%',
+                            spacingLeft: 0,
+                            marginBottom: 100
+							//plotAreaHeight: 400                            
+                        },
+                        credits: {enabled: false},
+                        title: {
+                            text: null
+                        },
+                        subtitle: {
+                            text: null
+                        },
+						legend: {enabled: false},
+                        xAxis: {
+                            //tickPixelInterval: 50,
+                            tickInterval: 1,
+                            crosshair: true,
+							labels: {enabled: true,
+									inside: false,
+									//align:'bottom',
+									//y:-170,
+									rotation:'90',
+									style: {fontWeight: 'bolder'},
+									formatter: function() {return categories[this.value];},
+									},             
+						//legend: {enabled: true},
+                        },
+                        yAxis: {
+                            title: null,
+                            opposite: true,
+                        },
+/*
+    tooltip: {
+        shared: true,
+        headerFormat: '',
+        pointFormat: '<b>{series.name}:</b> {point.y}%<br/>'
+    },
+*/
+					   tooltip: {
+								formatter: function() { 
+									return '<b>' + this.series.name + '</b><br>' + categories[this.x] + ': <b>' + this.y + '%</b>'
+								}
+							},
+                        plotOptions: {
+                            series: {
+	colorByPoint: true,
+	colors: ['#8dd3c7','#ffffb3','#bebada'],
+	
+			//					color: '#4572CD',
+								borderRadius: 5,
+								dataLabels: {
+									enabled: true,
+									format: '{y}%',
+									style: {"fontSize": "10px", "textShadow": "0px" },
+									verticalAlign: 'top',
+									y: 0
+									//color: '#ffffff',
+								},
+								pointWidth: 40,
+                                animation: {
+                                    duration: 500
+                                },
+                                marker: {
+                                    enabled: false
+                                },
+                                //threshold: 0,
+                                //pointStart: parseInt(categories[0], 10)
+                            }
+                        }
+                    });
+                }
+
+                subChart.series.slice(0).forEach(function (s) {
+/*COMP*/
+//console.log(s.selected);
+//console.log(points.length);
+//console.log(s);//tutu
+                    s.remove(false);
+                });
+                points.forEach(function (p) {
+//                    console.log(p.name);
+                    subChart.addSeries({
+//                        name: p.name,
+                        name: countries[p.code3].name,
+                        data: countries[p.code3].data,
+/*COMP*/
+                        type: 'bar',
+                        stacking: 'normal'
+/*NOCOMP*/
+//                        type: 'bar'
+                    }, false);
+                });
+                subChart.redraw();
+
+            } else {
+                $('#info #flag').attr('class', '');
+                $('#info h2').html('');
+                $('#info .subheader').html('');
+                if (subChart) {
+                    subChart = subChart.destroy();
+                }
+            }
+        });
+
+        // Initiate the map chart
+        mapChart = Highcharts.mapChart('container', {
+
+     
+            
+            title: {text: mapTitle},
+            subtitle: {text: 'Source: <a href="http://www.ilo.org">ILO</a>'},
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+			credits: {enabled: false},
+            colorAxis: {
+				minColor: '#8dd3c7', maxColor: '#ffffb3',
+            //    type: 'logarithmic',
+                
+//                type: 'logarithmic',
+//                endOnTick: false,
+//                startOnTick: false,
+//                min: 50000
+            },
+
+            tooltip: {
+                     formatter: function() { 
+						return '<b>' + this.point.nameILO + '</b><br>' + this.series.name + ': <b>' + this.point.value + '%</b>'
+					}
+				},
+            series: [{
+                data: data,
+                mapData: mapData,
+                joinBy: ['iso-a3', 'code3'],
+                name: mapTitle,
+                allowPointSelect: true,
+                cursor: 'pointer',
+                states: {
+                    select: {
+                        color: '#aaa'
+                        //borderColor: 'black',
+                        //dashStyle: 'LongDash'
+                    }
+                }
+            }]
+        });
+
+        // Pre-select a country
+//        mapChart.get('al').select();
+
+$('#switchMap').on('change', function() {
+  $(location).attr('href', this.value+'_'+document.getElementById('switchLang').value+'.html');
+  //$(location).attr('href', this.value);
+});
+$('#switchLang').on('change', function() {
+  $(location).attr('href', document.getElementById('switchMap').value+'_'+this.value+'.html');
+  //$(location).attr('href', this.value);
+});
+
+    }
+});
+
+//]]> 
+
+</script>
+
+<!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+<!--<link rel="stylesheet" type="text/css" href="flags32.css" />-->
+<link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+</head>
+<body>
+<div id="wrapper">
+    <div id="container"></div>
+    <div id="rightcol">
+    <div id="menu">
+		<select id="switchMap">
+<!--		<option value="0" selected disabled>Switch to:</option>-->
+		<option value="map1" selected default>Proportion d'emploi informel dans l'emploi total</option>
+		<option value="map2">Proportion d'emploi salarié informel</option>
+		<option value="map3">Part des travailleurs à leur propre compte et des travailleurs familiaux parmi l'ensemble des travailleurs informels</option>
+		<option value="map4">Proportion d'emploi informel parmi les jeunes (15-24)</option>
+		<option value="map5">Proportion d'emploi informel parmi les travailleurs diplômés de l'enseigement supérieur</option>
+		<option value="map6">Part des travailleurs sans diplôme ou avec un niveau d'éducation primaire parmi les l'ensemble des travailleurs informels</option>
+		<option value="map7">Proportion d'emploi informel dans les entreprises de moins de 10 travailleurs</option>
+		<option value="map8">Part des entreprises de moins de 10 travailleurs parmi l'ensemble des travailleurs informels</option>
+		<option value="map9">Proportion de travailleurs en emploi informel travaillant moins de 20h par semaine</option>
+		<option value="map10">Proportion de travailleurs en emploi informel travaillant plus de 48h par semaine</option>
+    </select>
+		<select id="switchLang">
+			<option value="EN">ENG</option>
+			<option value="FR" selected default>FRA</option>
+			<option value="SP">ESP</option>
+		</select>
+	</div>
+    <div id="info">
+        <span class="f32"><span id="flag"></span>&nbsp;</span><h2></h2>
+        <div class="subheader">Click countries</div>
+        <div id="sub-chart"></div>
+    </div>
+    </div>
+</div>
+</body>
+</html>
