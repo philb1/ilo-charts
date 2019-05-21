@@ -278,17 +278,31 @@ $.ajax({
 <body>
 <div id="wrapper">
     <div id="container"></div>
+    <div id="rightcol">
     <div id="menu">
 		<select id="switchMap">
 		<option value="0" selected disabled>Switch to:</option>
+<!--
 		<option value="mapData1_CSV2_dwr.html" default>Real Wage Growth</option>
 		<option value="mapData1_CSV2_gdp.html">Real GDP Growth</option>
 		<option value="mapData1_CSV2_det.html">Employment Growth</option>
+-->
+		<option value="" default>Share of informal employment in total employment</option>
+		<option value="">Share of informal wage employment</option>
+		<option value="">Share of own-account and contributing family workers among workers in informal employment</option>
+		<option value="">Share of informal employment among the youth (15-24)</option>
+		<option value="">Share of informal employment among workers with a tertiary level of education</option>
+		<option value="">Workers in informal employment with no or primary education at best</option>
+		<option value="">Share of informal employment in enterprises of less than 10 workers</option>
+		<option value="">Share of enterprises of less than 10 workers in total informal employment</option>
+		<option value="">Share of workers in informal employment working less than 20h a week</option>
+		<option value="">Share of workers in informal employment working more than 48h a week</option>
     </select></div>
     <div id="info">
         <span class="f32"><span id="flag"></span>&nbsp;</span><h2></h2>
         <div class="subheader">Click countries</div>
         <div id="sub-chart"></div>
+    </div>
     </div>
 </div>
 </body>
