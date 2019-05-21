@@ -6,6 +6,7 @@
 }
 #container {
     float: left;
+    vertical-align: top;
     width: 62%; 
     height: 100%; 
     margin: 0;
