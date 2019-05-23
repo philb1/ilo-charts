@@ -6,28 +6,20 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
-<link rel='stylesheet' href='inform.css' type='text/css' />
+<link rel='stylesheet' href='css/inform.css' type='text/css' />
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/maps/modules/map.js"></script>
 <!--<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>-->
-<script src="world.js"></script>
+<script src="js/world.js"></script>
 
 <script type='text/javascript'>//<![CDATA[
 var mapTitle='Share of informal employment';
 var subChartTitle ='Share of informal employment by sex (including and excluding agriculture)';
 
 $.ajax({
-    url: 'map1_EN.csv',
+    url: 'en/map1.csv',
     success: function (csv) {
-        // Parse the CSV Data
-        /*Highcharts.data({
-            csv: data,
-            switchRowsAndColumns: true,
-            parsed: function () {
-                console.log(this.columns);
-            }
-        });*/
         // Very simple and case-specific CSV string splitting
         function CSVtoArray(text) {
             return text.replace(/^"/, '')
@@ -277,11 +269,9 @@ $.ajax({
 
 $('#switchMap').on('change', function() {
   $(location).attr('href', this.value+'_'+document.getElementById('switchLang').value+'.html');
-  //$(location).attr('href', this.value);
 });
 $('#switchLang').on('change', function() {
   $(location).attr('href', document.getElementById('switchMap').value+'_'+this.value+'.html');
-  //$(location).attr('href', this.value);
 });
 
     }
@@ -297,34 +287,10 @@ $('#switchLang').on('change', function() {
 </head>
 <body>
 <div id="wrapper">
-    <div id="container"></div>
-    <div id="rightcol">
-    <div id="menu">
-		<select id="switchMap">
-<!--		<option value="0" selected disabled>Switch to:</option>-->
-		<option value="map1" selected default>Share of informal employment in total employment</option>
-		<option value="map2">Share of informal wage employment</option>
-		<option value="map3">Share of own-account and contributing family workers among workers in informal employment</option>
-		<option value="map4">Share of informal employment among the youth (15-24)</option>
-		<option value="map5">Share of informal employment among workers with a tertiary level of education</option>
-		<option value="map6">Workers in informal employment with no or primary education at best</option>
-		<option value="map7">Share of informal employment in enterprises of less than 10 workers</option>
-		<option value="map8">Share of enterprises of less than 10 workers in total informal employment</option>
-		<option value="map9">Share of workers in informal employment working less than 20h a week</option>
-		<option value="map10">Share of workers in informal employment working more than 48h a week</option>
-    </select>
-		<select id="switchLang">
-			<option value="EN" selected default>ENG</option>
-			<option value="FR">FRA</option>
-			<option value="SP">ESP</option>
-		</select>
-	</div>
-    <div id="info">
-        <span class="f32"><span id="flag"></span>&nbsp;</span><h2></h2>
-        <div class="subheader"<i>Select a country from the map to display detailed country data.</i><br><br><b>Disclaimer</b><br>To enhance international comparability, the ILO applied a systematic approach to measuring informal employment when processing micro data. All estimates are based on a common set of operational criteria to determine informal employment and employment in the informal sector. As a result, statistics presented here are comparable across countries and regions, but the ILO’s country estimates might differ from national ones when they exist.</div>
-        <div id="sub-chart"></div>
-    </div>
-    </div>
+	<div id="container"></div>
+	<div w3-include-html="en/rCol.html"></div>
 </div>
+
 </body>
 </html>
+<script type="text/javascript" src="js/HTMLinc.js"></script>
