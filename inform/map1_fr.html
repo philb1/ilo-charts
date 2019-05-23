@@ -1,32 +1,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="refresh" content="60" >
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
-<link rel='stylesheet' href='inform.css' type='text/css' />
+<link rel='stylesheet' href='css/inform.css' type='text/css' />
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/maps/modules/map.js"></script>
 <!--<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>-->
-<script src="world.js"></script>
+<script src="js/world.js"></script>
 
 <script type='text/javascript'>//<![CDATA[
 var mapTitle='Proportion d\'emploi informel dans l\'emploi total';
 var subChartTitle ='Proportion d\'emploi informel selon le sexe (y-compris et hors agriculture)';
 
 $.ajax({
-    url: 'map1_FR.csv',
+    url: 'fr/map1.csv',
     success: function (csv) {
-        // Parse the CSV Data
-        /*Highcharts.data({
-            csv: data,
-            switchRowsAndColumns: true,
-            parsed: function () {
-                console.log(this.columns);
-            }
-        });*/
         // Very simple and case-specific CSV string splitting
         function CSVtoArray(text) {
             return text.replace(/^"/, '')
@@ -123,7 +116,7 @@ $.ajax({
                         chart: {
                             height: '90%',
                             spacingLeft: 0,
-                            marginBottom: 100
+                            marginBottom: 150
 							//plotAreaHeight: 400                            
                         },
                         credits: {enabled: false},
@@ -296,34 +289,10 @@ $('#switchLang').on('change', function() {
 </head>
 <body>
 <div id="wrapper">
-    <div id="container"></div>
-    <div id="rightcol">
-    <div id="menu">
-		<select id="switchMap">
-<!--		<option value="0" selected disabled>Switch to:</option>-->
-		<option value="map1" selected default>Proportion d'emploi informel dans l'emploi total</option>
-		<option value="map2">Proportion d'emploi salarié informel</option>
-		<option value="map3">Part des travailleurs à leur propre compte et des travailleurs familiaux parmi l'ensemble des travailleurs informels</option>
-		<option value="map4">Proportion d'emploi informel parmi les jeunes (15-24)</option>
-		<option value="map5">Proportion d'emploi informel parmi les travailleurs diplômés de l'enseigement supérieur</option>
-		<option value="map6">Part des travailleurs sans diplôme ou avec un niveau d'éducation primaire parmi les l'ensemble des travailleurs informels</option>
-		<option value="map7">Proportion d'emploi informel dans les entreprises de moins de 10 travailleurs</option>
-		<option value="map8">Part des entreprises de moins de 10 travailleurs parmi l'ensemble des travailleurs informels</option>
-		<option value="map9">Proportion de travailleurs en emploi informel travaillant moins de 20h par semaine</option>
-		<option value="map10">Proportion de travailleurs en emploi informel travaillant plus de 48h par semaine</option>
-    </select>
-		<select id="switchLang">
-			<option value="EN">ENG</option>
-			<option value="FR" selected default>FRA</option>
-			<option value="SP">ESP</option>
-		</select>
-	</div>
-    <div id="info">
-        <span class="f32"><span id="flag"></span>&nbsp;</span><h2></h2>
-        <div class="subheader">Click countries</div>
-        <div id="sub-chart"></div>
-    </div>
-    </div>
+	<div id="container"></div>
+	<div w3-include-html="fr/rCol.html"></div>
 </div>
+
 </body>
 </html>
+<script type="text/javascript" src="js/HTMLinc.js"></script>
